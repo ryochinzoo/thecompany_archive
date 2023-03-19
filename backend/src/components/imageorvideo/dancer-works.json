@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_imageorvideo_dancer_works",
+  "info": {
+    "displayName": "DancerWorks",
+    "icon": "grin-wink"
+  },
+  "options": {},
+  "attributes": {
+    "TypeOfMedia": {
+      "type": "enumeration",
+      "enum": [
+        "Image",
+        "Video",
+        "YoutubeLink"
+      ]
+    },
+    "Contents": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "YoutubeURL": {
+      "type": "string",
+      "unique": false
+    }
+  }
+}

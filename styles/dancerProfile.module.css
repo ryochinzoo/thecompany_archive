@@ -1,0 +1,1220 @@
+.sliderWrapper,
+.sliderWrapperOpened {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 7%;
+}
+.swiperInnerWrapper {
+    margin: 0 auto;
+    position: relative;
+    width: calc(64vh * (27/13) + 36px);
+}
+.swiperInnerWrapperClicked {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+.basedCenterPhotoSize {
+    width: 100%;
+    height: 64vh;
+}
+.subSlideContents{
+    transform: scale(0.65);
+    -webkit-transform: scale(0.65);
+}
+.subSlideActive {
+    transition-duration: 0.2s;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    padding-bottom: 5px;
+}
+
+.subSlidePrevNext {
+    transition-duration: 0.2s;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+}
+
+.slideContents {
+    height: 65vh;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+
+.slideContentsClicked {
+    height: 65vh;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+
+.swiperSlideActive .slide {
+    transition: all .5s;
+    -webkit-transition: all .5s;
+}
+
+.swiperSlideActive .slide .slideContents {
+    transition-duration: 0.3s;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    z-index: 2;
+}
+.swiperSlidePrevNext {
+    opacity: 0.6;
+}
+.dancerName {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 35px;
+    font-weight: bold;
+    z-index: 9;
+    position: absolute;
+    right: 50px;
+    top: 20px;
+}
+
+.swiperSlideActive .dancerName {
+    color: rgba(0, 0, 0, 1);
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.dancerNameInContents {
+    color: rgba(0, 0, 0, 1);
+    font-size: 52px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.dancerPhotoWrapper {
+    display: block;
+    position: relative;
+    justify-content: center;
+}
+.flexWrapper {
+    display: flex;
+    position: relative;
+}
+.flexWrapperClicked {
+    display: flex;
+    position: relative;
+    justify-content: flex-start;
+}
+.flexWrapperForMobile {
+    display: flex;
+    position: relative;
+    width: 60%;
+    max-width: unset;
+}
+
+.swipeForTabletAndMobileLabel {
+    margin-right: 15px;
+    font-size: 18px;
+    display: none;
+}
+.flexCentering {
+    justify-content: flex-start;
+    align-items: center;
+}
+.flexBottom {
+    align-items: flex-end;
+}
+.flexArea {
+    width: 40%;
+}
+.flexAreaWorks {
+    max-width: 130px;
+    margin-right: 10px;
+}
+.flexAreaPhoto {
+    width: 70%;
+    position: relative;
+    transition-duration: .8s;
+    -webkit-transition-duration: .8s;
+}
+.initArea {
+    width: 100%;
+}
+.centerPhoto {
+    margin: 0 auto;
+    position: relative;
+}
+.simpleArrowPrev {
+    color: #000;
+    line-height: 1;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    transform: translateX(-25%) rotate(-135deg);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .simpleArrowPrev:before, .simpleArrowPrev:after {
+    content: '';
+    position: absolute;
+    background: #000;
+    border-radius: 5px;
+  }
+
+  .simpleArrowPrev:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .simpleArrowPrev:after {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+  }
+
+  .simpleArrowNext {
+    color: #000;
+    line-height: 1;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    transform: translateX(-25%) rotate(45deg);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .simpleArrowNext:before, .simpleArrowNext:after {
+    content: '';
+    position: absolute;
+    background: #000;
+    border-radius: 5px;
+  }
+
+  .simpleArrowNext:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .simpleArrowNext:after {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+  }
+.dancerInfoWrapper {
+    padding: 0 0 0 60px;
+    width: 75%;
+}
+.dancerInfoParagraph {
+    padding: 0 0 15px;
+    font-weight: 200;
+}
+
+.dancerInfoHeadline {
+    padding-bottom: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+.dancerInfoOverview {
+    font-size: 16px;
+}
+.dancerNameContentsWrapper {
+    width: 75%;
+    text-align: left;
+    padding-left: 42px;
+}
+.dancerInfoBold {
+    font-weight: bold;
+}
+
+.dancerInfo {
+    font-size: 18px;
+}
+
+.dancerTitle {
+    color: #c93d38;
+    font-size: 28px;
+    font-weight: 200;
+}
+.paddingBottom40 {
+    padding-bottom: 40px;
+}
+
+.marginAlignTop {
+    /*margin-top: 80px;*/
+    margin-top: 0px;
+}
+
+.positionRelative {
+    position: relative;
+}
+.verticalList {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 130px;
+    height: 50vh;
+    position: relative;
+    top: 80px;
+    scrollbar-width: thin;
+    scrollbar-color: #363636 #979797;
+    
+}
+.verticalList::before, .verticalList::after {
+    content: "";
+}
+
+.verticalList::-webkit-scrollbar {
+    width: 5px;
+}
+
+.verticalList::-webkit-scrollbar-track {
+    background: #979797;
+    border-left: 2px solid #DDE0E5;
+    border-right: 2px solid #DDE0E5;
+}
+
+.verticalList::-webkit-scrollbar-thumb {
+    background: #363636;
+    border-radius: 10px;
+}
+.dancerOverviewFrame {
+    overflow-y: auto;
+    max-height: 260px;
+    scrollbar-width: thin;
+    scrollbar-color: #363636 #979797;
+}
+.dancerOverviewFrame::before, .dancerOverviewFrame::after {
+    content: "";
+}
+
+.dancerOverviewFrame::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dancerOverviewFrame::-webkit-scrollbar-track {
+    background: #979797;
+    border-left: 4px solid #DDE0E5;
+    border-right: 4px solid #DDE0E5;
+}
+
+.dancerOverviewFrame::-webkit-scrollbar-thumb {
+    background: #363636;
+    border-radius: 10px;
+}
+.horizontalList {
+    height: 130px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #363636 #979797;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+.horizontalListModalWrapper {
+    position: absolute;
+    bottom: 40px;
+    left: 130px;
+    z-index: 1;
+}
+
+.workBlockSmall {
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+    object-position: center center;
+    flex: 1;
+    text-align: center;
+    margin: 0 auto 10px;
+    position: relative;
+}
+
+.workBlockSmallHorizontal {
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+    object-position: center center;
+    flex: 1;
+    text-align: center;
+    margin: auto 10px;
+    position: relative;
+}
+
+.workIsActive {
+    position: absolute;
+    width: 108px;
+    height: 108px;
+    background:
+    linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0,
+    linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%,
+    linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0,
+    linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%,
+    linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0,
+    linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0,
+    linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%,
+    linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
+
+    background-repeat: no-repeat;
+    background-size: 9px 9px;
+}
+
+.workIsNotActive {
+    text-align: center;
+    width: 108px;
+    height: 108px;
+    position: absolute;
+    background:
+    linear-gradient(to right, transparent 1px, transparent 1px) 0 0,
+    linear-gradient(to right, transparent 1px, transparent 1px) 0 100%,
+    linear-gradient(to left, transparent 1px, transparent 1px) 100% 0,
+    linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%,
+    linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0,
+    linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0,
+    linear-gradient(to top, transparent 1px, transparent 1px) 0 100%,
+    linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 9px 9px;
+}
+.innerBorder {
+    border: 1px solid #c4c4c4;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin: 4px 5px;
+}
+
+.innerBorderVideo {
+    border: 1px solid #c4c4c4;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin: 4px 4px;
+}
+
+
+
+.workBlockSmall img {
+    z-index: 1;
+    position: relative;
+}
+.arrowWrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    z-index: 4;
+    color: #000;
+    cursor: pointer;
+    right: -85px;
+}
+.arrowUpRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.arrowUpRight::before{
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -21px;
+    box-sizing: border-box;
+    width: 20px;
+    height: 14px;
+    border: 8px solid transparent;
+    border-left: 8px solid #000;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.arrowUpRight::after{
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: 9px;
+    width: 8px;
+    height: 12px;
+    border-left: 4px solid #000;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.arrowDownLeft {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.arrowDownLeft::before{
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 8px;
+    box-sizing: border-box;
+    width: 20px;
+    height: 14px;
+    border: 8px solid transparent;
+    border-left: 8px solid #000;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.arrowDownLeft::after{
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: 21px;
+    width: 8px;
+    height: 12px;
+    border-left: 4px solid #000;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.fadeInAnimation {
+    opacity: 0;
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+}
+.fadeInAnimationCenterPhoto {
+    opacity: 0;
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    
+    to {
+        opacity: 1;
+    }    
+}
+
+.headerWrapper {
+    padding: 40px 7% 10px;
+}
+
+.dancerSlideHeadline {
+    font-size: 36px;
+    font-weight: 300;
+    color: #000;
+}
+.backToDancersWrapper {
+    text-align: right;
+}
+.backToDancers {
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    margin-right: 8%;
+}
+.backToDancers::before,
+.backToDancers::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -32px;
+    bottom: 0;
+    margin: auto;
+}
+.backToDancers::before {
+    width: 24px;
+    height: 2px;
+    margin-top: 9px;
+    background: #000;
+}
+
+.backToDancers::after {
+    width: 9px;
+    height: 9px;
+    margin-top: 4px;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    transform: rotate(-135deg);
+}
+
+.flexWrapperDancerHeader {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.flexWrapperDancerHeaderOpened,
+.flexWrapperDancerHeaderClosed {
+    display: none;
+}
+.viewAllArea {
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline-block;
+    margin-left: 16px;
+    color: #c93d38;
+}
+
+.dancerListWrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listedDancerPhoto {
+    position: relative;
+    width: 200px;
+    object-fit: cover;
+    height: 300px;
+    cursor: pointer;
+}
+.listedDancerHoverLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background: #202020;
+    z-index: 1;
+}
+.listedDancerName {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: xx-large;
+    z-index: 2;
+    font-weight: bold;
+    color: #fff;
+}
+.reactPlayerDancerPreview {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.playButtonMiddle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 3px solid #f9f9f9;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 1;
+}
+.playButtonMarkMiddle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    border-style: solid;
+    border-color: transparent transparent transparent #f9f9f9;
+    border-width: 25px 0 25px 45px;
+}
+.videoPlayerSize{
+    width: 100px;
+    height: 100px;
+}
+.subSwiperForMobile {
+    display: block;
+    margin-top: 15px;
+}
+@media screen and (max-width: 1199px) {
+    .sliderWrapper {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .sliderWrapperOpened {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0 0 0 5%;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+    .swiperInnerWrapper {
+        width: calc(64vh * (22/13) + 36px);
+        margin: 0 auto;
+        position: relative;
+    }
+    .basedCenterPhotoSize {
+        width: 100%;
+        height: 64vh;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .swiperInnerWrapper {
+        width: calc(64vh * (19/13) + 36px);
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .basedCenterPhotoSize {
+        width: 100%;
+        height: 64vh;
+    }
+}
+@media screen and (min-width: 640px) and (max-width: 767px) {
+    .swiperInnerWrapper {
+        width: calc(64vh * (15/13) + 36px);
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .basedCenterPhotoSize {
+        width: 100%;
+        height: 64vh;
+    }
+}
+@media screen and (max-width: 639px) {
+    .swiperInnerWrapper {
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    
+    .basedCenterPhotoSize {
+        width: 100%;
+        height: 64vh;
+    }
+    .basedCenterPhotoSize.isClicked {
+        width: 100%;
+        height: 42vh;
+    }
+    .flexAreaPhoto {
+        height: 46vh;
+    }
+    .verticalList {
+        height: 40vh;
+    }
+    .headerWrapper {
+        padding: 40px 7% 0;
+    }
+    .headerWrapper.isClicked {
+        padding: 40px 7%;
+    }
+    .slideContents {
+        height: 60vh;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    
+    .slideContentsClicked {
+        height: 50vh;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+@media screen and (max-width: 1023px) {
+    .flexWrapperDancerHeader.isClicked {
+        justify-content: flex-start;
+    }
+    .flexWrapperDancerHeaderClosed {
+        display: none;
+    }
+    .flexWrapperDancerHeaderOpened {
+        display: flex;
+        margin-top: 40px;
+        justify-content: space-between;
+    }
+    .viewAllOrSwipeWrapper {
+        display: flex;
+        gap: 0 70px;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        margin-right: 10%;
+    }
+    .viewAllArea,
+    .viewAllAreaMobile {
+        cursor: pointer;
+        text-decoration: underline;
+        display: inline-block;
+        margin-left: 0;
+        color: #c93d38;
+    }
+    .viewAllArea.isClicked {
+        display: none;
+    }
+    .backToDancersMobile {
+        color: #000;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        text-decoration: underline;
+        width: 10%;
+    }
+    .OrSwipe {
+        color: #363636;
+        font-weight: 100;
+    }
+    .swipeForTabletAndMobile,
+    .backToDancersWrapper  {
+        display: none;
+    }
+    .verticalList {
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 130px;
+        height: 42vh;
+        position: relative;
+        top: 0px;
+        scrollbar-width: thin;
+        scrollbar-color: #363636 #979797;
+    }
+    .horizontalList {
+        height: 130px;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        scrollbar-width: thin;
+        scrollbar-color: #363636 #979797;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .horizontalListModalWrapper {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        z-index: 1;
+        overflow: auto;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .workBlockSmallHorizontal {
+        width: 108px;
+        height: 108px;
+        min-width: 108px;
+        max-width: 108px;
+    }
+    .dancerNameContentsWrapper {
+        width: 85%;
+        text-align: left;
+        padding-left: 20px;
+    }
+    .dancerInfoWrapper {
+        padding: 0 20px;
+        width: 85%;
+        min-height: 53vh;
+        overflow-y: auto;
+        word-wrap: break-word;
+    }
+    .arrowWrapper {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 60px;
+        height: 60px;
+        z-index: 4;
+        color: #000;
+        cursor: pointer;
+        right: unset;
+        left: 0;
+    }
+    .swipeForTabletAndMobile {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 12px;
+        align-items: center;
+    }
+    .swipeForTabletAndMobileLabel {
+        margin-right: 15px;
+        font-size: 18px;
+        display: inline-block;
+    }
+    .simpleArrowPrev {
+        color: #000;
+        line-height: 1;
+        position: relative;
+        width: 10px;
+        height: 10px;
+        transform: translateX(-25%) rotate(-135deg);
+        z-index: 2;
+        cursor: pointer;
+      }
+    
+      .simpleArrowPrev:before, .simpleArrowPrev:after {
+        content: '';
+        position: absolute;
+        background: #000;
+        border-radius: 0;
+      }
+    
+      .simpleArrowPrev:before {
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+      }
+    
+      .simpleArrowPrev:after {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 3px;
+      }
+    
+      .simpleArrowNext {
+        color: #000;
+        line-height: 1;
+        position: relative;
+        width: 10px;
+        height: 10px;
+        transform: translateX(-25%) rotate(45deg);
+        z-index: 2;
+        cursor: pointer;
+      }
+    
+      .simpleArrowNext:before, .simpleArrowNext:after {
+        content: '';
+        position: absolute;
+        background: #000;
+        border-radius: 0;
+      }
+    
+      .simpleArrowNext:before {
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+      }
+    
+      .simpleArrowNext:after {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 3px;
+      }
+}
+@media screen and (max-width: 767px) {
+    .basedCenterPhotoSize {
+        width: 100%;
+        height: 64vh;
+    }
+    .basedCenterPhotoSize.isClicked {
+        width: 100%;
+        height: calc(100vw * 17/22);
+    }
+    .subSwiperForMobile {
+        display: none;
+    }
+    .flexWrapper {
+        flex-direction: column;
+    }
+    .flexWrapperForMobile {
+        display: flex;
+        position: relative;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .flexWrapperClicked {
+        display: flex;
+        position: relative;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+    .sliderWrapper {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .headerWrapper {
+        padding: 80px 7% 10px;
+    }
+    .flexAreaPhoto {
+        width: 55%;
+        position: relative;
+        transition-duration: .8s;
+        -webkit-transition-duration: .8s;
+    }
+    .workBlockSmall {
+        width: 16vw;
+        height: 16vw;
+        -o-object-fit: contain;
+        object-fit: contain;
+        -o-object-position: center center;
+        object-position: center center;
+        flex: 1 1;
+        text-align: center;
+        margin: 0 auto 10px;
+        position: relative;
+    }
+    .workIsActive {
+        position: absolute;
+        width: 16vw;
+        height: 16vw;
+        background: linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .workIsNotActive {
+        text-align: center;
+        width: 22vw;
+        height: 22vw;
+        position: absolute;
+        background: linear-gradient(to right, transparent 1px, transparent 1px) 0 0, linear-gradient(to right, transparent 1px, transparent 1px) 0 100%, linear-gradient(to left, transparent 1px, transparent 1px) 100% 0, linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0, linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0, linear-gradient(to top, transparent 1px, transparent 1px) 0 100%, linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .innerBorder {
+        border: 1px solid #c4c4c4;
+        width: 15vw;
+        height: 15vw;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        margin: 4px 4px;
+    }
+    .verticalWorksArea {
+        width: 25%;
+    }
+    .dancerNameContentsWrapper {
+        width: 92%;
+        text-align: left;
+        padding-left: 0;
+    }
+    .flexArea {
+        width: 100%;
+    }
+    .slideContentsClicked {
+        height: 140vh;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    .dancerOverviewFrame {
+        overflow-y: auto;
+        max-height: 160px;
+        scrollbar-width: thin;
+        scrollbar-color: #8B7A6A #E2C3A6;
+    }
+    .formButton {
+        background-color: transparent;
+        background-color: #C93D38;
+        cursor: pointer;
+        width: 180px;
+        height: 50px;
+        text-align: center;
+        border-radius: 30px;
+        -webkit-border-radius: 30px;
+        margin: 0 0 15px;
+        position: relative;
+    }
+    .formButtonInner {
+        color: #fff;
+        padding: 5px 0;
+        transform: translateY(-50%);
+        top: 50%;
+        position: relative;
+    }
+    
+    .flexWrapperDancerHeader {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .flexWrapperDancerHeaderOpened {
+        display: flex;
+        margin-top: 20px;
+        justify-content: space-between;
+    }
+    .backToDancersMobile {
+        color: #000;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        text-decoration: underline;
+    }
+    .viewAllOrSwipeWrapper {
+        display: flex;
+        gap: 0 15px;
+        align-items: center;
+    }
+    .workBlockSmallHorizontal {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+    .horizontalListModalWrapper {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        z-index: 1;
+        overflow: auto;
+        width: 100%;
+    }
+    
+    .flexAreaWorks {
+        max-width: 85px;
+        margin-right: 0px;
+    }
+    .verticalList {
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 20vw;
+        height: 55vh;
+        position: relative;
+        top: 0px;
+        scrollbar-width: thin;
+        scrollbar-color: #8B7A6A #E2C3A6;
+    }
+}
+@media screen and (max-width: 550px) {
+    
+    .verticalWorksArea {
+        width: 30%;
+    }
+    .basedCenterPhotoSize {
+        width: 100%;
+        height: 64vh;
+    }
+    .basedCenterPhotoSize.isClicked {
+        width: 100%;
+        height: 43vh;
+    }
+    .dancerListPhotoCard {
+        max-width: 50%;
+        width: 50%;
+        height: auto;
+        min-height: 300px;
+    }
+    .listedDancerPhoto {
+        position: relative;
+        width: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        height: 100%;
+    }
+    .listedDancerPhoto img {
+        object-fit: cover;
+    }
+    .listedDancerHoverLayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.7;
+        background: #202020;
+        z-index: 1;
+    }
+    .listedDancerName {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: x-large;
+        z-index: 2;
+        font-weight: bold;
+        color: #fff;
+    }
+    .flexAreaPhoto {
+        width: 65%;
+        position: relative;
+        transition-duration: .8s;
+        -webkit-transition-duration: .8s;
+    }
+    .workBlockSmall {
+        width: 20vw;
+        height: 18vw;
+        -o-object-fit: contain;
+        object-fit: contain;
+        -o-object-position: center center;
+        object-position: center center;
+        flex: 1 1;
+        text-align: center;
+        margin: 0 auto 10px;
+        position: relative;
+    }
+    .workIsActive {
+        position: absolute;
+        width: 20vw;
+        height: 20vw;
+        background: linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .workIsNotActive {
+        text-align: center;
+        width: 22vw;
+        height: 22vw;
+        position: absolute;
+        background: linear-gradient(to right, transparent 1px, transparent 1px) 0 0, linear-gradient(to right, transparent 1px, transparent 1px) 0 100%, linear-gradient(to left, transparent 1px, transparent 1px) 100% 0, linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0, linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0, linear-gradient(to top, transparent 1px, transparent 1px) 0 100%, linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .innerBorder {
+        border: 1px solid #c4c4c4;
+        width: 18vw;
+        height: 18vw;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        margin: 4px 4px;
+    }
+    .innerBorderVideo {
+        border: 1px solid #c4c4c4;
+        width: 20vw;
+        height: 20vw;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        margin: 4px 4px;
+    }
+    .videoPlayerSize{
+        width: 20vw;
+        height: 20vw;
+    }
+    .verticalList {
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 24vw;
+        height: 40vh;
+        position: relative;
+        top: 0px;
+        scrollbar-width: thin;
+        scrollbar-color: #8B7A6A #E2C3A6;
+    }
+    .flexBottom {
+        margin-top: 30px;
+    }
+    .flexWrapperForMobile {
+        display: flex;
+        position: relative;
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

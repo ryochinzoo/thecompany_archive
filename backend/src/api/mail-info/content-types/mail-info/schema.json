@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mail_infos",
+  "info": {
+    "singularName": "mail-info",
+    "pluralName": "mail-infos",
+    "displayName": "MailInfo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Usage": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "port": {
+      "type": "string",
+      "required": true
+    },
+    "hostName": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

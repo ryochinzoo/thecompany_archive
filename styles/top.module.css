@@ -1,0 +1,158 @@
+.areYou {
+    text-align: center;
+    font-size: 170px;
+    font-weight: 900;
+    color: beige;
+    position: absolute;
+    top: 33%;
+    z-index: 1;
+    white-space: nowrap;
+    float: left;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.fadingOutAreYou span:nth-child(1) {
+    animation-delay: .7s;
+}
+.fadingOutAreYou span:nth-child(2) {
+    animation-delay: .6s;
+}
+.fadingOutAreYou span:nth-child(3) {
+    animation-delay: .5s;
+}
+.fadingOutAreYou span:nth-child(4) {
+    animation-delay: .4s;
+}
+.fadingOutAreYou span:nth-child(5) {
+    animation-delay: .3s;
+}
+.fadingOutAreYou span:nth-child(6) {
+    animation-delay: .2s;
+}
+.fadingOutAreYou span:nth-child(7) {
+    animation-delay: .1s;
+}
+
+.fadingInAreYou span:nth-child(1) {
+    animation-delay: .1s;
+}
+.fadingInAreYou span:nth-child(2) {
+    animation-delay: .2s;
+}
+.fadingInAreYou span:nth-child(3) {
+    animation-delay: .3s;
+}
+.fadingInAreYou span:nth-child(4) {
+    animation-delay: .4s;
+}
+.fadingInAreYou span:nth-child(5) {
+    animation-delay: .5s;
+}
+.fadingInAreYou span:nth-child(6) {
+    animation-delay: .6s;
+}
+.fadingInAreYou span:nth-child(7) {
+    animation-delay: .7s;
+}
+
+.movingAreYou {
+    -webkit-animation: areYouMoving 1.3s;
+    animation: areYouMoving 1.3s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    transition-timing-function: cubic-bezier(0, 0.5, 0.95, 1.0);
+}
+
+.fadingOutAreYou {
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+    -webkit-animation: areYouFadeOut 1.2s;
+    animation: areYouFadeOut 1.2s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.fadingOutAreYou span {
+    animation: fadeOut 0.4s;
+    -webkit-animation: fadeOut 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.fadingInAreYou {
+    -webkit-animation: areYouFadeIn 1.2s;
+    animation: areYouFadeIn 1.2s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.fadingInAreYou span {
+    opacity: 0;
+    animation: fadeInAreYou 0.4s;
+    -webkit-animation: fadeInAreYou 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes areYouFadeOut {
+    0% { transform: translateY(330%); }
+    100% { transform: translateY(550%);  }   
+}
+
+@keyframes areYouFadeIn {
+    0% { transform: translateY(550%); }
+    100% { transform: translateY(330%);  }   
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes fadeInAreYou {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+@keyframes areYouMoving {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(330%);  }    
+}
+
+.inVisibleAfterFadeOutAll{
+    visibility: hidden;
+    display: none;
+}
+.fixedInfo {
+    position: absolute;
+    left: 30px;
+    bottom: 120px;
+    color: #C93D38;
+    font-size: 16px;
+    font-weight: nprmal;
+}
+
+.invisibleBoxes {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+}
+
+.characterFadeIn {
+    animation: fadeInAreYou 0.8s;
+    -webkit-animation: fadeInAreYou 0.8s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.testScrolling {
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+}
+

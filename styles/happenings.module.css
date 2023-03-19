@@ -1,0 +1,652 @@
+.headContents {
+    padding-top: 300px;
+}
+.headlineh1 {
+    font-size: 10vw;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 250px;
+}
+.narrowVideo {
+    position: relative;
+    width: 100%;
+    height: 294px;
+    overflow: hidden;
+    margin: 80px 0;
+}
+
+.ticketSwipe {
+    width: 100%;
+    padding: 0 20% 80px;
+    position: relative;
+}
+
+.introductionText{
+    font-size: 51px;
+    font-weight: bold;
+    margin:0 auto 20px;
+    max-width: 900px;
+    color: #afafaf;
+    line-height: 1.1;
+}
+.subIntroText{
+    font-size: 22px;
+    margin:40px auto;
+    max-width: 900px;
+    line-height: 1.2;
+}
+
+.happeningSwiper {
+    padding: 0;
+    position: relative;
+}
+
+.colorRed  {
+    color:#C93D38;
+}
+
+.eventContents {
+    font-weight: 100;
+    max-width: 215px;
+    line-height: 1.8;
+    color:#363636;
+}
+.eventContentsTitle {
+    font-size: 17px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+.eventContentsTitleB {
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 400;
+}
+.eventContentsPlace {
+    padding: 12px 0;
+    line-height: 1.2;
+    font-size: 15px;
+}
+.eventContentsPlace p {
+    padding: 0;
+    margin: 0;
+}
+.eventContentsDate {
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 8px 0;
+}
+.eventContentsDateB {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 8px 0;
+}
+.eventContentsPrice {
+    font-weight: 600;
+    font-size: 16px;
+}
+.comingSoon {
+    font-size: 20px;
+    font-weight: 600;
+}
+.upcoming {
+    margin-bottom: 48px;
+    font-size: 24px;
+}
+.upcoming2 {
+    margin: 0px 0 25px;
+    font-size: 24px;
+    border-bottom: 1px solid #afafaf;
+    padding-bottom: 25px;
+    display: inline-block;
+}
+.eventContentsButton {
+    border: 5px solid #c4c4c4;
+    text-align: center;
+    font-weight: bold;
+    padding: 12px 0;
+    margin: 20px 0;
+    font-size: 17px;
+	display: block;
+	overflow: hidden;
+	transition: .3s;
+	z-index: 1;
+	position: relative;
+    cursor: pointer;
+}
+.eventContentsButton:hover {
+    color:#fff;
+    border-color: #1c1c1c;
+}
+.eventContentsButton::before {
+	content: "";
+	width: 120%;
+	height: 200%;
+	position: absolute;
+	top: -50%;
+	right: 0;
+	z-index: -1;
+	background: #1c1c1c;
+	border-radius: 0 100% 100% 0;
+	transform: translateX(-100%);
+	transition: transform ease .3s;
+}
+.eventContentsButton:hover::before {
+	transform: translateX(10%);
+}
+.flexMenu {
+    display: flex;
+    justify-content: left;
+    height: 100vh;
+    margin: 300px 0 0;
+}
+.mainContents {
+    padding: 100px 15% 50px;
+}
+.MenuName,
+.MenuNameIntensive {
+    font-size: 48px;
+    font-weight: 200;
+    text-decoration: underline;
+    position: sticky;
+    position: -webkit-sticky;
+    z-index: 3;
+    top: 200px;
+}
+
+.firstParagraph {
+    font-size: 51px;
+    color: #afafaf;
+    font-weight: bold;
+    margin-bottom: 60px;
+    line-height: 1;
+}
+
+.secondParagraph {
+    font-size: 23px;
+    color: #363636;
+    font-weight: 400;
+    margin: 40px 0;
+    line-height: 1.2;
+}
+
+.thirdParagraph {
+    font-size: 18px;
+    color: #363636;
+    font-weight: 100;
+    margin: 40px 0 150px;
+    line-height: 1.6;
+}
+
+.pictureAndVideo {
+    /*margin-left: calc(((100vw - 100%) / 2) * -1);
+    margin-right: calc(((100vw - 100%) / 2) * -1);
+    */
+    overflow-x: hidden;
+    opacity: 0;
+}
+
+.pictureAndVideo.isVisible {
+    transition: all 1.5s;
+    transition-delay: 1s;
+    transform-origin: center;
+    opacity: 1;
+}
+
+.translate180 {
+    transform: translateY(180px);
+    transition: all 0.8s;
+    color: #fff;
+}
+.translate210 {
+    transform: translateY(210px);
+    transition: all 0.8s;
+    color: #fff;
+}
+.translateBack {
+    transform: translateY(0px);
+    transition: all 0.8s;
+    color: #1c1c1c;
+}
+
+.swiperWrapper {
+    height: 100vh;
+}
+.positionRelative {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.playerWrapper {
+    position: relative;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+.playerWrapperSmall {
+    position: relative;
+    width: auto;
+    height: auto;
+}
+
+.playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    opacity: 1;
+}
+
+.playButtonSmall {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 3px solid #f9f9f9;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.playButtonMiddle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 3px solid #f9f9f9;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.playButtonMark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    border-style: solid;
+    border-color: transparent transparent transparent #f9f9f9;
+    border-width: 35px 0 35px 55px;
+    cursor: pointer;
+}
+
+.playButtonMarkMiddle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    border-style: solid;
+    border-color: transparent transparent transparent #f9f9f9;
+    border-width: 35px 0 35px 55px;
+}
+
+.playButtonMarkSmall {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    border-style: solid;
+    border-color: transparent transparent transparent #f9f9f9;
+    border-width: 10px 0 10px 15px;
+}
+
+.fadeOutAnimation {
+    -webkit-animation: fadeOut 0.3s;
+    animation: fadeOut 0.3s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fadeOut {
+    0% {opacity: 1;}
+    100% { opacity: 0; }
+  }
+.reactPlayer {
+    position: relative;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+.reactPlayer > video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+.stickedArea {
+    position: sticky;
+    position: -webkit-sticky;
+    width: 40%;
+    height: 500px;
+    top: 350px;
+}
+@media screen and (min-width: 1218px) and (max-width: 1435px) {
+    .mainContents {
+        padding: 100px 10% 50px;
+    }
+    .stickedArea {
+        position: sticky;
+        position: -webkit-sticky;
+        width: 38%;
+        height: 500px;
+        top: 350px;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1217px) {
+    .mainContents {
+        padding: 100px 5% 50px;
+    }
+    .stickedArea {
+        position: sticky;
+        position: -webkit-sticky;
+        width: 38%;
+        height: 500px;
+        top: 350px;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1084px) {
+    .firstParagraph {
+        font-size: 45px;
+        color: #afafaf;
+        font-weight: bold;
+        margin-bottom: 60px;
+        line-height: 1;
+    }
+}
+@media screen and (min-width: 1024px) {
+    
+    .theContents,
+    .theContentsReverse {
+        width: 100%;
+        min-height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 150px 0 50px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .ticketSwipe {
+        width: 100%;
+        padding: 0 5% 80px;
+        position: relative;
+    }
+    .headlineh1 {
+        font-size: 10vw;
+        font-weight: bold;
+        margin-left: 20px;
+        margin-bottom: 130px;
+    }
+    .introductionText {
+        font-size: 48px;
+        font-weight: bold;
+        margin: 0 0 20px auto;
+        max-width: 700px;
+        color: #afafaf;
+        line-height: 1.1;
+        padding: 0 5%;
+    }
+    .subIntroText {
+        font-size: 22px;
+        margin: 40px 0 40px auto;
+        max-width: 700px;
+        line-height: 1.2;
+        padding: 0 5%;
+    }
+    .narrowVideo {
+        position: relative;
+        width: 100%;
+        height: 136px;
+        overflow: hidden;
+        margin: 40px 0;
+    }
+    .mainContents {
+        padding: 100px 5% 50px;
+    }
+    .MenuName {
+        font-size: 36px;
+        font-weight: 200;
+        text-decoration: underline;
+        position: sticky;
+        position: -webkit-sticky;
+        z-index: 3;
+        top: 120px;
+    }
+    .MenuNameIntensive {
+        font-size: 36px;
+        font-weight: 200;
+        text-decoration: underline;
+        position: sticky;
+        position: -webkit-sticky;
+        z-index: 3;
+        top: 140px;
+    }
+    .explanation {
+        width: 60%;
+    }
+    .stickedArea {
+        position: sticky;
+        position: -webkit-sticky;
+        width: 40%;
+        height: 500px;
+        top: 220px;
+    }
+    .theContents,
+    .theContentsReverse {
+        width: 100%;
+        min-height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 150px 0 50px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .headContents {
+        padding-top: 200px;
+    }
+    .pictureAndVideo {
+        /*margin-left: calc(((100vw - 100%) / 2) * -1);
+        margin-right: calc(((100vw - 100%) / 2) * -1);
+        */
+        overflow-x: hidden;
+        opacity: 1;
+    }
+    .headlineh1 {
+        font-size: 13vw;
+        font-weight: bold;
+        margin-left: 10px;
+        margin-bottom: 150px;
+    }
+    .introductionText {
+        font-size: 8vw;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        max-width: unset;
+        color: #afafaf;
+        line-height: 1.1;
+        padding: 0 5%;
+    }
+    .subIntroText {
+        font-size: 22px;
+        margin: 40px auto;
+        max-width: unset;
+        line-height: 1.2;
+        padding: 0 5%;
+    }
+    .upcoming {
+        margin-bottom: 48px;
+        margin-left: 20px;
+        font-size: 24px;
+    }
+    .ticketSwipe {
+        width: 100%;
+        padding: 0 0px 80px;
+        position: relative;
+    }
+    .eventContents {
+        font-weight: 100;
+        max-width: 100%;
+        line-height: 1.8;
+        color: #363636;
+        margin: unset;
+        padding: 5%;
+    }
+    .narrowVideo {
+        position: relative;
+        width: 100%;
+        height: 136px;
+        overflow: hidden;
+        margin: 40px 0;
+    }
+    .thirdParagraph {
+        font-size: 16px;
+        color: #363636;
+        font-weight: 100;
+        margin: 40px 0 150px;
+        line-height: 1.6;
+    }
+    .mainContents {
+        padding: 0px 2.8em 50px 3%;
+    }
+    .MenuName {
+        font-size: 48px;
+        font-weight: 200;
+        text-decoration: underline;
+        position: relative;
+        z-index: 3;
+        top: 80px;
+    }
+    .MenuNameIntensive {
+        font-size: 48px;
+        font-weight: 200;
+        text-decoration: underline;
+        position: relative;
+        z-index: 3;
+        top: 60px;
+    }
+    .explanation {
+        width: 100%;
+    }
+    .stickedArea {
+        position: block;
+        width: 100%;
+        height: 500px;
+        top: 140px;
+    }
+    .translateBack {
+        transform: translateY(0px) translateX(0) rotate(0deg);
+        transition: all 0.8s;
+    }
+    .translate180 {
+        transform: translateY(0px) translateX(0) rotate(0deg);
+        transition: all 0.8s;
+    }
+    .translate210 {
+        transform: translateY(0px) translateX(0) rotate(0deg);
+        transition: all 0.8s;
+    }
+    .theContents {
+        width: 100%;
+        min-height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 200px 0 50px;
+    }
+    .theContentsReverse {
+        width: 100%;
+        min-height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 200px 0 50px;
+        flex-direction: column-reverse;
+    }
+    .firstParagraph {
+        font-size: 45px;
+        color: #afafaf;
+        font-weight: bold;
+        margin-bottom: 60px;
+        line-height: 1;
+    }
+}
+@media screen and (max-width: 550px) {
+    .playButtonSmall {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        width: 15vw;
+        height: 15vw;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border: 3px solid #f9f9f9;
+        background-color: transparent;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+    .playerWrapperSmall {
+        position: relative;
+        width: 20vw;
+        height: 20vw;
+    }
+    /*
+    .translateBack {
+        transform: translateY(0px) translateX(-59%) rotate(270deg);
+        transition: all 0.8s;
+    }
+    .translate180 {
+        transform: translateY(180px) translateX(-59%) rotate(270deg);
+        transition: all 0.8s;
+    }
+    .translate210 {
+        transform: translateY(210px) translateX(-59%) rotate(270deg);
+        transition: all 0.8s;
+    }
+    */
+    .theContents {
+        width: 100%;
+        min-height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 200px 0 50px;
+    }
+    .theContentsReverse {
+        width: 100%;
+        min-height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 200px 0 50px;
+        flex-direction: column-reverse;
+    }
+    .firstParagraph {
+        font-size: 45px;
+        color: #afafaf;
+        font-weight: bold;
+        margin-bottom: 60px;
+        line-height: 1;
+        word-break: break-word;
+    }
+}
