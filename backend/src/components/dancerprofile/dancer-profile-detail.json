@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_dancerprofile_dancer_profile_details",
+  "info": {
+    "displayName": "DancerProfileDetail",
+    "icon": "grin-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Overview": {
+      "type": "text"
+    },
+    "SkillsStyles": {
+      "type": "string"
+    },
+    "Height": {
+      "type": "string"
+    },
+    "Interests": {
+      "type": "string"
+    },
+    "ContactAddress": {
+      "type": "email"
+    },
+    "InstagramID": {
+      "type": "string"
+    }
+  }
+}

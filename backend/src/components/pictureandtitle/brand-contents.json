@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_pictureandtitle_brand_contents",
+  "info": {
+    "displayName": "BrandContents",
+    "icon": "angry",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "BrandProjectName": {
+      "type": "string"
+    },
+    "BrandProjectDescription": {
+      "type": "text"
+    },
+    "MediaType": {
+      "type": "enumeration",
+      "enum": [
+        "Image",
+        "Video",
+        "VimeoLink"
+      ]
+    },
+    "ImageOrVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "VimeoURL": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_imageorvideo_project_medias",
+  "info": {
+    "displayName": "ProjectMedia",
+    "icon": "adjust"
+  },
+  "options": {},
+  "attributes": {
+    "MediaType": {
+      "type": "enumeration",
+      "enum": [
+        "Image",
+        "Video",
+        "YoutubeLink"
+      ]
+    },
+    "YoutubeURL": {
+      "type": "string"
+    },
+    "ImageORVideo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

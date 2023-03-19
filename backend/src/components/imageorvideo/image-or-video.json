@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_imageorvideo_image_or_videos",
+  "info": {
+    "displayName": "ImageOrVideo",
+    "icon": "image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Image",
+        "Video",
+        "VimeoURL"
+      ],
+      "required": true
+    },
+    "Media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "VimeoURL": {
+      "type": "string"
+    }
+  }
+}

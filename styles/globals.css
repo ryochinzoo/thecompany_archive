@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'Nexa';
+  src: url('../public/fonts/Fontfabric - Nexa Text Regular.otf') format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('../public/fonts/Nexa Bold.otf') format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('../public/fonts/Fontfabric - Nexa Text Heavy.otf') format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('../public/fonts/Nexa Light.otf') format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Shopping Script';
+  src: url('../public/fonts/Shopping Script Demo.ttf') format("ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Shopping Script';
+  src: url('../public/fonts/Roland Hüse Design - Shopping Script Thin.otf') format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #f9f9f9;
+  font-family: Nexa;/*-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+* {
+  box-sizing: border-box;
+}
+input {
+  touch-action: manipulation;
+}

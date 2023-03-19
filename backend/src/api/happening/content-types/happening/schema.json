@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "happenings",
+  "info": {
+    "singularName": "happening",
+    "pluralName": "happenings",
+    "displayName": "Happening",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "THEINTENSIVE",
+        "THETOUR",
+        "THEBALL",
+        "THECLASS"
+      ],
+      "required": true
+    },
+    "ImageOrVideo": {
+      "displayName": "ImageOrVideo",
+      "type": "component",
+      "repeatable": true,
+      "component": "imageorvideo.image-or-video"
+    }
+  }
+}

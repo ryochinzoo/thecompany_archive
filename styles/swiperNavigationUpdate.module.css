@@ -1,0 +1,464 @@
+  .swiperButtonNext {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9997;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .swiperButtonNextWrapper {
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    width: 150px;
+    height: 100vh;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonPrev {
+    top: 50%;
+    left: 200px;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonHappeningsNext {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9997;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .swiperButtonHappeningsPrevWrapper {
+    top: 50%;
+    left: -17%;
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .positionRelative {
+    position: relative;
+  }
+  .swiperButtonHappeningsPrev {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9997;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .swiperButtonHappeningsNextWrapper {
+    top: 50%;
+    right: -10%;
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonHappeningsFullNext {
+    top: 50%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  .swiperButtonHappeningsFullPrev {
+    top: 50%;
+    left: 15%;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+    cursor: pointer;
+  }
+  .swiperButtonDancerNextWrapper {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    width: 150px;
+    height: 100%;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonDancerNext {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9997;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+
+  .simpleArrowPrev {
+    color: #000;
+    line-height: 1;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    transform: translateX(-25%) rotate(-135deg);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .simpleArrowPrev:before, .simpleArrowPrev:after {
+    content: '';
+    position: absolute;
+    background: #000;
+    border-radius: 5px;
+  }
+
+  .simpleArrowPrev:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .simpleArrowPrev:after {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+  }
+
+  .simpleArrowNext {
+    color: #000;
+    line-height: 1;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    transform: translateX(-25%) rotate(45deg);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .simpleArrowNext:before, .simpleArrowNext:after {
+    content: '';
+    position: absolute;
+    background: #000;
+    border-radius: 5px;
+  }
+
+  .simpleArrowNext:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .simpleArrowNext:after {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+  }
+
+  .swiperButtonDancerPrev {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swiperButtonDancerPrevWrapper {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 150px;
+    height: 100%;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonShopPrevWrapper {
+    position: absolute;
+    top: 50%;
+    left: 12%;
+    width: 150px;
+    height: 100vh;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonShopPrev {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swiperButtonShopNextWrapper {
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    width: 150px;
+    height: 100vh;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonShopNext {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swiperModalButtonNextWrapper {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    width: 150px;
+    height: 100vh;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperModalButtonNext {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9997;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swiperModalButtonPrevWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    width: 150px;
+    height: 100vh;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperModalButtonPrev {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swiperButtonPrevForFullScreen {
+    top: 50%;
+    left: 50px;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+  }
+  .swipeWrapper {
+    user-select: none;
+  }
+  .swipeSubWrapper {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(4px 4px 4px #c4c4c4);
+    padding-bottom: 5px;
+    cursor: pointer;
+  }
+  .swiperButtonDisable {
+    display: none;
+  }
+  .swiperButtonPrevArrow::after {
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 2px;
+    bottom: -2px;
+    left: 24px;
+    width: 32px;
+    height: 2px;
+    background: #000;
+  }
+
+  .swiperButtonPrevArrow::before {
+    content: "";
+    margin: auto;
+    position:absolute;
+    top: 2px;
+    bottom: -2px;
+    width: 10px;
+    height: 10px;
+    left:24px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: rotate(-135deg);
+  }  
+  .swiperButtonNextArrow {
+    text-align: center;
+    position: relative;
+    color: #000;
+    top: 17%;
+  }
+  .swiperButtonNextArrow::after {
+    content: "";
+    margin: auto;
+    position:absolute;
+    top: 27px;
+    bottom: -27px;
+    right: 24px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: rotate(45deg);
+  }
+
+  .swiperButtonNextArrow::before {
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 27px;
+    bottom: -27px;
+    left: 24px;
+    width: 32px;
+    height: 2px;
+    background: #000;
+  }
+
+  .fadeIn {
+    opacity: 0;
+    -webkit-transition: opacity 0.8s;
+    transition: opacity 0.8s;
+  }
+
+  .fadeIn:hover {
+    opacity: 1;
+  }
+
+  .fadeOutAnimation {
+    -webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    animation-delay: 0.3s;
+    -webkit-animation-delay: 0.3s;
+  }
+
+  .fadeOutAnimationHappening {
+    -webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+  }
+
+  .fadeOutAnimationHappening:hover {
+    -webkit-animation: fadeInHover 1s;
+    animation: fadeInHover 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fadeOut {
+    0% {opacity: 1;}
+    100% { opacity: 0; }
+  }
+
+  @keyframes fadeInHover {
+    0% {opacity: 0;}
+    100% { opacity: 1; }
+  }
+
+  .fadeInAfterAnimation {
+    -webkit-transition: opacity 0.8s;
+    transition: opacity 0.8s;
+  }
+  .fadeOutAnimation:hover {
+    -webkit-animation: fadeInHover 1s;
+    animation: fadeInHover 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+  @media screen and (max-width: 1023px) {
+    .swiperButtonHappeningsPrev,
+    .swiperButtonHappeningsNext,
+    .swiperButtonNextWrapper,
+    .swiperButtonHappeningsPrevWrapper,
+    .swiperButtonHappeningsNextWrapper,
+    .swiperButtonDancerNextWrapper,
+    .swiperButtonDancerPrevWrapper,
+    .swiperButtonShopPrevWrapper,
+    .swiperButtonShopNextWrapper,
+    .swiperModalButtonNextWrapper,
+    .swiperModalButtonPrevWrapper {
+        display: none;
+    }
+  }
+
+  

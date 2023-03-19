@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_pictureandtitle_artist_contents",
+  "info": {
+    "displayName": "ArtistContents",
+    "icon": "paint-brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "ArtistProjectDescription": {
+      "type": "text"
+    },
+    "MediaType": {
+      "type": "enumeration",
+      "enum": [
+        "Image",
+        "Video",
+        "VimeoLink"
+      ]
+    },
+    "ImageOrVideo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "VimeoURL": {
+      "type": "string"
+    }
+  }
+}
