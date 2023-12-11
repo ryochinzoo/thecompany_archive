@@ -1,39 +1,85 @@
 .headContents {
-    padding-top: 300px;
+    padding-top: 200px;
+    padding-left: 130px;
 }
 .headlineh1 {
     font-size: 10vw;
     font-weight: bold;
     margin-left: 20px;
-    margin-bottom: 250px;
+    margin-bottom: 150px;
 }
 .narrowVideo {
     position: relative;
     width: 100%;
-    height: 294px;
+    height: 350px; /*294px*/
     overflow: hidden;
     margin: 80px 0;
+    padding-top: 0;
 }
-
+.fullSlideImage {
+    width:100%;
+    height: 100%;
+}
+.fullSlideImage img {
+    min-width:100%;
+    min-height: 100vh;
+}
 .ticketSwipe {
     width: 100%;
     padding: 0 20% 80px;
     position: relative;
 }
-
-.introductionText{
+.headContentsBlackbg {
+    background-color: #202120;
+    color: #fff;
+}
+.entertainmentTextWrapper {
+    max-width: 808px;
+    margin: 0 auto;
+}
+.introductionTextEntertainment {
+    max-width: 608px;
     font-size: 51px;
     font-weight: bold;
     margin:0 auto 20px;
-    max-width: 900px;
     color: #afafaf;
     line-height: 1.1;
+}
+.subIntroTextEntertainment {
+    font-size: 22px;
+    margin:40px auto;
+    max-width: 608px;
+    line-height: 1.2;
+}
+.subIntroInnerEntertainment {
+    max-width: 517px;
+}
+.subIntroWrapperEntertainment {
+    padding-bottom: 200px;
+}
+.introductionText {
+    font-size: 51px;
+    font-weight: bold;
+    margin:0 auto 20px;
+    max-width: 852px;
+    color: #afafaf;
+    line-height: 1.1;
+}
+.subIntroWrapper {
+    padding-left:130px;
+}
+.educationAreaWrapper {
+    padding-top: 80px;
+    padding-bottom: 350px;
 }
 .subIntroText{
     font-size: 22px;
     margin:40px auto;
-    max-width: 900px;
+    max-width: 852px;
     line-height: 1.2;
+}
+.subIntroInner {
+    max-width: 517px;
 }
 
 .happeningSwiper {
@@ -142,7 +188,7 @@
 .mainContents {
     padding: 100px 15% 50px;
 }
-.MenuName,
+
 .MenuNameIntensive {
     font-size: 48px;
     font-weight: 200;
@@ -150,7 +196,41 @@
     position: sticky;
     position: -webkit-sticky;
     z-index: 3;
+    width: fit-content;
     top: 200px;
+    margin-top: -180px;
+    margin-bottom: 120px;
+}
+
+.MenuName {
+    font-size: 48px;
+    font-weight: 200;
+    text-decoration: underline;
+    position: sticky;
+    position: -webkit-sticky;
+    z-index: 3;
+    width: fit-content;
+    top: 200px;
+    margin-top: -150px;
+    margin-bottom: 90px;
+}
+
+.MenuNameIntensiveInSwipe,
+.MenuNameInSwipe {
+    font-size: 48px;
+    font-weight: 200;
+    text-decoration: underline;
+    z-index: 3;
+    top: 100px;
+    color: #fff;
+    position: absolute;
+    transition: .8s;
+    left: 10%;
+}
+
+.explanation {
+    width: 60%;
+    margin-left: 3%;
 }
 
 .firstParagraph {
@@ -159,6 +239,7 @@
     font-weight: bold;
     margin-bottom: 60px;
     line-height: 1;
+    max-width: 600px;
 }
 
 .secondParagraph {
@@ -167,6 +248,7 @@
     font-weight: 400;
     margin: 40px 0;
     line-height: 1.2;
+    max-width: 350px;
 }
 
 .thirdParagraph {
@@ -175,6 +257,7 @@
     font-weight: 100;
     margin: 40px 0 150px;
     line-height: 1.6;
+    max-width: 470px;
 }
 
 .pictureAndVideo {
@@ -182,7 +265,6 @@
     margin-right: calc(((100vw - 100%) / 2) * -1);
     */
     overflow-x: hidden;
-    opacity: 0;
 }
 
 .pictureAndVideo.isVisible {
@@ -193,9 +275,9 @@
 }
 
 .translate180 {
-    transform: translateY(180px);
-    transition: all 0.8s;
-    color: #fff;
+    transition: all 0.1s;
+    color: #1c1c1c;
+    opacity: 0;
 }
 .translate210 {
     transform: translateY(210px);
@@ -206,6 +288,7 @@
     transform: translateY(0px);
     transition: all 0.8s;
     color: #1c1c1c;
+    opacity: 1;
 }
 
 .swiperWrapper {
@@ -219,7 +302,7 @@
 .playerWrapper {
     position: relative;
     width: auto;
-    height: auto;
+    height: 100vh;
     cursor: pointer;
 }
 .playerWrapperSmall {
@@ -336,12 +419,21 @@
     min-height: 100%;
     object-fit: cover;
 }
+.stickedAreaRelative {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
 .stickedArea {
     position: sticky;
     position: -webkit-sticky;
-    width: 40%;
+    width: 98%;
     height: 500px;
-    top: 350px;
+    top: 300px;
+    margin-right: 10%;
+}
+.stickedArea img {
+    object-position: left;
 }
 @media screen and (min-width: 1218px) and (max-width: 1435px) {
     .mainContents {
@@ -350,9 +442,10 @@
     .stickedArea {
         position: sticky;
         position: -webkit-sticky;
-        width: 38%;
+        width: 98%;
         height: 500px;
         top: 350px;
+        margin-right: 0%;
     }
 }
 @media screen and (min-width: 1024px) and (max-width: 1217px) {
@@ -362,9 +455,15 @@
     .stickedArea {
         position: sticky;
         position: -webkit-sticky;
-        width: 38%;
+        width: 98%;
         height: 500px;
         top: 350px;
+        margin-right: 0%;
+    }
+    
+    .explanation {
+        width: 55%;
+        margin-left: 5%;
     }
 }
 @media screen and (min-width: 1024px) and (max-width: 1084px) {
@@ -418,7 +517,7 @@
     .narrowVideo {
         position: relative;
         width: 100%;
-        height: 136px;
+        height: 150px;/*136px*/
         overflow: hidden;
         margin: 40px 0;
     }
@@ -442,16 +541,24 @@
         position: -webkit-sticky;
         z-index: 3;
         top: 140px;
+        margin-top: -130px;
+        margin-bottom: 90px;
     }
     .explanation {
-        width: 60%;
+        width: 55%;
+        margin-left: 5%;
     }
     .stickedArea {
         position: sticky;
         position: -webkit-sticky;
-        width: 40%;
+        width: 98%;
         height: 500px;
-        top: 220px;
+        top: 200px;
+        margin-right: 0px;
+    }
+    .stickedArea img {
+        object-position: top;
+        width: 100%;
     }
     .theContents,
     .theContentsReverse {
@@ -465,6 +572,7 @@
 @media screen and (max-width: 767px) {
     .headContents {
         padding-top: 200px;
+        padding-left: 10px;
     }
     .pictureAndVideo {
         /*margin-left: calc(((100vw - 100%) / 2) * -1);
@@ -474,23 +582,49 @@
         opacity: 1;
     }
     .headlineh1 {
-        font-size: 13vw;
+        font-size: 48px;
         font-weight: bold;
         margin-left: 10px;
-        margin-bottom: 150px;
+        margin-bottom: 100px;
     }
     .introductionText {
         font-size: 8vw;
         font-weight: bold;
-        margin: 0 auto 20px;
+        margin: 0 40px;
         max-width: unset;
         color: #afafaf;
         line-height: 1.1;
         padding: 0 5%;
     }
+    .introductionTextEntertainment {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0 41px;
+        max-width: unset;
+        color: #afafaf;
+        line-height: 1.1;
+        padding: 0 5%;
+        word-break: break-word;
+    }
+    .subIntroWrapper {
+        padding-left: 5%;
+        padding-right: 0;
+        margin: 0 30px;
+    }
+    .educationAreaWrapper {
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
     .subIntroText {
         font-size: 22px;
         margin: 40px auto;
+        max-width: unset;
+        line-height: 1.2;
+        padding: 0 5%;
+    }
+    .subIntroInnerEntertainment {
+        font-size: 22px;
+        margin: 40px 41px;
         max-width: unset;
         line-height: 1.2;
         padding: 0 5%;
@@ -516,7 +650,7 @@
     .narrowVideo {
         position: relative;
         width: 100%;
-        height: 136px;
+        height: 150px; /*136px*/
         overflow: hidden;
         margin: 40px 0;
     }
@@ -550,10 +684,14 @@
         width: 100%;
     }
     .stickedArea {
-        position: block;
+        position: relative;
         width: 100%;
         height: 500px;
-        top: 140px;
+        top: 0px;
+        margin: 0 auto 20px;
+    }
+    .stickedArea img {
+        object-position: center;
     }
     .translateBack {
         transform: translateY(0px) translateX(0) rotate(0deg);
@@ -631,7 +769,7 @@
         min-height: 50vh;
         display: flex;
         flex-wrap: wrap;
-        padding: 200px 0 50px;
+        padding: 100px 0 50px;
     }
     .theContentsReverse {
         width: 100%;

@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { useMediaQuery } from 'react-responsive'
+import { useTranslation, Trans} from 'next-i18next'
 
 import AboutStyle from '../styles/about.module.css'
 
 export default function AboutAtEnd() {
+    const { t } = useTranslation("common")
     const monotonePictureRef = useRef()
     const windowHeightRef = useRef()
     const showAfterAnimationRef = useRef()
@@ -42,10 +44,6 @@ export default function AboutAtEnd() {
         } else {
             setScrollPictureAmount(500)
         }
-        monotonePictureRef.current.scrollTo({
-            behavior: 'smooth',
-            left: scrollPictureAmount
-        })
         if (isMobileSmall || isMobile) {
             setResponsiveRootMargin(windowHeight / 2)
             setThresholdValue(0.8)
@@ -53,18 +51,25 @@ export default function AboutAtEnd() {
             setResponsiveRootMargin(windowHeight / 2)
             setThresholdValue(0.2)
         } else {
-            setResponsiveRootMargin(windowHeight - 160)
-            setThresholdValue(0.8)
+            setResponsiveRootMargin(windowHeight / 4) //windowHeight - 160
+            setThresholdValue(0.8) 
         }
         const options = {
             threshold: thresholdValue,
-            rootMargin: `0px 0px -${responsiveRootMargin}px 0px`
+            rootMargin: `0px 0px ${responsiveRootMargin}px 0px`
         }
         const observer = new IntersectionObserver((entries, observer) => {
             entries.map((entry) => {
                 if (entry.isIntersecting) {
                     monotonePictureRef.current.classList.add(`${AboutStyle.BlackPictureAnimation}`)
                     showAfterAnimationRef.current.classList.add(`${AboutStyle.PhrasesAtTheEndAnimation}`)
+                }
+                if (entry.intersectionRatio > 0 && monotonePictureRef.current.scrollLeft === 0) {
+                    monotonePictureRef.current.scrollTo({
+                        behavior: 'smooth',
+                        left: scrollPictureAmount
+                    })
+                    observer.unobserve(entry.target)
                 }
             })
         }, options)
@@ -94,22 +99,23 @@ export default function AboutAtEnd() {
                         src="/images/AboutEndColor.jpg"
                         alt="sorry, there is some error, please reload it again"
                         layout='fill'
+                        priority
                     />
                 </div>
             </div>
             
             <div ref={showAfterAnimationRef} className={[AboutStyle.ShowAfterChanged].join(" ")}>
                 <div className={[AboutStyle.AboutBold, AboutStyle.graycolor, AboutStyle.aboutAtEndLeft].join(" ")}>
-                    We can now<br />
-                    look forward<br />
-                    to the fact
+                    <Trans i18nKey={"about.last.left"}>We are happy </Trans>
                 </div>
                 <div className={[AboutStyle.aboutAtEndSmall].join(" ")}>
                     <div className={[AboutStyle.AboutRegular, AboutStyle.aboutAtEndRight].join(" ")}>
-                        that numerous young talents<br />
-                        trust our trip and contribute<br />
-                        to the history of German<br />
-                        dance culture.
+                        <Trans i18nKey={"about.last.right"}>
+                            that numerous young talents 
+                            trust us and our journey and 
+                            contribute to the history of German 
+                            dance culture through our work.
+                        </Trans>
                     </div>
                 </div>
             </div>

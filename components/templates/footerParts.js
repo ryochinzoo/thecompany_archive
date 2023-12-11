@@ -1,12 +1,17 @@
-import { useState, useEffect } from 'react'
-import FormTextInput from "../atoms/formTextInput"
+import { useState, useEffect, useMemo } from 'react'
 import { useMediaQuery } from 'react-responsive'
-import CommonStyle from '../../styles/commonParts.module.css'
+import { useTranslation, Trans} from 'next-i18next'
+import CommonStyle from '../../styles/footerParts.module.css'
 import Image from "next/image"
+import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function FooterParts ({mailInfo}) {
+import dynamic from 'next/dynamic'
+
+const FormTextInput = dynamic(() => import("../atoms/formTextInput"))
+export default function FooterParts ({mailInfo, isMain}) {
+    const { t } = useTranslation("common")
     const [emailSignUp, setEmailSignUp] = useState('')
     const [isSubmitClicked, setIsSubmitClicked] = useState(false)
     const [isClearAll, setIsClearAll] = useState(false)
@@ -100,7 +105,7 @@ export default function FooterParts ({mailInfo}) {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "colored",
+                className: `${CommonStyle.toastifyCustomFooter}`
             })
             setIsSubmitClicked(true)
             setFormValidation(validation)
@@ -122,52 +127,61 @@ export default function FooterParts ({mailInfo}) {
         query: '(max-width: 500px)'
     })
     const [footerAnnotation, setFooterAnnotation] = useState()
+    
     useEffect(() => {
         let text =""
         {isDesktopLarge || isDesktop ?
             text=<div>
-                © 2021 2021, THECOMPANYBERLIN Powered by Shopify
+                <span className={CommonStyle.logoFontThin}>© 2023, The Company Berlin <Link href="impressum" passHref={true}><a style={{textDecoration: "underline"}}>Impressum</a></Link> <Trans t={t} i18nKey={"footer.and"}>and</Trans> <Link href="dsgvo" passHref={true}><a style={{textDecoration: "underline"}}><Trans t={t} i18nKey={"footer.privacyNotice"}>Datenschutzerklärung</Trans></a></Link></span>
             </div>
             :
             text=<div>
-                © 2021 2021, THECOMPANYBERLIN<br />Powered by Shopify
+                <span className={CommonStyle.logoFontThin}>© 2023, The Company Berlin<br /><Link href="impressum" passHref={true}><a style={{textDecoration: "underline"}}>Impressum</a></Link> <Trans t={t} i18nKey={"footer.and"}>and</Trans> <Link href="dsgvo" passHref={true}><a style={{textDecoration: "underline"}}><Trans t={t} i18nKey={"footer.privacyNotice"}>Datenschutzerklärung</Trans></a></Link></span>
             </div>
         }
         setFooterAnnotation(text)
-    }, [isDesktop, isDesktopLarge])
+    }, [isDesktopLarge, isDesktop])
     return(
         <>  
-        <div className={`${CommonStyle.footerWrapper}`}>
-            <div className={`${CommonStyle.generalInfoContentsWrapper}`}>
-            <div className={`${CommonStyle.footerContentsWrapper} ${CommonStyle.footerLegal}`}>
-                    <div className={`${CommonStyle.infoHeadline}`}>Legal</div> 
-                    <div className={`${CommonStyle.infoDetail} ${CommonStyle.footerLegalDetail}`}>
-                        <div>Legal notice</div>
-                        <div>Terms of sale</div>
-                        <div>Privacy policy</div>
-                    </div>
-                </div>
+        <div className={`${isMain ? CommonStyle.footerWrapper : CommonStyle.footerWrapperOther}`}>
+            <div className={`${isMain ? CommonStyle.generalInfoContentsWrapper : CommonStyle.generalInfoContentsWrapperOther }`}>
+            
                 <div className={`${CommonStyle.footerContentsWrapper} ${CommonStyle.footerFollow}`}>
-                    <div className={`${CommonStyle.infoHeadline}`}>Follow Us</div> 
+                    <div className={`${CommonStyle.infoHeadline}`}>Follow</div> 
                     <div className={`${CommonStyle.infoDetail}`}>
-                        <div>Instagram</div>
-                        <div>Facebook</div>
-                        <div>TikTok</div>
+                        <div><Link href="https://www.instagram.com/thecompanyberlin/" passHref={true}><a target='_blank'>Instagram</a></Link></div>
+                        <div style={{display : "none"}}><Link href="https://www.facebook.com/thecompanyberlin" passHref={true}><a target='_blank'>Facebook</a></Link></div>
+                        <div style={{display : "none"}}><Link href="https://www.tiktok.com/@thecompanyberlin" passHref={true}><a target='_blank'>TikTok</a></Link></div>
                     </div>
                 </div>
                 <div className={`${CommonStyle.footerContentsWrapper} ${CommonStyle.footerContact}`}>
-                    <div className={`${CommonStyle.infoHeadline}`}>Contact Us</div> 
+                    <div className={`${CommonStyle.infoHeadline}`}>Contact us</div> 
                     <div className={`${CommonStyle.infoDetail}`}>
-                        <div>contact@thecompanyberlin.com</div>
-                        <div>IG: @thecompanyberlin</div>
+                        <div><a href="mailto:contact@thecompanyberlin.com">contact(at)thecompanyberlin.com</a></div>
+                        <div>IG: <Link href="https://www.instagram.com/thecompanyberlin/" passHref={true}><a target='_blank'>@thecompanyberlin</a></Link></div>
                     </div>
                 </div>
                 <div className={`${CommonStyle.footerContentsWrapper} ${CommonStyle.footerSignUp}`}>
-                    <div className={`${CommonStyle.infoHeadline}`}>Sign up for updates:</div>
-                    <form onSubmit={handleSubmitSignup} >
-                        <div className={`${CommonStyle.signupWrapper}`}>
+                    <div className={`${CommonStyle.infoHeadline} ${CommonStyle.infoHeadlineFlex}`}>
+                        <div className={`${CommonStyle.iMarkWrapper}`}>
+                            <div className={`${CommonStyle.iMark}`}>
+                            <Image
+                                src={"/svg/i.svg"}
+                                width={4}
+                                height={12}
+                                loading='lazy'
+                                alt="i"
+                            />
+                            </div>
+                        </div>
+                        <div>Sign up for updates:</div></div>
+                    <form action="https://thecompanyberlin.us20.list-manage.com/subscribe/post" method="POST">
+                        <input type="hidden" name="u" value="c94d38fd085b70f961c3972c6" />
+                        <input type="hidden" name="id" value="074950964e" />
+                        <input type="hidden" name="MERGE0" value={emailSignUp} />
+                        <div className={`${isMain ? CommonStyle.signupWrapper : CommonStyle.signupWrapperOther}`}>
                             <FormTextInput
-                                placeholder = {"Email Address"}
+                                placeholder = {"Email address"}
                                 isRequired = {false}
                                 isModal = {false}
                                 isSignUp = {true}
@@ -178,8 +192,9 @@ export default function FooterParts ({mailInfo}) {
                                 hasError={formValidation.details["emailSignUp"]}
                                 isSubmitClicked={isSubmitClicked}
                                 isClearAll={isClearAll}
+                                isMain={isMain}
                             ></FormTextInput>
-                            <button className={`${CommonStyle.signUpFooterSubmit}`} onClick={() => {handleSubmitSignup}}>→</button>
+                            <button type="submit" className={`${isMain ? CommonStyle.signUpFooterSubmit : CommonStyle.signUpFooterSubmitOther}`} onClick={() => {setIsClearAll(true)}}>→</button>
                             <ToastContainer />
                         </div>
                     </form>
@@ -187,11 +202,12 @@ export default function FooterParts ({mailInfo}) {
             </div>
             <div className={`${CommonStyle.copyrights}`}>
                {footerAnnotation}
-                <div>
-                    Designd by Katsu Media
+               <div className={CommonStyle.pcTabletOnly}> | </div>
+                <div className={CommonStyle.logoFontThin}>
+                    Designed by <Link href="mailto:info@katsumedia.com">Katsumedia</Link>
                 </div>
             </div>
-            <div className={`${CommonStyle.footerBigLogo}`}>
+            <div className={`${isMain ? CommonStyle.footerBigLogo : CommonStyle.footerBigLogoOther }`}>
                 <Image
                     src={'/svg/LOGO.svg'}
                     alt={'logo'}

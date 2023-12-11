@@ -18,7 +18,9 @@
         "THEINTENSIVE",
         "THETOUR",
         "THEBALL",
-        "THECLASS"
+        "THECLASS",
+        "EDUCATION",
+        "ENTERTAINMENT"
       ],
       "required": true
     },

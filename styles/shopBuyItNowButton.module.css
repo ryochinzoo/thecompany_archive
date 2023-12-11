@@ -1,0 +1,108 @@
+.shopBuyItNowButton {
+    color: #ffffff;
+    position: relative;
+    font-weight: 500;
+    overflow: hidden;
+    font-size: 17px;
+    width: 214px;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin: 10px auto;
+    z-index: 3;
+}
+.shopBuyItNowButton {
+    background-color: #C93D38;
+}
+.shopBuyItNowButtonBig {
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 17px;
+    width: 331px;
+    height: 56px;
+    padding: 16px 0;
+    text-align: center;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin: 11px 0;
+    z-index: 3;
+}
+
+.shopBuyItNowButtonBig::before,
+.shopBuyItNowButton::before { 
+    content: "";
+    width: 120%;
+    height: 200%;
+    position: absolute;
+    top: -50%;
+    right: 0;
+    z-index: -1;
+    background: #fff;
+    border-radius: 0 100% 100% 0;
+    transform: translateX(-100%);
+    transition: transform ease .3s;
+}
+
+.shopBuyItNowButtonBig:hover,
+.shopBuyItNowButton:hover {
+    color:#C93D38;
+}
+
+.shopBuyItNowButtonBig:hover::before,
+.shopBuyItNowButton:hover::before {
+    transform: translateX(10%);
+}
+
+.shopBuyItNowButtonBig {
+    background-color: #C93D38;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .shopBuyItNowButtonBig {
+        color: #ffffff;
+        position: relative;
+        font-weight: 500;
+        font-size: 20px;
+        width: 42vw;
+        padding: 12px 0;
+        text-align: center;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        margin: 15px 0;
+        z-index: 3;
+    }
+}
+@media screen and (max-width: 767px) {
+    .shopBuyItNowButtonBig {
+        color: #ffffff;
+        position: relative;
+        font-weight: 500;
+        font-size: 20px;
+        width: 70vw;
+        padding: 12px 0;
+        text-align: center;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        margin: 15px auto;
+        z-index: 3;
+    }
+}
+@media screen and (max-width: 500px) {
+    .shopBuyItNowButton {
+        color: #ffffff;
+        position: relative;
+        font-weight: 500;
+        font-size: 17px;
+        width: 60vw;
+        padding: 15px 0;
+        text-align: center;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        margin: 10px auto;
+        z-index: 3;
+    }
+}

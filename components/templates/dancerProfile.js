@@ -1,26 +1,25 @@
 import {useState, useRef, useEffect} from 'react'
 import { useMediaQuery } from 'react-responsive'
 import DancerStyle from '../../styles/dancerProfile.module.css'
-import utilStyles from "../../styles/utils.module.css"
 import "swiper/css"
 import "swiper/css/navigation"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Thumbs, Controller } from "swiper"
 import { useInView } from "react-intersection-observer"
 import { useModalShowContext } from "../../context/modalContext"
-import swiperNavUpdate from "../../styles/swiperNavigationUpdate.module.css"
 import Modal from 'react-modal'
 import Image from 'next/image'
-import VerticalList from '../molecules/verticalList'
-import HorizontalList from '../molecules/horizontalList'
-import WorkThumbSmall from '../atoms/workThumbSmall'
-import WorksPreviewOnSwipe from '../atoms/worksPreviewOnSwipe'
 import update from 'immutability-helper'
-import DancerFullSlideContents from '../atoms/dancerContentsFullSlide'
-import DancerListBlock from '../atoms/dancerListBlock'
-import FormInModal from '../molecules/formInModal'
-import CommonStyle from '../../styles/commonParts.module.css'
-import FormButton from '../atoms/formButton'
+import dynamic from 'next/dynamic'
+
+const WorksPreviewOnSwipe = dynamic(() => import('../atoms/worksPreviewOnSwipe'))
+const VerticalList = dynamic(() => import('../molecules/verticalList'))
+const DancerListBlock = dynamic(() => import('../atoms/dancerListBlock'))
+const WorkThumbSmall = dynamic(() => import('../atoms/workThumbSmall'))
+const FormButton = dynamic(() => import('../atoms/formButton'))
+const DancerFullSlideContents = dynamic(() => import('../atoms/dancerContentsFullSlide'))
+const FormInModal = dynamic(() => import('../molecules/formInModal'))
+const HorizontalList = dynamic(() => import('../molecules/horizontalList'))
 
 export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, mailInfo }) {
     const isActiveInit = setDancerSliderArray(dancers.length)
@@ -31,16 +30,20 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
     const prevRef = useRef()
     const nextRef = useRef()
     const mainSwiperRef = useRef()
-    const listedAgency = useRef()
     const observeRef = useRef()
     const subSwiperHoverRef = useRef()
+    /*
+    const listedAgency = useRef()
     const [slideChangeTriggered, setSlideChangeTriggered] = useState(false)
-    const [isClicked, setIsClicked] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
+    const thumbSwiperPhotos = thumbs(strapiURL, dancers)
+    */
     const [subSwiping, setSubSwiping] = useState(true)
+    const [isClicked, setIsClicked] = useState(false)
     const [isVerticalWorkClicked, setIsVerticalWorkClicked] = useState(false)
     const [slidesToShowState, setSlidesToShowState] = useState(3)
-    const [subSlidesToShowState, setSubSSlidesToShowState] = useState(13)
+    const [subSlidesToShowState, setSubSSlidesToShowState] = useState(21)
+    const [centeredSlidesState, setCenteredSlidesState] = useState(true)
     const { ref: navInViewRef, inView: navIsVisible } = useInView({threshold: 0.8, triggerOnce: true, })
     const [ modalImageState, setModalImageState ] = useState("/images/aboutPhotoExample.jpg")
     const [ modalTypeState, setModalTypeState ] = useState("Image")
@@ -56,7 +59,6 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
     const [touchEnd, setTouchEnd] = useState(null)
     const dancerList = listingDancers(strapiURL, dancers)
     const summerizedItems = summerizingItems(strapiURL, dancers)
-    const thumbSwiperPhotos = thumbs(strapiURL, dancers)
     const isDesktopLarge = useMediaQuery({
         query: '(min-width: 1200px)'
     })
@@ -98,6 +100,24 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
             //mainSwiperRef.current.swiper.slideTo(index, 1200)
         }
     }
+    const hoverAnimation = (index) => {
+        const length = subSwiperHoverRef.current.swiper.slides.length
+        if (index !== 0) {        
+            subSwiperHoverRef.current.swiper.slides[index - 1].children[0].classList.add(`${DancerStyle.hoveredActiveNeighbour}`)
+        }
+        if (index < length - 1) {
+            subSwiperHoverRef.current.swiper.slides[index + 1].children[0].classList.add(`${DancerStyle.hoveredActiveNeighbour}`)
+        }
+        subSwiperHoverRef.current.swiper.slides[index].children[0].classList.add(`${DancerStyle.hoveredActive}`)
+    }
+
+    const mouseOutAnimation = () => {
+        subSwiperHoverRef.current.swiper.slides.map((slide, i) => {
+            slide.children[0].classList.remove(`${DancerStyle.hoveredActive}`)
+            slide.children[0].classList.remove(`${DancerStyle.hoveredActiveNeighbour}`)
+        })
+    }
+
     const changeMainSlide = (index) => {
         if (isClicked && (isMobile || isMobileSmall)) {
             mainSwiperRef.current.swiper.slideTo(index, 1200)
@@ -108,6 +128,7 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
     const modalShowStateHandle = (newValue) => {
         setFormModalShowState(newValue)
     }
+    /*
     const lbtoBr = (txt, dancerIndex) => {
         let txtArray
 
@@ -125,24 +146,28 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
             </div>
         )
     }
-
+    */
     useEffect(() => {
         const slides = document.querySelectorAll('.dancer-slide')
-        const mainSwiperImageWidth = 0;
         if (isDesktopLarge) {
-            setSubSSlidesToShowState(13)
+            setSubSSlidesToShowState(21)
+            setCenteredSlidesState(false)
             setGradationWidth("1200px")
         } else if (isDesktop) {
-            setSubSSlidesToShowState(13)
+            setSubSSlidesToShowState(21)
+            setCenteredSlidesState(false)
             setGradationWidth("100%")
         } else if (isTablet) {
             setSubSSlidesToShowState(9.5)
+            setCenteredSlidesState(true)
             setGradationWidth("100%")
         } else if (isMobile) {
             setSubSSlidesToShowState(5.5)
+            setCenteredSlidesState(true)
             setGradationWidth("100%")
         } else if (isMobileSmall) {
             setSubSSlidesToShowState(3.5)
+            setCenteredSlidesState(true)
             setGradationWidth("100%")
         }
         if (isClicked) {
@@ -211,10 +236,6 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
         } 
     }
 
-    function setHovered(bool) {
-        setIsHovered(bool)
-    }
-
     function setClicked(bool) {
         setIsClicked(bool)
     }
@@ -249,28 +270,30 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
         <>  
             <div className={`${DancerStyle.headerWrapper} ${isClicked ? DancerStyle.isClicked : ""}`}>
                 <div className={`${DancerStyle.flexWrapperDancerHeader} ${isClicked ? DancerStyle.isClicked : ""}`}>
-                    <span className={`${DancerStyle.dancerSlideHeadline}`}>THE<b>AGENCY</b> /</span>
-                    <span className={`${DancerStyle.viewAllArea} ${isClicked ? DancerStyle.isClicked : ""}`}
+                    <span className={`${DancerStyle.dancerSlideHeadline}`}><b>AGENCY</b></span>
+                    <div className={DancerStyle.viewAllOrSwipeWrapper}>
+                        <span className={`${DancerStyle.viewAllArea} `}
+                            onClick={() => {
+                                showList()
+                                setClicked(true) 
+                                setSubSwiping(true)
+                            }}
+                        >View all</span>
+                        <span className={`${DancerStyle.OrSwipe} ${isClicked ? "" : DancerStyle.isClicked}`}>Or swipe</span>
+                    </div>
+                    <div className={DancerStyle.backToDancersWrapper}
                         onClick={() => {
-                            showList()
-                            setClicked(true) 
-                            setSubSwiping(true)
-                        }}
-                    >View all</span>
-                </div>
-
-                <div className={DancerStyle.backToDancersWrapper}>
-                    <span className={DancerStyle.backToDancers}
-                        style={{opacity : isClicked ?  1 : 0, display: isClicked ? "inline" : "none"}}
-                        onClick={() => {
-                            setIsClicked(false)
-                            setSubSwiping(false)
-                            handleChange({dancer: currentDancerState.dancerId, work: 0})
-                            verticalWorkClickedChange(false)
-                            if (isMobile || isMobileSmall) {
-                                handleSlideNumber(currentSlide)
-                            }
-                        }}>Back</span>
+                                setIsClicked(false)
+                                setSubSwiping(false)
+                                handleChange({dancer: currentDancerState.dancerId, work: 0})
+                                verticalWorkClickedChange(false)
+                                if (isMobile || isMobileSmall) {
+                                    handleSlideNumber(currentSlide)
+                                }
+                            }}>
+                        <span className={DancerStyle.backToDancersArrow}
+                            style={{opacity : isClicked ?  1 : 0, display: isClicked ? "inline" : "none"}}></span>
+                    </div>
                 </div>
                 <div className={`${isClicked ? DancerStyle.flexWrapperDancerHeaderOpened : DancerStyle.flexWrapperDancerHeaderClosed}`}>
                     <div className={DancerStyle.backToDancersMobile}
@@ -284,23 +307,14 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                             handleSlideNumber(currentSlide)
                         }
                     }}>Back</div>
-                    <div className={DancerStyle.viewAllOrSwipeWrapper}>
-                        <span className={`${DancerStyle.viewAllAreaMobile} ${isClicked ? DancerStyle.isClicked : ""}`}
-                            onClick={() => {
-                                showList()
-                                setClicked(true) 
-                                setSubSwiping(true)
-                            }}
-                        >View all</span>
-                        <span className={DancerStyle.OrSwipe}>Or swipe</span>
-                    </div>
+                    
                 </div> 
             </div>
             <div className={isClicked ? DancerStyle.sliderWrapperOpened : DancerStyle.sliderWrapper}>
                 <div className={`${isClicked ? DancerStyle.swiperInnerWrapperClicked : DancerStyle.swiperInnerWrapper}`}>
                 <div style={{width: gradationWidth, margin: "0 auto"}}>
-                    <div className={`${isSlideWide ? "" : utilStyles.gradationGrayLeftSide}`}></div>
-                    <div className={`${isSlideWide ? "" : utilStyles.gradationGrayRightSide}`}></div>
+                    <div className={`${isSlideWide ? "" : DancerStyle.gradationGrayLeftSide}`}></div>
+                    <div className={`${isSlideWide ? "" : DancerStyle.gradationGrayRightSide}`}></div>
                 </div>
                 {isClicked && (isMobile || isMobileSmall)  ? "" :
                     <div onClick={()=>{
@@ -308,12 +322,12 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                         }}
                     >
                         <div ref={navInViewRef}
-                            className={`${isClicked ? "" : swiperNavUpdate.swiperButtonDancerPrevWrapper}
-                            ${isClicked ? utilStyles.dispayNone : utilStyles.displayBlock}
+                            className={`${isClicked ? DancerStyle.swiperButtonDancerPrevWrapperOpened : DancerStyle.swiperButtonDancerPrevWrapper}
+                            
                             ${navIsVisible ? 
-                            swiperNavUpdate.fadeOutAnimation : ""}`} >
-                            <div className={`${isClicked ? "" : swiperNavUpdate.swiperButtonDancerPrev}`} >
-                                <div className={swiperNavUpdate.swiperButtonPrevArrow}></div>
+                                DancerStyle.fadeOutAnimation : ""}`} >
+                            <div className={`${DancerStyle.swiperButtonDancerPrev}`} >
+                                <div className={DancerStyle.swiperButtonPrevArrow}></div>
                             </div>
                         </div>
                     </div>
@@ -327,7 +341,6 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                         onSwiper={setSwiper}
                         centeredSlides={true}
                         initialSlide={centeredSlideNumber}
-                        autoHeight={false}
                         slideClass={'dancer-slide'}
                         onSlideChange={(swiper) => {
                             handleChangingSlide(swiper.activeIndex)
@@ -336,7 +349,7 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                     >
                         { summerizedItems.map((dancer, dancerIndex) => {
                             return (
-                            <SwiperSlide className={`${swiperNavUpdate.swipeWrapper} ${isClicked ? "" : DancerStyle.swipeNotClickedWrapper} dancer-slide`} key={dancerIndex}>
+                            <SwiperSlide className={`${DancerStyle.swipeWrapper} ${isClicked ? "" : DancerStyle.swipeNotClickedWrapper} dancer-slide`} key={dancerIndex}>
                                 {({ isActive, isPrev, isNext }) => (
                                     <div className={`${isActive ? DancerStyle.swiperSlideActive : ""} ${isPrev || isNext ? DancerStyle.swiperSlidePrevNext : ""}`}>
                                         <div className={`${DancerStyle.slide}`}>
@@ -346,7 +359,7 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                                                     <div className={`${isClicked ? DancerStyle.flexWrapperForMobile : ""}`}>
                                                     {isClicked
                                                             ? <div className={`${DancerStyle.verticalWorksArea}`}>
-                                                                <div className={`${isMobile || isMobileSmall || isTablet ? DancerStyle.swipeForTabletAndMobile : utilStyles.displayNone}`}>
+                                                                <div className={`${isMobile || isMobileSmall || isTablet ? DancerStyle.swipeForTabletAndMobile : DancerStyle.displayNone}`}>
                                                                     <div className={`${DancerStyle.swipeForTabletAndMobileLabel}`}>Swipe</div>
                                                                     <div className={`${DancerStyle.simpleArrowPrev} swiper-nav-prev`}
                                                                         onClick={()=>{
@@ -444,46 +457,16 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                                                         ? <div className={`${DancerStyle.flexArea} ${DancerStyle.flexWrapper}  ${DancerStyle.fadeInAnimation}`}>
                                                             <div className={`${DancerStyle.flexBottom} ${DancerStyle.marginAlignTop}`}>
                                                                 <div className={`${DancerStyle.dancerInfoParagraph} ${DancerStyle.flexWrapper} ${DancerStyle.flexCentering}`}>
-                                                                    <div className={`${isMobile || isMobileSmall || isTablet ? "" : DancerStyle.simpleArrowPrev} swiper-nav-prev`}
-                                                                        onClick={()=>{
-                                                                            swiper.slidePrev()
-                                                                        }}
-                                                                    ></div>
-                                                                    <div className={`${DancerStyle.dancerNameContentsWrapper}`}>
+                                                                    <div className={`${DancerStyle.dancerNameContentsWrapper} ${DancerStyle.dancerInfoList}`}>
                                                                         <div className={DancerStyle.dancerNameInContents}>{dancer.name}</div>
                                                                         <div className={DancerStyle.dancerTitle}>{dancer.memberedSince}</div>
                                                                     </div>
-                                                                    <div className={`${isMobile || isMobileSmall || isTablet ? "" : DancerStyle.simpleArrowNext} swiper-nav-next`}
-                                                                        onClick={() => {
-                                                                            swiper.slideNext()
-                                                                        }}
-                                                                    ></div>
                                                                 </div>
                                                                 <div className={DancerStyle.dancerInfoWrapper}>
-                                                                    <div className={`${DancerStyle.dancerInfoParagraph}`}>
-                                                                        <div className={DancerStyle.dancerInfoHeadline}>OVERVIEW:</div>
-                                                                        <div className={DancerStyle.dancerOverviewFrame}>
-                                                                            <div className={DancerStyle.dancerInfoOverview}
-                                                                                onMouseEnter={() => {
-                                                                                    handleScrollLock(true)
-                                                                                }}
-                                                                                onTouchMove={() => {
-                                                                                    handleScrollLock(true)
-                                                                                }}
-                                                                                onMouseLeave={() => {
-                                                                                    handleScrollLock(false)
-                                                                                }}
-                                                                                onTouchEnd={() => {
-                                                                                    handleScrollLock(false)
-                                                                                }}
-                                                                            >{ lbtoBr(dancer.overview, dancerIndex) }</div>
-                                                                        </div>
-                                                                    </div>
                                                                     <div className={`${DancerStyle.dancerInfoParagraph} ${DancerStyle.dancerInfo}`}>
-                                                                        <div className={DancerStyle.dancerInfoHeadline}>DETAILS:</div>
-                                                                        <div><span className={DancerStyle.dancerInfoBold}>SKILLS/STYLES</span> {dancer.skillsStyles}</div>
-                                                                        <div><span className={DancerStyle.dancerInfoBold}>HEIGHT</span> {dancer.height}</div>
-                                                                        <div><span className={DancerStyle.dancerInfoBold}>INTERESTS</span> {dancer.interests}</div>
+                                                                        <div className={DancerStyle.dancerInfoList}><div className={DancerStyle.dancerInfoBold}>Style:</div> {dancer.skillsStyles}</div>
+                                                                        <div className={DancerStyle.dancerInfoList}><div className={DancerStyle.dancerInfoBold}>Height:</div> {dancer.height}</div>
+                                                                        <div className={DancerStyle.dancerInfoList}><div className={DancerStyle.dancerInfoBold}>Interests:</div> {dancer.interests}</div>
                                                                     </div>
                                                                     {isClicked && (isMobile || isMobileSmall)  ? 
                                                                         
@@ -494,11 +477,6 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                                                                         </div>
                                                                     
                                                                     : "" }
-                                                                    <div  className={`${DancerStyle.dancerInfoParagraph} ${DancerStyle.dancerInfo}`}>
-                                                                        <div>QUESTIONS:</div>
-                                                                        <div className={DancerStyle.dancerInfoBold}>{dancer.contactAddress}</div>
-                                                                        <div>IG:<span className={DancerStyle.dancerInfoBold}>{dancer.instagram}</span></div>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -518,14 +496,14 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                             swiper.slideNext()
                         }}
                     >
-                        <div ref={observeRef} style={{pointerEvents: isClicked ? "none" : "auto" }} 
-                            className={`${isClicked ? utilStyles.dispayNone : utilStyles.displayBlock} 
-                            ${isClicked ? "" :  swiperNavUpdate.swiperButtonDancerNextWrapper} 
-                            ${ navIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`} >
+                        <div ref={observeRef} style={{pointerEvents: "auto" }} 
+                            className={`${DancerStyle.displayBlock} 
+                            ${DancerStyle.swiperButtonDancerNextWrapper} 
+                            ${ navIsVisible ? DancerStyle.fadeOutAnimation : ""}`} >
                             <div 
-                            className={`${isClicked ? "" :  swiperNavUpdate.swiperButtonDancerNext}`} 
+                            className={`${DancerStyle.swiperButtonDancerNext}`} 
                              >
-                                <div className={`${ swiperNavUpdate.swiperButtonNextArrow}`}></div>
+                                <div className={`${DancerStyle.swiperButtonNextArrow}`}></div>
                             </div>
                         </div>
                     </div>
@@ -540,11 +518,11 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                     noSwipingClass={'dancer-no-swipe'}
                     onSwiper={setSubSwiper}
                     slidesPerView={subSlidesToShowState}
-                    centeredSlides={true}
+                    centeredSlides={centeredSlidesState}
                     initialSlide={centeredSlideNumber}
-                    autoHeight={false}
                     slideClass={'dancer-sub-slide'}
                     slideToClickedSlide={false}
+                    freeMode={true}
                     onSlideChange={(swiper) => {
                         handleChangingSlide(swiper.activeIndex)
                     }}
@@ -553,10 +531,19 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                         return (
                         
                         <SwiperSlide 
-                            className={`${swiperNavUpdate.swipeWrapper} dancer-sub-slide dancer-no-swipe`} 
+                            className={`${DancerStyle.swipeWrapper} dancer-sub-slide dancer-no-swipe`} 
                             key={dancerIndex}
                             onMouseOver={()=>{
-                                changeSubSlide(dancerIndex)
+                                if (isTablet) {
+                                    changeSubSlide(dancerIndex)
+                                } else {
+                                    hoverAnimation(dancerIndex)
+                                }
+                            }}
+                            onMouseLeave={() => {
+                                if (!isTablet) {
+                                    mouseOutAnimation()
+                                }
                             }}
                             onClick={()=>{
                                 changeMainSlide(dancerIndex)
@@ -564,8 +551,8 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                             }}
                         >
                             {({ isActive, isPrev, isNext }) => (
-                                <div style={{height:"100%"}} className={`${isActive ? DancerStyle.subSlideActive : ""} ${isPrev || isNext ? DancerStyle.subSlidePrevNext : DancerStyle.subSlideContents} `}>
-                                    <div className={`${DancerStyle.slide} ${swiperNavUpdate.swipeSubWrapper}`}>
+                                <div style={{height:"100%"}} className={`${isTablet && isActive ? DancerStyle.subSlideActive : ""} ${isTablet && (isPrev || isNext) ? DancerStyle.subSlidePrevNext : DancerStyle.subSlideContents} `}>
+                                    <div className={`${DancerStyle.slide} ${DancerStyle.swipeSubWrapper}`}>
                                             <div className={`${DancerStyle.flexWrapper}`}>    
                                                
                                                 <Image
@@ -574,7 +561,7 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                                                     width={150}
                                                     height={150}
                                                     objectFit='cover'
-                                                    priority
+                                                    loading='lazy'
                                                 />            
                                                 
                                             </div>
@@ -588,14 +575,14 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
             </div>
             <Modal 
                 style={{overlay:{zIndex:10000, backgroundColor: "#DDE0E5", overflowY: "scroll", position: "fixed"}, contents:{height: "100vh"}}} 
-                className={[utilStyles.contentsModal, utilStyles.otherOptionModal, "dancerListModal"].join(" ")} 
+                className={[DancerStyle.contentsModal, DancerStyle.otherOptionModal, "dancerListModal"].join(" ")} 
                 isOpen={dancerListModalShowState} 
                 preventScroll={false}
                 ariaHideApp={false}
                 >
-                    <div className={utilStyles.modalContentsWrapper}>
-                    <div className={utilStyles.modalContentsWithBackgroundImage}>
-                        <div className={utilStyles.modalCloseButton} onClick={() => {
+                    <div className={DancerStyle.modalContentsWrapper}>
+                    <div className={DancerStyle.modalContentsWithBackgroundImage}>
+                        <div className={DancerStyle.modalCloseButton} onClick={() => {
                             setDancerListModalShowState(false)
                             handleScrollLock(false)
                             //setClicked(false)
@@ -631,11 +618,11 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
             </Modal>
             <Modal 
                 style={{overlay:{zIndex:10000, backgroundColor: "#DDE0E5"}, contents:{}}} 
-                className={[utilStyles.contentsModal, utilStyles.otherOptionModal].join(" ")} 
+                className={[DancerStyle.contentsModal, DancerStyle.otherOptionModal].join(" ")} 
                 isOpen={contactModalShowState}
                 ariaHideApp={false}>
                 <div ref={prevRef} >
-                    <div ref={modalNavInViewRef} className={`${swiperNavUpdate.swiperModalButtonPrevWrapper} ${modalNavIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`} onClick={() => {
+                    <div ref={modalNavInViewRef} className={`${DancerStyle.swiperModalButtonPrevWrapper} ${modalNavIsVisible ? DancerStyle.fadeOutAnimation : ""}`} onClick={() => {
                         if (clickedIndexState > 0) {
                             setModalImageState(currentDancerState.dancerWorks[clickedIndexState - 1].contents)
                             setModalTypeState(currentDancerState.dancerWorks[clickedIndexState - 1].typeOfMedia)
@@ -648,13 +635,13 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                             handleChange({dancer: currentDancerState.dancerId, work: currentDancerState.dancerWorks.length - 1})
                         }
                     }}>
-                        <div className={`${swiperNavUpdate.swiperModalButtonPrev}`}>
-                            <div className={swiperNavUpdate.swiperButtonPrevArrow}></div>
+                        <div className={`${DancerStyle.swiperModalButtonPrev}`}>
+                            <div className={DancerStyle.swiperButtonPrevArrow}></div>
                         </div>
                     </div>
                 </div>
                 <div ref={nextRef}>
-                    <div ref={modalNavInViewRef} className={`${swiperNavUpdate.swiperModalButtonNextWrapper}`} onClick={() => {
+                    <div ref={modalNavInViewRef} className={`${DancerStyle.swiperModalButtonNextWrapper}`} onClick={() => {
                         if (clickedIndexState < currentDancerState.dancerWorks.length - 1){
                             setModalImageState(currentDancerState.dancerWorks[clickedIndexState + 1].contents)
                             setModalTypeState(currentDancerState.dancerWorks[clickedIndexState + 1].typeOfMedia)
@@ -667,14 +654,14 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
                             handleChange({dancer: currentDancerState.dancerId, work: 0})
                         }
                     }}>
-                        <div className={`${swiperNavUpdate.swiperModalButtonNext}`}>
-                            <div className={swiperNavUpdate.swiperButtonNextArrow}></div>
+                        <div className={`${DancerStyle.swiperModalButtonNext}`}>
+                            <div className={DancerStyle.swiperButtonNextArrow}></div>
                         </div>
                     </div>
                 </div>
 
-                <div className={utilStyles.modalContentsWithBackgroundImage}>
-                    <div className={`${utilStyles.modalCloseButton}`} onClick={() => {
+                <div className={DancerStyle.modalContentsWithBackgroundImage}>
+                    <div className={`${DancerStyle.modalCloseButton}`} onClick={() => {
                         setContactModalShowState(false)
                     }}></div>
                 </div>
@@ -733,7 +720,7 @@ export default function DancerProfile ({ strapiURL, dancers, handleScrollLock, m
             </Modal>
             <Modal
                 style={{overlay:{zIndex:10000, backgroundColor: "#FA5253", position: "fixed"}, contents:{}}} 
-                className={`${CommonStyle.formTopStyle}`}
+                className={`${DancerStyle.formTopStyle}`}
                 isOpen={formModalShowState}
                 ariaHideApp={false}
             >
@@ -750,7 +737,6 @@ export function summerizingItems(strapiURL, dancers) {
     return dancers.map((dancer) => {
         const detail = dancer.attributes.DancerDetail
         const works = dancerWorks(strapiURL, dancer)
-
         return {
             id: dancer.id,
             name: dancer.attributes.DancerName,
@@ -758,7 +744,7 @@ export function summerizingItems(strapiURL, dancers) {
             mainPhoto: strapiURL + dancer.attributes.MainPhoto.data.attributes.url,
             thumbPhoto: strapiURL + dancer.attributes.ThumbPhoto.data.attributes.url,
             overview: detail.Overview,
-            skillsStyles: detail.SkilsStyles,
+            skillsStyles: detail.SkillsStyles,
             height: detail.Height,
             interests: detail.Interests,
             contactAddress: detail.ContactAddress,
@@ -788,11 +774,11 @@ export function listingDancers(strapiURL, dancers) {
 }
 
 export function dancerWorks(strapiURL, works) {
-    return works.attributes.DancerWorks.map(work => {
+    return works?.attributes.DancerWorks.map(work => {
         const isYoutube = hasYoutubeLink(work.TypeOfMedia)
         return {
             typeOfMedia: work.TypeOfMedia,
-            contents: isYoutube ? work.YoutubeURL : strapiURL + work.Contents.data.attributes.url,
+            contents: work.Contents.data?.attributes ? strapiURL + work.Contents.data?.attributes.url : "",
         }
     })    
 }

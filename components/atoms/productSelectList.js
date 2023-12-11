@@ -1,4 +1,4 @@
-import CommonStyle from '../../styles/commonParts.module.css'
+import CommonStyle from '../../styles/productSelectList.module.css'
 
 export default function ProductSelectList({productNames, shopEvents, productId, onSelectChangeHandler, hasImage, resetQuantity}) {
     let contents

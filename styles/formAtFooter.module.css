@@ -1,0 +1,22 @@
+
+.inputAreaFooter {
+    margin-top: 32px;
+    max-width: 1256px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.flexTextInput {
+    display: flex;
+    gap: 5px 22px;
+}
+.textAreaWrapper {
+    text-align: left;
+}
+
+@media screen and (max-width: 767px) {
+    .flexTextInput {
+        display: flex;
+        gap: 5px 5px;
+        flex-direction: column;
+}
+}

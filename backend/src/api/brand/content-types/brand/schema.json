@@ -10,7 +10,11 @@
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "Logo": {
       "type": "media",
@@ -21,19 +25,39 @@
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "Name": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "Description": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "BrandComponent": {
       "displayName": "BrandContents",
       "type": "component",
       "repeatable": true,
-      "component": "pictureandtitle.brand-contents"
+      "component": "pictureandtitle.brand-contents",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

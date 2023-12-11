@@ -1,17 +1,22 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import Image from "next/image"
-import HappeningStyle from '../../styles/happenings.module.css'
-import VideoPlayer from 'react-player'
-import { useInView } from "react-intersection-observer"
-import utilStyles from "../../styles/utils.module.css"
-import ReactPlayer from "react-player/lazy"
+import fullSlideStyles from "../../styles/happeningContentsFullSlide.module.css"
+import dynamic from 'next/dynamic'
 
-export default function FullSlideContents({ mediaType, mediaURL, vimeoURL }) {
+const SoundButton = dynamic(() => import('./soundButton'))
+const VideoPlayer = dynamic(() => import('react-player'))
+const ReactPlayer = dynamic(() => import("react-player/lazy"))
+
+export default function FullSlideContents({ setEntertainmentPlaying = false, mediaType, mediaURL, vimeoURL }) {
     let contents
     const [isPlaying, setIsPlaying] = useState(false)
+    const [isMuted, setIsMuted] = useState(true)
+    const handleSoundSwitch = (newValue) => {
+        setIsMuted(prev => {return newValue})
+    }
     
     if(mediaType === "Image") {
-        contents = <div className={HappeningStyle.positionRelative}><Image
+        contents = <div className={`${fullSlideStyles.positionRelative} ${fullSlideStyles.fullSlideImage}`}><Image
             src={mediaURL}
             alt={mediaType}
             objectFit="cover"
@@ -19,56 +24,64 @@ export default function FullSlideContents({ mediaType, mediaURL, vimeoURL }) {
             priority
         /></div>
     } else if (mediaType ==="Video") {
-        contents = <div className={HappeningStyle.positionRelative}>
-            <div className={HappeningStyle.playerWrapper}  onClick={()=>{
-                    setIsPlaying(!isPlaying)
-                }}>
-                <div className={`${HappeningStyle.playButton} ${isPlaying ? HappeningStyle.fadeOutAnimation : ""}`}>
-                    <div className={HappeningStyle.playButtonMark}></div>
-                </div>
+        contents = <div className={fullSlideStyles.positionRelative}>
+            <div className={fullSlideStyles.soundIcon}>
+                <SoundButton
+                    isMuted={isMuted}
+                    handleSoundSwitch={handleSoundSwitch}
+                ></SoundButton>
+            </div>
+            <div className={fullSlideStyles.playerZoomWrapper}>
+                <div className={fullSlideStyles.videoWrapper}></div>
                 <VideoPlayer
-                    className={HappeningStyle.reactPlayer}
+                    className={fullSlideStyles.zoomedPlayerScaledTop} 
                     url={mediaURL}
                     width="100%"
                     height="100%"
-                    playing={isPlaying}
-                    muted={true}
+                    playing={setEntertainmentPlaying}
+                    playsinline={true}
+                    muted={isMuted}
+                    config={{
+                        file: {
+                          hlsOptions: { 
+                            xhrSetup: function(xhr, url) {
+                              xhr.withCredentials = true // send cookies
+                            }
+                          }
+                        }
+                      }}
                 />
             </div>
         </div>
-    } else if (mediaType ==="VimeoURL") {
+    } else if (mediaType ==="topVideo") {
         
-        contents = <div className={HappeningStyle.positionRelative}><div className={utilStyles.playerZoomWrapper} 
-            onClick={()=>{
-                setIsPlaying(!isPlaying)
-            }}
-        >   
-        <div className={`${HappeningStyle.playButton} ${isPlaying ? HappeningStyle.fadeOutAnimation : ""}`}>
-                    <div className={HappeningStyle.playButtonMark}></div>
-                </div>
-        <div className={utilStyles.videoWrapper}></div>
-            
-            <ReactPlayer
-                url= {vimeoURL}
-                className={utilStyles.zoomedPlayerScaled} 
-                playing={isPlaying}
-                muted
-                width="100%"
-                height="100vh"
-                config={{
-                    vimeo: {
-                        playerOptions: {
-                            height: "100vh",
-                            width: "100%",
-                            responsive: true,
-                            controls: false,
-                            autoplay: false,
-                        }
+    contents = <div className={fullSlideStyles.positionRelative}><div className={fullSlideStyles.playerZoomWrapper} >   
+    <div className={`${isPlaying ? fullSlideStyles.fadeOutAnimation : ""}`}></div>
+    <div className={fullSlideStyles.videoWrapper}></div>
+        
+        <ReactPlayer
+            url= {vimeoURL}
+            className={fullSlideStyles.zoomedPlayerScaledTop} 
+            playing={isPlaying}
+            muted
+            width="100%"
+            height="100vh"
+            playsinline={true}
+            loop={true}
+            config={{
+                vimeo: {
+                    playerOptions: {
+                        height: "100vh",
+                        width: "100%",
+                        responsive: true,
+                        controls: false,
+                        autoplay: true,
                     }
-                }}
-            />
-        </div>
+                }
+            }}
+        />
     </div>
+</div>
 }
     return (
         <>

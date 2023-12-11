@@ -1,20 +1,19 @@
 import { useState } from "react"
-import DescriptionAndSwipe from "../organisms/descriptionAndSwipe"
-import utilStyles from "../../styles/utils.module.css"
-import Image from "next/image"
 import Modal from 'react-modal'
-import FormInModal from '../molecules/formInModal'
-import CommonStyle from '../../styles/commonParts.module.css'
+import CommonStyle from '../../styles/brands.module.css'
+import dynamic from 'next/dynamic'
 
-export default function Brand({ strapiURL, brands, mailInfo }) {
-    
+const FormInModal = dynamic(() => import('../molecules/formInModal'))
+const DescriptionAndSwipe = dynamic(() => import("../organisms/descriptionAndSwipe"))
+
+export default function Brand({ locale, strapiURL, brands,  mailInfo }) {
     const [brandState, setBrandState] = useState(0) //0 is all, other number should be ID for each brand
     const brandNames =  listedItems(strapiURL, brands)
     const brandTargetContents = summerizedItems(strapiURL, brands)
     const [ formModalShowState, setFormModalShowState ] = useState(false)
     const [ isContentChanged, setIsContentChanged ] = useState(false)
     const [ isMenuClicked, setIsMenuClicked ] = useState(false)
-
+    const [ descriptionInLocale, setDescriptionInLocale ] = useState()
     const handleSwiperUpdate = (newValue) => {
         setIsContentChanged(newValue)
     }
@@ -30,23 +29,23 @@ export default function Brand({ strapiURL, brands, mailInfo }) {
     }
     const getFontColor = (id) => {
         if (brandState === id) {
-            return utilStyles.letterColorWhite
+            return CommonStyle.letterColorWhite
         } else {
-            return utilStyles.letterColorRed
+            return CommonStyle.letterColorRed
         }
     }
     return(
-        <div className={[utilStyles.templateMargin, utilStyles.letterColorWhite].join(" ")}>
+        <div className={[CommonStyle.templateMargin, CommonStyle.letterColorWhite].join(" ")}>
             <DescriptionAndSwipe 
                 isMenuClicked={isMenuClickedCheck}
                 handleChange={handleChange} 
                 isContentChanged={isContentChanged}
                 handleSwiperUpdate={handleSwiperUpdate}
                 brandState={brandState} 
-                displayTargetData={brandTargetContents[brandState - 1]} 
-                dataForAll={brandNames} /> 
-            <ul className={utilStyles.contentsItemList}>
-                <li className={[getFontColor(0), utilStyles.cursorPointer].join(" ")} key={0} 
+                displayTargetData={brandTargetContents[brandState]} 
+                dataForAll={brandTargetContents} /> 
+            <ul className={CommonStyle.contentsItemList}>
+                <li className={[getFontColor(0), CommonStyle.cursorPointer].join(" ")} key={0} 
                 onClick={() => {
                     setBrandState(0)
                     handleSwiperUpdate(true)
@@ -56,9 +55,9 @@ export default function Brand({ strapiURL, brands, mailInfo }) {
                 </li>
                 {brandNames.map((brand, index) => {
                     return (
-                        <li  key={index} className={[getFontColor(brand.id), utilStyles.cursorPointer].join(" ")} 
+                        <li  key={index} className={[getFontColor(index + 1), CommonStyle.cursorPointer].join(" ")} 
                         onClick={() => {
-                            setBrandState(brand.id)
+                            setBrandState(index + 1)
                             handleSwiperUpdate(true)
                             isMenuClickedCheck(true)
                         }}>
@@ -67,11 +66,11 @@ export default function Brand({ strapiURL, brands, mailInfo }) {
                     )
                 })}
             </ul>
-            <div className={`${utilStyles.bookingRequestButtonSPWrapper}`}
+            <div className={`${CommonStyle.bookingRequestButtonSPWrapper}`}
                 onClick={() => {
                     setFormModalShowState(true)
                 }}>
-                <div className={`${utilStyles.bookingRequestButtonSP}`}>BOOKING REQUEST</div>
+                <div className={`${CommonStyle.bookingRequestButtonSP}`}>BOOKING REQUEST</div>
             </div>
             <Modal
                 style={{overlay:{zIndex:10000, backgroundColor: "#FA5253", position: "fixed"}, contents:{}}} 
@@ -80,8 +79,9 @@ export default function Brand({ strapiURL, brands, mailInfo }) {
                 ariaHideApp={false}
             >
                 <FormInModal
-                    modalShowStateHandle = {modalShowStateHandle}
+                    modalShowStateHandle={modalShowStateHandle}
                     mailInfo={mailInfo}
+                    isMain={true}
                 ></FormInModal>
             </Modal>
         </div>
@@ -91,12 +91,18 @@ export default function Brand({ strapiURL, brands, mailInfo }) {
 
 //a list of names
 export function listedItems(strapiURL, items){
-    return items.map((item) => {
-        const displayPictureUrl = strapiURL + item.attributes.BrandComponent[0].ImageOrVideo.data.attributes.url
+    return items.map((item, index) => {
+        let logoImgUrl = ""
+        if(item.attributes.Logo.data?.attributes?.url) {
+            logoImgUrl = strapiURL + item.attributes.Logo.data?.attributes?.url
+        } else {
+            logoImgUrl = "/images/NoImageTrans.png"
+        }
+        const displayPictureUrl = strapiURL + item.attributes.BrandComponent[0].PreviewPhoto.data?.attributes.url
         return {
-            id: item.id,
+            id: index,
             name: item.attributes.Name,
-            logoImgUrl: strapiURL + item.attributes.Logo.data.attributes.url,
+            logoImgUrl: logoImgUrl,
             displayPictureUrl: displayPictureUrl
         }
     })
@@ -104,31 +110,61 @@ export function listedItems(strapiURL, items){
 
 //processing function to compact only data for use
 export function summerizedItems(strapiURL, items) {
-    return items.map((item) => {
-        const Components = brandComponent(strapiURL, item)
-        
-        return {
-            id: item.id,
+    const forAllContentes = []
+    const eachContents = []
+    const arr = []
+    items.map((item, index) => {
+        const displayPictureUrl = strapiURL + item.attributes.BrandComponent[0].PreviewPhoto.data.attributes.url
+        const displayPictureWidth = item.attributes.BrandComponent[0].PreviewPhoto.data.attributes.width
+        const displayPictureHeight = item.attributes.BrandComponent[0].PreviewPhoto.data.attributes.height
+        const previewVideoURL = strapiURL + item.attributes.BrandComponent[0].PreviewVideo.data.attributes.url
+        let logoImgUrl = ""
+        if(item.attributes.Logo.data?.attributes?.url) {
+            logoImgUrl = strapiURL + item.attributes.Logo.data?.attributes?.url
+        } else {
+            logoImgUrl = "/images/NoImageTrans.png"
+        }
+        arr.push({
+            id: index + 1,
             name: item.attributes.Name,
             description: item.attributes.Description,
-            logoImgUrl: strapiURL + item.attributes.Logo.data.attributes.url,
-            components: Components,
-        }
+            logoImgUrl: logoImgUrl,
+            displayPictureUrl: displayPictureUrl,
+            previewVideoUrl: previewVideoURL,
+            displayPictureWidth: displayPictureWidth,
+            displayPictureHeight: displayPictureHeight,
+        })
+        eachContents.push(brandComponent(strapiURL, item))
     })
+    forAllContentes.push(arr)
+    const result = forAllContentes.concat(eachContents)
+    return result
 }
 
 export function brandComponent(strapiURL, item) {
-    return item.attributes.BrandComponent.map((component) => {
+    let logoImgUrl = ""
+        if(item.attributes.Logo.data?.attributes?.url) {
+            logoImgUrl = strapiURL + item.attributes.Logo.data?.attributes?.url
+        } else {
+            logoImgUrl = "/images/NoImageTrans.png"
+        }
+    return item.attributes.BrandComponent.map((component, index) => {
         const mediaType = component.MediaType
         const MediaURL = createURLByType(strapiURL, mediaType, component)
-        const gifURL = createURLByType(strapiURL, "Image", component)
+        const previewPhotoURL = createURLByType(strapiURL, "Image", component)
+        const previewVideoURL = createURLByType(strapiURL, "PreviewVideo", component)
         return {
+            id: index,
+            name: item.attributes.Name,
+            description: item.attributes.Description,
+            logoImgUrl: logoImgUrl,
             projectId: component.id,
             projectName: component.BrandProjectName,
             projectMediaURL: MediaURL,
-            projectMediaWidth: component.ImageOrVideo.data.attributes.width,
-            projectMediaHeight: component.ImageOrVideo.data.attributes.height,
-            projektGifURL: gifURL,
+            projectMediaWidth: component.PreviewPhoto.data.attributes.width,
+            projectMediaHeight: component.PreviewPhoto.data.attributes.height,
+            displayPictureUrl: previewPhotoURL,
+            previewVideoUrl: previewVideoURL,
             projectDescription: component.BrandProjectDescription,
             mediaType: mediaType,
         }
@@ -136,9 +172,11 @@ export function brandComponent(strapiURL, item) {
 }
 
 export function createURLByType(strapiURL, mediaType, media) {
-    if (mediaType == "Image" || mediaType == "Video") {
-        return strapiURL + media.ImageOrVideo.data.attributes.url
-    } else if (mediaType == "VimeoLink") {
-        return media.VimeoURL
+    if (mediaType == "Image") {
+        return strapiURL + media.PreviewPhoto.data.attributes.url
+    } else if (mediaType == "PortfolioVideo") {
+        return strapiURL + media.playingVideo.data.attributes.url
+    } else if (mediaType == "PreviewVideo") {
+        return strapiURL + media.PreviewVideo.data.attributes.url
     }
 }

@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import utilStyles from '../styles/utils.module.css'
+import { useTranslation, Trans} from 'next-i18next'
 
 export default function IOGradient({ children }) {
+    const { t } = useTranslation("common")
     const observingRef = useRef()
     const gradationTarget = useRef()
     const windowSize = useWindowSize()
@@ -23,27 +25,13 @@ export default function IOGradient({ children }) {
         query: '(max-width: 500px)'
     })
     useEffect(() => {
-        let text = ""
-        {isDesktopLarge || isDesktop ? 
-            text = <>The awareness for this <br />
-            arose from the initially <br />
-            mere idea of <br />
-            <span className={utilStyles.logoFontThin}>THE</span><span>COMPANY</span>, i.e. an <br />
-            exchange of ethnic and <br />
-            dance cultures to create <br />
-            something bigger for the <br />
-            offspring and from a <br />
-            pure women&apos;s collective<br />
-            the scene for every <br />
-            dance-loving person of <br />
-            every gender, origin, <br />
-            religion and any age to <br />
-            expand.<br /></>
-            :
-            text = <><span>The awareness for this arose from the initially mere idea of <span className={utilStyles.logoFontThin}>THE</span><span>COMPANY</span>, i.e. an exchange of ethnic and dance cultures to create something bigger for the offspring and from a pure women&apos;s collective the scene for every dance-loving person of every gender, origin, religion and any age to expand.</span><br /></>
-        }
+        let text = <><Trans t={t} i18nKey={"about.gradation.before_company"}>The awareness of this came from the original idea for  </Trans>
+        <span className={utilStyles.logoFontThin}>THE</span><span>COMPANY</span>, <Trans t={t} i18nKey={"about.gradation.after_company"}>
+        especially the exchange of different ethnic backgrounds and dance styles. The goal was to create something bigger for the next generation - from a pure women&apos;s collective to an open space for every dance-loving person, regardless of their gender, origin, religion or age.
+        </Trans></>
+        
         setGradationText(text)
-    }, [isDesktop, isDesktopLarge])
+    }, [t])
 
     useEffect (() => {
         
@@ -83,7 +71,7 @@ export default function IOGradient({ children }) {
         <div>
             <div ref={gradationTarget} className={utilStyles.gradientText}>
                 <div className={utilStyles.gradientAlign}>
-                {gradationText}
+                {gradationText}<br />
                 </div>
             </div>
             <div ref={observingRef} className={utilStyles.blindBox300}></div>

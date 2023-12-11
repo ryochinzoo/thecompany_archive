@@ -1,35 +1,33 @@
-import {useState, useRef, useEffect} from 'react'
+import {useState, useRef, useEffect, createRef, useCallback} from 'react'
 import { useMediaQuery } from 'react-responsive'
-import utilStyles from "../../styles/utils.module.css"
 import "swiper/css"
 import "swiper/css/navigation"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Thumbs, Controller } from "swiper"
 import { useInView } from "react-intersection-observer"
-import { useModalShowContext } from "../../context/modalContext"
-import swiperNavUpdate from "../../styles/swiperNavigationUpdate.module.css"
-import Modal from 'react-modal'
+import utilStyles from "../../styles/shop.module.css"
 import Image from 'next/image'
-import update from 'immutability-helper'
-import ShopViewDetailsButton from '../atoms/shopViewDetailsButton'
-import ShopBuyItNowButton from '../atoms/shopBuyItNowButton'
-import { createStyles, Drawer, Paper } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import DrawerContents from '../molecules/drawerContents'
+import makeStyles from '@mui/styles/makeStyles'
 import parse from 'html-react-parser'
-import ProductSelectList from '../atoms/productSelectList'
-import QuantityInput from '../atoms/quantityInput'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
-import superjson from 'superjson'
+import { useScrollLock } from '../../hooks/useScrollLock'
+import dynamic from 'next/dynamic'
 
-const useStyles = makeStyles((theme) => ({
+
+const Drawer = dynamic(() => import('@mui/material/Drawer'))
+const DrawerContents = dynamic(() => import('../molecules/drawerContents'))
+const ShopViewDetailsButton = dynamic(() => import('../atoms/shopViewDetailsButton'))
+const ShopBuyItNowButton = dynamic(() => import('../atoms/shopBuyItNowButton'))
+const ProductSelectList = dynamic(() => import('../atoms/productSelectList'))
+const QuantityInput = dynamic(() => import('../atoms/quantityInput'))
+
+const useShopStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
         width: "40%",
       }
     },
     drawerBackground: {
-      backgroundColor: "#1C1C1C",
+      backgroundColor: "#1C1C1C!important",
         '&::before': {
             content: ''
         },
@@ -52,22 +50,32 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function Shop ({strapiURL, events, handleScrollLock}){
+export default function Shop ({strapiURL, events, handleScrollLock, shoppingBagHandle, locale}){
     const shopEvents = summerizedItems(events)
+    const fromAb = locale == "en" ? "from " : "ab "
     const initEventList = initEventListArray(events.length, shopEvents)
     const [eventListState, setEventListState] = useState(initEventList)
     const titles = new Set(titleList(shopEvents))
     const shopSection = useRef()
     const shopSwiperRef = useRef()
-    const classes = useStyles()
-    const [generatedLink, setGeneratedLink] = useState("https://thecompanyberlin.com/cart/")
+    const classes = useShopStyles()
+    const [isNoSwiping, setIsNoSwiping] = useState(false)
+    const [generatedLink, setGeneratedLink] = useState("https://thecompanyberlin.myshopify.com/cart/")
     const [selectedMenuItem, setSelectedMenuItem] = useState(0)
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    /*
     const [isEvents, setIsEvents] = useState(false)
     const [isMerch, setIsMerch] = useState(false)
+    const [isLinkCreated, setIsLinkCreated] = useState(false)
+    */
+    const [isLockTriggered, setIsLockTriggered] = useState(false)
+    const scrollableAreas = useRef([])
+    events.forEach((_, index) => {
+        scrollableAreas.current[index] = createRef()
+    })
+    useScrollLock(undefined, 'touchmove', isLockTriggered, scrollableAreas)
     const [isDetails, setIsDetails] = useState(false)
     const [isEventClicked, setIsEventClicked] = useState(false)
-    const [isLinkCreated, setIsLinkCreated] = useState(false)
     const [swiper, setSwiper] = useState()
     const isDesktopLarge = useMediaQuery({
         query: '(min-width: 1400px)'
@@ -85,19 +93,20 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
         query: '(max-width: 500px)'
     })
     const [isReset, setIsReset] = useState(false)
-    const [tempQuantity, setTempQuantity] = useState(0)
+    const [tempQuantity, setTempQuantity] = useState(1)
     const [shoppingBag, setShoppingBag] = useState([{
         variantId: 0,
         quantity: 0,
+        base64vid: 0,
     }])
 
     const initShoppingBag = () => {
         setShoppingBag([{
             variantId: 0,
             quantity: 0,
+            base64vid: 0,
         }])
     }
-    
     const resetQuantity = (newValue) => {
         if(shoppingBag.some((v) => v.variantId === newValue.variantId)) {
             const quantityInBag = shoppingBag.find((el) => {
@@ -105,24 +114,39 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
             })
             setTempQuantity(quantityInBag.quantity)
         } else {
-            setTempQuantity(0)
+            setTempQuantity(1)
         }
         setIsReset(true)
     }
     const onQuantityChange = (value) => {
         setTempQuantity(value)
     }
-    const addToBag = (newValue, newQuantity) => {
+    const noSwipingUpdate = (newValue) => {
+        setIsNoSwiping(newValue)
+        return newValue
+    }
+    const addToBag = (newValue, newQuantity, base64) => {
         const result = shoppingBag.some((b) => b.variantId === newValue)
         if(result) {
-            setShoppingBag((prevState) => 
-            prevState.map((obj) => (obj.variantId === newValue ? {variantId: obj.variantId, quantity: newQuantity} : obj)))
+            setShoppingBag((prevState) => {
+                const newState = prevState.map((obj) => (obj.variantId === newValue ? {variantId: obj.variantId, quantity: newQuantity, base64vid: base64} : obj))
+                shoppingBagHandle(createLink(newState), totalCount(newState), newState)
+                return newState
+            })
         } else {
             const zero = shoppingBag.some((o) => o.variantId === 0)
             if(zero) {
-                setShoppingBag([{variantId: newValue, quantity: newQuantity}])
+                setShoppingBag((prevState) => {
+                    const newState = [{variantId: newValue, quantity: newQuantity, base64vid: base64}] 
+                    shoppingBagHandle(createLink(newState), totalCount(newState), newState)
+                    return newState
+                })
             } else {
-                setShoppingBag((prevState) => [...prevState, {variantId: newValue, quantity: newQuantity}])
+                setShoppingBag((prevState) => {
+                    const newState = [...prevState, {variantId: newValue, quantity: newQuantity, base64vid: base64}]
+                    shoppingBagHandle(createLink(newState), totalCount(newState), newState)
+                    return newState
+                })
             }
         }
     }
@@ -145,6 +169,7 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
             imageIndex: newValue, 
             priceIndex: newValue, 
             vid: shopEvents[id].priceList[newValue].variantId,
+            base64vid: shopEvents[id].priceList[newValue].base64vid,
             eventHasImage: hasImage(shopEvents, id, newValue)
         } : obj)))
     }
@@ -155,14 +180,18 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
     const observeRef = useRef()
     const centeredSlideNumber = Math.floor(shopEvents.length/2)
     const lbtoBr = (txt, dancerIndex) => {
-        const txtArray = txt.split(/(\n)/g).map((t, i) => (t==='\n')? {key: dancerIndex+"-"+i, t: <br/>} : {key: dancerIndex+"-"+i, t: t})
-        return (
-            <div>
-                {txtArray.map((array) => (
-                <span key={array.key}>{array.t}</span>
-            ))}
-            </div>
-        )
+        if (txt) {
+            const txtArray = txt.split(/(\n)/g).map((t, i) => (t==='\n')? {key: dancerIndex+"-"+i, t: <br/>} : {key: dancerIndex+"-"+i, t: t})
+            return (
+                <div>
+                    {txtArray.map((array) => (
+                    <span key={array.key}>{array.t}</span>
+                ))}
+                </div>
+            )
+        } else {
+            return ""
+        }
     }
     const { ref: navInViewRef, inView: navIsVisible } = useInView({threshold: 0.8, triggerOnce: true, })
 
@@ -183,6 +212,10 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                 slide.style.width = `100%`
                 setSlidesToShowState(1)
             })
+            if (isMobile || isMobileSmall) {
+                noSwipingUpdate(true)
+                setIsNoSwiping(true)
+            }
         } else {
             Array.from(slides).map(slide => {
                 if (isDesktopLarge) {
@@ -238,62 +271,75 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                 <div className={`${isDetails ? utilStyles.shopHeadDetail : utilStyles.shopHead}`}>
                     <div className={`${utilStyles.shopMenu}`}>
                         <div className={`${utilStyles.shopSlash}`}>
-                            Shop /
+                            SHOP /
                         </div>
                         <div className={`${utilStyles.shopMenuItemWrapper}`}>
-                            <div className={`${utilStyles.shopMenuItem}`}>
-                                
-                                <div className={`${selectedMenuItem == 0 ? utilStyles.burgerMenuIcon: ""}`}
+                            <div className={`${isDetails ? utilStyles.shopMenuItemDetail : utilStyles.shopMenuItem}`}>
+                                <div className={`${isDetails ? utilStyles.burgerMenuIconWrapper : utilStyles.burgerMenuIconDisable}`}
                                     onClick={()=>{
                                         setIsDrawerOpen(true)
                                         handleScrollLock(true)
-                                    }}
-                                ></div>
-                                <div style={{textDecoration: selectedMenuItem == 0 ? "none" : "underline"}} className={`${selectedMenuItem == 0 ? utilStyles.selectedMenuItem: ""}`}
+                                    }}>
+                                    <div className={`${selectedMenuItem == 0 ? utilStyles.burgerMenuIconShop: ""}`}></div>
+                                </div>
+                                <div style={{textDecoration: selectedMenuItem == 0 ? "none" : "underline"}}
                                     onClick={()=>{
                                         setSelectedMenuItem(0)
                                     }}
                                 >Events</div>
                             </div>
                             <div className={`${utilStyles.shopMenuItem}`}>
-                            <div className={`${selectedMenuItem == 1 ? utilStyles.burgerMenuIcon: ""}`}
+                            <div className={`${selectedMenuItem == 1 ? utilStyles.burgerMenuIconShop: ""}`}
                                     onClick={()=>{
                                         //setSelectedMenuItem(1)
                                     }}
                                 ></div>
                                 <div style={{textDecoration: selectedMenuItem == 1 ? "none" : "underline"}}  className={`${selectedMenuItem == 1 ? utilStyles.selectedMenuItem: ""}`}
                                     onClick={()=>{
-                                        //setSelectedMenuItem(1)
+                                        //setSelectedMenuItem(1) Here should be Merch in the future
                                     }}
-                                >Merch</div>
+                                ></div>
                             </div>
                         </div>
                     </div>
-                    <div className={utilStyles.backToShopWrapper}>
-                        <span className={utilStyles.backToSwiper}
-                        style={{opacity : isEventClicked ?  1 : 0}}
+                    <div className={utilStyles.backToShopWrapper}
                         onClick={() => {
                             setIsEventClicked(false)
                             setIsDetails(false)
                             handleScrollLock(false)
                             if (isMobile || isMobileSmall) {
-                                enableBodyScroll(shopSection.current)
+                                //positionScroll(shopSection.current, true)
+                                //enableBodyScroll(shopSection.current)
+                                setIsLockTriggered(false)
+                                noSwipingUpdate(false)
                             }
-                        }}>Back</span>
+                        }}>
+                        <span className={utilStyles.backToSwiperArrow}
+                            style={{opacity : isEventClicked ?  1 : 0}}
+                            ></span>
+                        <span className={utilStyles.backToSwiper}
+                        style={{opacity : isEventClicked ?  1 : 0}}
+                        >Back</span>
                     </div>
                 </div>
                 <div className={utilStyles.sliderWrapper}>
                     <div onClick={()=>{
+                        if(!isEventClicked && swiper.activeIndex > 1 || isEventClicked) {
                             swiper.slidePrev()
+                        }
                         }}
                     >
-                        <div ref={navInViewRef} className={`${swiperNavUpdate.swiperButtonShopPrevWrapper}
+                        <div ref={navInViewRef} className={`${utilStyles.swiperButtonShopPrevWrapper}
                                             ${navIsVisible && (isDesktop || isDesktopLarge) ? 
-                                            swiperNavUpdate.fadeOutAnimation : ""}`}>
-                            <div className={`${swiperNavUpdate.swiperButtonShopPrev}`} >
-                                <div className={swiperNavUpdate.swiperButtonPrevArrow}></div>
+                                                utilStyles.fadeOutAnimation : ""}`}>
+                            <div className={`${utilStyles.swiperButtonShopPrev}`} >
+                                <div className={utilStyles.swiperButtonPrevArrow}></div>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <div className={utilStyles.gradationBlackLeftSide}></div>
+                        <div className={utilStyles.gradationBlackRightSide}></div>
                     </div>
                     <Swiper
                         ref={shopSwiperRef}
@@ -301,18 +347,23 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                         slidesPerView={slidesToShowState}
                         loop={false}
                         onSwiper={setSwiper}
+                        noSwiping={isNoSwiping}
                         spaceBetween={isMobile || isMobileSmall ? 10 : 0}
                         centeredSlides={true}
                         initialSlide={centeredSlideNumber}
                         autoHeight={false}
+                        noSwipingClass={'event-shop-slide'}
                         slideClass={'event-shop-slide'}
                         slideToClickedSlide={true}
+                        onSlideChange={(swiper) => {
+                            resetQuantity(shopEvents[swiper.activeIndex].priceList[parseInt(eventListState[swiper.activeIndex].priceIndex)])
+                        }}
                     >
                         { shopEvents.map((event, eventIndex) => {
                             return (
                                 <SwiperSlide className={`event-shop-slide ${utilStyles.shopSwiperAdjustment}`} key={eventIndex}>
                                 {({ isActive, isPrev, isNext }) => (
-                                    <div>
+                                    <div className={`${utilStyles.heightHundred}`}>
                                         <div
                                             style={{display : isEventClicked ?  "none" : "block"}} 
                                             className={`${utilStyles.shopSwipeSlideWrapper} ${isActive || isPrev || isNext ? utilStyles.shopSlideOpacityFull : utilStyles.shopSlideOpacity}`}>
@@ -321,21 +372,22 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                                                     src={event.thumb}
                                                     alt={"Thumbnail"}
                                                     layout="fill"
-                                                    objectFit='cover'
-                                                    priority
+                                                    objectFit='contain'
+                                                    loading='lazy'
                                                 />    
                                             </div>
-                                            <div className={`${utilStyles.goodsTitleWrapper}`}>
-                                                <div className={`${utilStyles.goodsTitle}`}>{parse(event.title)}</div>
-                                            </div>
-                                            <div className={`${utilStyles.shopBorder}`}></div>
-                                            <div className={`${utilStyles.sellingDate}`}>{lbtoBr(event.date)}</div>
-                                            <div className={`${utilStyles.sellingPrice}`}>
-                                                { event.priceList.length > 1 ? 
-                                                "ab " + priceLowest(event.priceList) + "€"
-                                                :
-                                                event.priceList[0].price + "€"
-                                                }
+                                            <div className={utilStyles.detailWrapper}>
+                                                <div className={`${utilStyles.goodsTitleWrapper}`}>
+                                                    <div className={`${utilStyles.goodsTitle}`}>{parse(event.title)}</div>
+                                                </div>
+                                                <div className={`${utilStyles.sellingDate}`}>{lbtoBr(event.date)}</div>
+                                                <div className={`${utilStyles.sellingPrice}`}>
+                                                    { event.priceList.length > 1 ? 
+                                                    fromAb + priceLowest(event.priceList) + "€"
+                                                    :
+                                                    event.priceList[0].price + "€"
+                                                    }
+                                                </div>
                                             </div>
                                             <div className={`${utilStyles.buttonSet}`}>
                                                 <div
@@ -344,10 +396,13 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                                                         setIsDetails(true)
                                                         handleScrollLock(true)
                                                         if (isMobile || isMobileSmall) {
-                                                            disableBodyScroll(shopSection.current, {
+                                                            setIsLockTriggered(true)
+                                                            noSwipingUpdate(true)
+                                                            
+                                                            //disableBodyScroll(shopSection.current, {
                                                                 //allowTouchMove: el,
-                                                                reserveScrollBarGap: true,
-                                                            })
+                                                              //  reserveScrollBarGap: true,
+                                                            //})
                                                         }
                                                     }}
                                                 >
@@ -360,8 +415,8 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                                                         isDetails={isDetails}
                                                         link={IsInBag(event.priceList[0].variantId) ? 
                                                             generatedLink : 
-                                                            IsInBag(0) ? createLink([{variantId: event.priceList[0].variantId, quantity: 1}]) : 
-                                                            createLink([...shoppingBag, {variantId: event.priceList[0].variantId, quantity: 1}])}
+                                                            IsInBag(0) ? createLink([{variantId: newestEvent(event), quantity:  newestEvent(event) ? 1 : ""}]) : 
+                                                            createLink([...shoppingBag, {variantId: newestEvent(event), quantity: 1}])}
                                                         initShoppingBag={initShoppingBag}
                                                 ></ShopBuyItNowButton>
                                                 </div>
@@ -377,11 +432,11 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                                                         alt={"Image In Detail"}
                                                         layout="fill"
                                                         objectFit='contain'
-                                                        priority
+                                                        loading='lazy'
                                                     /> 
                                                 </div>
                                                 <div className={`${utilStyles.overflowContentWrapper}`}>
-                                                    <div className={`${utilStyles.shopDetailInfoWrapper}`}>
+                                                    <div ref={scrollableAreas.current[eventIndex]} className={`${utilStyles.shopDetailInfoWrapper} scrollable`}>
                                                         <div className={`${utilStyles.shopDetailInfo}`}
                                                             onMouseEnter={() => {
                                                                 handleScrollLock(true)
@@ -433,7 +488,8 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                                                                     <div
                                                                         onClick={() => {
                                                                             setIsEventClicked(true)
-                                                                            addToBag(eventListState[eventIndex].vid, tempQuantity)
+                                                                            //quantity ref or temp quantity
+                                                                            addToBag(eventListState[eventIndex].vid, tempQuantity, eventListState[eventIndex].base64vid)
                                                                         }}
                                                                     >
                                                                         <ShopViewDetailsButton
@@ -468,14 +524,16 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
                     </Swiper>
                     <div
                         onClick={()=>{
-                            swiper.slideNext()
+                            if(!isEventClicked && swiper.activeIndex < shopEvents.length - 2 || isEventClicked) {
+                                swiper.slideNext()
+                            }
                         }}
                     >
-                    <div ref={observeRef} className={`${swiperNavUpdate.swiperButtonShopNextWrapper}
+                    <div ref={observeRef} className={`${utilStyles.swiperButtonShopNextWrapper}
                         ${navIsVisible && (isDesktop || isDesktopLarge)  ? 
-                        swiperNavUpdate.fadeOutAnimation : ""}`}>
-                        <div className={`${ swiperNavUpdate.swiperButtonShopNext} `}   >
-                            <div className={`${ swiperNavUpdate.swiperButtonNextArrow}`}></div>
+                            utilStyles.fadeOutAnimation : ""} ifSafariShopNextWrapper`}>
+                        <div className={`${ utilStyles.swiperButtonShopNext} `}   >
+                            <div className={`${ utilStyles.swiperButtonNextArrow}`}></div>
                         </div>
                         </div>
                     </div>
@@ -487,20 +545,18 @@ export default function Shop ({strapiURL, events, handleScrollLock}){
 
 export function summerizedItems(events) {
     return events.map((event, index) => {
-    
-        const dataFromTitle = retrievingInfoFromTitle(event.node.title)
+        const dataFromTitle = retrievingInfoFromTitle(event.node.title, event)
         const titleAndPrice = convertTitleAndPrice(event.node.variants.edges)
-        //console.log(titleAndPrice)
         return {
             id: event.index,
-            title: dataFromTitle.title,
+            title: dataFromTitle.title.input,
             plainTextTitle: event.node.title,
             date: dataFromTitle.date,
             otherInfo: dataFromTitle.other || "",
             priceList: titleAndPrice,
             link: event.node.onlineStoreUrl,
-            thumb: event.node.images.edges[0].node.originalSrc,
-            mainImage: event.node.images.edges[1] ? event.node.images.edges[1].node.originalSrc : "",
+            thumb: event.node.images.edges.length != 0 ? event.node.images.edges[0].node.originalSrc : "/images/No_Image_thumb.png",
+            mainImage: event.node.images.edges[1] ? event.node.images.edges[1].node.originalSrc : "/images/No_Image_thumb.png",
             description: event.node.descriptionHtml,
         }
     })
@@ -514,23 +570,32 @@ export function titleList(items) {
     })
 }
 
-export function retrievingInfoFromTitle (title) {
-
-    const data = title.split(' I ')
+export function retrievingInfoFromTitle (title, event) {
     
     let convertedTitle
     let convertedDate
     let otherData = ""
+    const data = title.split(' | ')
+        if(data.length === 1) {
+            convertedTitle = convertTitle(data[0])
+            const newData = convertTitleAndPrice(event.node.variants.edges)
+            convertedDate = "Next event: " + newData[0].title
+        } else if (data.length > 2) {
+            convertedTitle = convertTitle(data[0])
+            const testStr = data[data.length - 1]
 
-    if( data.length > 2) {
-        
-        convertedTitle = convertTitle(data[0]) + '<br />' + data[1]
-        convertedDate = convertDate(data[2])
-    } else {
-        convertedTitle = convertTitle(data[0])
-        convertedDate = convertDate(data[1])
-    }
-
+            if (testStr.match(/\d{1,2}.\d{1,2}.\d{2,4}/g)) {
+                convertedTitle.input = createTitle(data, 1)
+                convertedDate = data[data.length - 1]
+            } else {
+                convertedTitle.input = createTitle(data, 2)
+                convertedDate = data[data.length - 2] + ". " + data[data.length - 1]
+            }
+        } else {
+            convertedTitle = convertTitle(data[0])
+            convertedDate = data[1]
+        }
+    
     return {
         title: convertedTitle,
         date: convertedDate,
@@ -538,15 +603,32 @@ export function retrievingInfoFromTitle (title) {
     }
 }
 
+export function createTitle (arr, dateTimeElNum) {
+    let result = ""
+    if ((arr.length - dateTimeElNum) > 1 ) {
+        for(let i = 0; i < arr.length - dateTimeElNum; i++) {
+            if (i < arr.length - (dateTimeElNum + 1)) {
+                result += arr[i] + "<br />"
+            } else {
+                result += arr[i]
+            }        
+        }
+    } else {
+        return arr[0]
+    } 
+    return result
+}
+
 export function convertTitleAndPrice(items) {
     return items.map(item => {
-        const decodedVariantId = Buffer.from(item.node.id, 'base64').toString()
-        const VariantId = createVariantId(decodedVariantId)
-        const imageUrl = item.node.image.url
+        //const decodedVariantId = Buffer.from(item.node.id, 'base64').toString()
+        const VariantId = createVariantId(item.node.id)//decodedVariantId)
+        const imageUrl = item.node.image?.url
         return {
             title: item.node.title,
-            price: item.node.price,
+            price: parseInt(item.node.price.amount).toFixed(2),
             variantId: VariantId,
+            base64vid: item.node.id,
             imageUrl: imageUrl //Null or URL
         }
     })
@@ -565,18 +647,63 @@ export function priceLowest(prices) {
     const lowest = priceList.reduce(aryMin)
     return lowest.toFixed(2)
 }
+export function newestEvent(eventList) {
+    //console.log(eventList)
+    const today = new Date()
+    if(eventList.priceList.length > 1) {
+        const result = eventWithDate(eventList, today)
+        if(result) {
+            return result[0].vid
+        } else {
+            return ""
+        }
+    } else {
+        return eventList.priceList[0].variantId
+    }
+}
+export function eventWithDate(events, today) {
+    const newArray = []
+    let result
+    events.priceList.map(event => {
+        const dateAndTime = event.title.match(/\d{1,2}.\d{1,2}/g)
+        const separateDate = dateAndTime ? dateAndTime[0].split(".") : ""
+        const startDate = separateDate[1] <= 2 && today.getUTCMonth() >= 10 ? (today.getUTCFullYear() + 1) + "/" + separateDate[1] + "/" + separateDate[0] : today.getUTCFullYear() + "/" + separateDate[1] + "/" + separateDate[0]
+        const targetDate = new Date(startDate)
+        if(today <= targetDate || today.toDateString() === targetDate.toDateString()) {
+            newArray.push({
+                vid: event.variantId,
+                startDate: startDate,
+            })
+            result = newArray.sort((a,b) => {
+                return new Date(a.startDate) - new Date(b.startDate)
+            })
+        }
+        if (!dateAndTime || isNaN(targetDate)) {
+            newArray.push({
+                vid: event.variantId,
+                price: event.price,
+            })
+            result = newArray.sort((a,b) => {
+                return a.price - b.price
+            })
+        }
+    })
+    return result
+}
 
 export function convertTitle(title) {
-
     const upperCase = title.match(/[A-Z]+/)
     const lowerCase = title.match(/[a-z]+/)
-    
-    return upperCase + '<b>' + lowerCase[0].toUpperCase() + '</b>'
+    if (lowerCase) {
+        return upperCase + '<b>' + lowerCase[0].toUpperCase() + '</b>'
+    } else {
+        return upperCase
+    }
 }
 
 export function convertDate(date) {
-    const data = date.split(',')
-    if(data.length > 1) {
+    const data = date?.split(',')
+    if(data?.length > 1) {
         return data.join('\n')
     } else {
         return date
@@ -584,9 +711,21 @@ export function convertDate(date) {
 }
 
 export function createLink(arr_bag) {
-    const mainCartAddress = "https://thecompanyberlin.com/cart/"
-    const shoppingData = sortingArrayToText(arr_bag)
-    return mainCartAddress + shoppingData.join(',')
+    const mainCartAddress = "https://thecompanyberlin.myshopify.com/cart/"
+    const shoppingData = arr_bag.some(a => a.quantity === "" || a.quantity === "0") ? "" : sortingArrayToText(arr_bag)
+    if (shoppingData.length !== 0) {
+        return mainCartAddress + shoppingData.join(',')
+    } else {
+        return ""
+    }
+}
+
+export function totalCount(arr_bag) {
+    let total = 0
+    arr_bag.map((item) => {
+       return total += parseInt(item.quantity)
+    })
+    return total
 }
 
 export function sortingArrayToText(items) {
@@ -600,6 +739,8 @@ export function initEventListArray(numOfEvents, summerizedContents) {
         eventArray.push({id: i, imageIndex: 0, 
             priceIndex: 0, 
             vid: summerizedContents[i].priceList[0].variantId,
+            base64vid: summerizedContents[i].priceList[0].base64vid,
+            title: summerizedContents[i].priceList[0].title,
             eventHasImage: hasImage(summerizedContents, i , 0),
             quantity: 0,
         })

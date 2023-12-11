@@ -1,0 +1,844 @@
+.test {
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    position: relative;
+}
+.testScrolling {
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+}
+.headContents {
+    padding-top: 200px;
+    padding-left: 130px;
+}
+.headlineh1 {
+    font-size: 128px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 102px;
+}
+.narrowVideo {
+    position: relative;
+    width: 100%;
+    height: 350px; /*294px*/
+    overflow: hidden;
+    margin: 80px 0;
+    padding-top: 0;
+}
+.headContentsBlackbg {
+    background-color: #202120;
+    color: #fff;
+}
+.entertainmentTextWrapper {
+    max-width: 808px;
+    margin: 0 auto;
+}
+.introductionTextEntertainment {
+    max-width: 608px;
+    font-size: 51px;
+    font-weight: bold;
+    margin:0 auto 20px;
+    color: #afafaf;
+    line-height: 1.1;
+}
+.subIntroTextEntertainment {
+    font-size: 22px;
+    margin:40px auto;
+    max-width: 608px;
+    line-height: 1.2;
+}
+.subIntroInnerEntertainment {
+    max-width: 517px;
+}
+.subIntroWrapperEntertainment {
+    padding-bottom: 200px;
+}
+.introductionText {
+    font-size: 51px;
+    font-weight: bold;
+    margin:0 auto 20px;
+    max-width: 852px;
+    color: #afafaf;
+    line-height: 1.1;
+}
+.subIntroWrapper {
+    padding-left:130px;
+}
+.educationAreaWrapper {
+    padding-top: 80px;
+    padding-bottom: 350px;
+}
+.subIntroText{
+    font-size: 22px;
+    margin:40px auto;
+    max-width: 852px;
+    line-height: 1.2;
+}
+.subIntroInner {
+    max-width: 517px;
+}
+.headerLogo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10000;
+}
+.burgerMenuIcon {
+    color: #D22F29;
+    width: 40px;
+    height: 4px;
+    background: currentColor;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+.burgerMenuIcon:after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    width:  100%;
+    height: 100%;
+    background: currentColor;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+  }
+.burgerMenuIcon:before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 10px;
+    width:  70%;
+    height: 100%;
+    background: currentColor;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+.shoppingBagWrapper {
+    position: fixed;
+    top: 33px;
+    right: 40px;
+    z-index: 1199;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.shoppingBagInner {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    position: relative;
+}
+.shoppingBagIcon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.shoppingBagNotification {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background-color: #C93D38;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+}
+.languageWrapperSP {
+    position: absolute;
+    top: 132px;
+    display: flex;
+    font-weight: 400;
+    right: 16.3%;
+    gap: 0 15px;
+    z-index: 1199;
+    align-items: flex-end;
+}
+.languageWrapper {
+    position: fixed;
+    display: flex;
+    font-weight: 400;
+    top: 45px;
+    right: 8.3%;
+    gap: 0 15px;
+    z-index: 1199;
+}
+.languageWrapper span:hover {
+    opacity: 0.5;
+}
+.languageWrapper span.languageNotActive,
+.languageWrapperSP span.languageNotActive {
+    font-size: 16px;
+    color: #C93D38;
+    padding: 0;
+    margin: 0;
+    display: block;
+    line-height: 0.75;
+}
+.languageWrapper span.languageActive,
+.languageWrapperSP span.languageActive {
+    font-size: 16px;
+    color: #C93D38;
+    border-bottom: 1px solid #C93D38;
+    padding: 0;
+    margin: 0;
+    display: block;
+    line-height: 0.75;
+}
+.signatureFixed {
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    transform: translateX(-43%) translateY(-50%) rotate(270deg);
+    z-index: 9999;
+    font-size: 16px;
+    font-weight: 300;
+    transition-duration: .3s;
+}
+.menuListPC {
+    position: fixed;
+    z-index: 9998;
+    right: 24px;
+    top: 192px;
+    opacity: 1;
+    transition-duration: .3s;
+}
+.menuListPC ul {
+    list-style-type: none;
+    line-height: 2;
+}
+.menuListPC ul li {
+    font-size: 23px;
+    text-align: right;
+    transition-duration: .5s;
+}
+.menuListPC ul li:hover {
+    color: #C93D38;
+}
+.opacityZero {
+    opacity: 0;
+    transition: .3s;
+}
+.clickable {
+    cursor: pointer;
+}
+.instagramIconImageWrapper {
+    display: block;
+    height: 24px;
+    width: 24px;
+}
+.instagramFixed {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    align-items: center;
+    gap: 0 16px;
+    display: flex;
+    z-index: 9998;
+}
+.instaLink {
+    width: fit-content;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    line-height: .8;
+}
+.brandBackground {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #1c1c1c;
+    background-repeat: repeat; 
+    background-origin: padding-box;
+    padding-top: 0px;
+}
+.artistBackground {
+    min-height: 100vh;
+    background-color: #dde0e5;
+}
+.logoFontThin {
+    font-weight: 200;
+}
+.logoFontBold {
+    font-weight: bold;
+}
+.drawerCloseButton {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    margin-left: auto;
+    margin-right: 40px;
+    margin-top: 30px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+.drawerCloseButton::before, .drawerCloseButton::after{
+    content: "";
+    display: block;
+    width: 70%;
+    height: 3px;
+    background: rgba(244, 244, 244, 1);
+    transform: rotate(45deg);
+    transform-origin:0% 50%;
+    position: absolute;
+    top: calc(14% + 3px);
+    left: 25%;
+}
+.drawerCloseButton::after{
+    transform: rotate(-45deg);
+    transform-origin:100% 50%;
+    left: auto;
+    right: 25%;
+}
+.positionRelative {
+    position: relative;
+}
+.bigRotatedWord {
+    padding:0;
+    margin:0;
+    position: absolute;
+    width: calc(85vh * (4/21));
+    max-width: calc(85vh * (5/21));
+    height: 85vh;
+    max-height: 85vh;
+    /*font-size: 210px;
+    letter-spacing: -12px;*/
+    font-weight: bold;
+    color: #C93D38;
+    transform-origin: bottom left;
+    /*transform: rotate(-90deg) translateX(-9px) translateY(212px);*/
+    bottom: 0;
+    left: 0;
+    z-index: 9998;
+    user-select: none;
+}
+.bigRotatedWord img, .bigRotatedWordArtists img {
+    object-position: bottom;
+}
+.bigRotatedWordArtists {
+    padding:0;
+    margin:0;
+    position: absolute;
+    width: calc(70vh * (5/20));
+    max-width: calc(70vh * (5/20));
+    height: 70vh;
+    max-height: 70vh;
+    /*font-size: 210px;
+    letter-spacing: -12px;*/
+    font-weight: bold;
+    color: #C93D38;
+    transform-origin: bottom left;
+    /*transform: rotate(-90deg) translateX(-9px) translateY(212px);*/
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    user-select: none;
+}
+.bufferedAreaAgency {
+    width: 100%;
+    height: 100vh;
+    background-color: #DDE0E5;
+    position: relative;
+}
+.bufferedAreaAgencyTitle {
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    font-size: 15vw;
+    position: absolute;
+    z-index: 1198;
+    color: rgba(210, 47, 41, 0.85);
+    padding: 0 10px;
+}
+.bufferedAreaAgencySmall {
+    width: 100%;
+    height: 200px;
+    background-color: #DDE0E5;
+    z-index: 100000;
+}
+.dancerProfileBackground {
+    background-color: #DDE0E5;
+}
+.artistBackground {
+    min-height: 100vh;
+    background-color: #dde0e5;
+}
+.letsGetInTouch {
+    text-align: center;
+}
+
+.footerWithForm {
+    background-color: #f9f9f9;
+    padding: 250px 10% 0;
+}
+.footerWithFormImageWrapper {
+    width: 60%;
+    margin: 0 auto;
+    object-fit: contain;
+}
+.happeningSwiper {
+    padding: 0;
+    position: relative;
+}
+.pictureAndVideo {
+    /*margin-left: calc(((100vw - 100%) / 2) * -1);
+    margin-right: calc(((100vw - 100%) / 2) * -1);
+    */
+    overflow-x: hidden;
+}
+
+.pictureAndVideo.isVisible {
+    transition: all 1.5s;
+    transition-delay: 1s;
+    transform-origin: center;
+    opacity: 1;
+}
+@media screen and (max-width: 1023px) {
+    .brandBackground {
+        width: 100%;
+        background-color: #1c1c1c;
+        background-repeat: repeat; 
+        background-origin: padding-box;
+        padding-top: 110px;
+    }
+    .mainMenuItem {
+        position: fixed;
+        top: 25px;
+        right: 20px;
+        width: 35px;
+        height: 35px;
+        z-index: 8;
+    }
+    .mainMenuItem .burgerMenuIcon {
+        color: #f9f9f9;
+        width: 35px;
+        height: 4px;
+        background: currentColor;
+        position: relative;
+        left: 0px;
+        top: 15px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+    }
+    .mainMenuItem .burgerMenuIcon:after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        width:  100%;
+        height: 100%;
+        background: currentColor;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+      }
+    .mainMenuItem .burgerMenuIcon:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        width:  70%;
+        height: 100%;
+        background: currentColor;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+    }
+    .menuListPC {
+        position: fixed;
+        z-index: 9998;
+        right: 24px;
+        top: 192px;
+        display: none;
+    }
+    .instagramFixed {
+        display: none;
+    }
+    .menuListMobile ul {
+        list-style-type: none;
+        line-height: 1.2;
+    }
+    .bigWordSp {
+        display: none;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .mainMenuItem {
+        display: none;
+    }
+    .menuListMobile {
+        display: none;
+    }
+    .headerWrapperMobile {
+        position: relative;
+    }
+    .bigWordSp {
+        display: none;
+    }
+    .flipCardTablet {
+        display: none;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .headlineh1 {
+        font-size: 10vw;
+        font-weight: bold;
+        margin-left: 20px;
+        margin-bottom: 130px;
+    }
+    .introductionText {
+        font-size: 48px;
+        font-weight: bold;
+        margin: 0 0 20px auto;
+        max-width: 700px;
+        color: #afafaf;
+        line-height: 1.1;
+        padding: 0 5%;
+    }
+    .subIntroText {
+        font-size: 22px;
+        margin: 40px 0 40px auto;
+        max-width: 700px;
+        line-height: 1.2;
+        padding: 0 5%;
+    }
+    .narrowVideo {
+        position: relative;
+        width: 100%;
+        height: 150px;/*136px*/
+        overflow: hidden;
+        margin: 40px 0;
+    }
+    .footerWithFormImageWrapper {
+        width: 80%;
+        margin: 0 auto 100px;
+        -o-object-fit: contain;
+        object-fit: contain;
+    }
+    .footerWithForm {
+        background-color: #f9f9f9;
+        padding: 150px 6% 0;
+    }
+    .headerWrapperMobile {
+        position: fixed;
+        width: 100%;
+        height: 8%;
+        z-index: 1199;
+    }
+    .headerLogo {
+        width: 30%;
+        height: 7%;
+        position: fixed;
+        top: 5px;
+        left: 20px;
+        z-index: 100;
+    }
+    .signatureFixed {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateX(-43%) translateY(-50%) rotate(270deg);
+        z-index: 9999;
+        display: none;
+    }
+    .languageWrapperSP {
+        display: none;
+    }
+    
+    .languageWrapper {
+        position: fixed;
+        font-weight: 400;
+        top: 35px;
+        right: 16.3%;
+        gap: 0 15px;
+        z-index: 1201;
+        display: flex;
+    }
+    .shoppingBagWrapper {
+        top: 20px;
+        right: 80px;
+        z-index: 10000;
+    }
+    .drawerCloseButton {
+        margin-right: 24px;
+        margin-top: 22px;
+    }
+    .menuListMobile {
+        display: block;
+        z-index: 9998;
+        left: -10px;
+        top: 140px;
+        color: #fff;
+        position: absolute;
+    }
+    .menuListMobile ul li {
+        font-size: 8vw;
+        text-align: left;
+        font-weight: bold;
+    }
+    .bigWordSp {
+        display: none;
+    }
+    .bigRotatedWord {
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        width: calc(50vh * (5/21));
+        max-width: calc(50vh * (5/21));
+        height: 50vh;
+        max-height: 50vh;
+        /*font-size: 150px;
+        letter-spacing: -12px;
+        font-weight: bold;
+        color: #C93D38;
+        transform-origin: bottom left;
+        transform: rotate(-90deg) translateX(-9px) translateY(212px);*/
+        bottom: 0;
+        left: 0;
+        z-index: 8;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .bigRotatedWordArtists {
+        padding:0;
+        margin:0;
+        position: absolute;
+        width: calc(50vh * (5/21));
+        max-width: calc(50vh * (5/21));
+        height: 50vh;
+        max-height: 50vh;
+        /*font-size: 150px;
+        letter-spacing: -12px;
+        font-weight: bold;
+        color: #C93D38;
+        transform-origin: bottom left;
+        transform: rotate(-90deg) translateX(-9px) translateY(212px);*/
+        bottom: 0;
+        left: 0;
+        z-index: 8;
+        user-select: none;
+    }
+}
+@media screen and (max-width: 767px) {
+    .headContents {
+        padding-top: 200px;
+        padding-left: 10px;
+    }
+    .pictureAndVideo {
+        /*margin-left: calc(((100vw - 100%) / 2) * -1);
+        margin-right: calc(((100vw - 100%) / 2) * -1);
+        */
+        overflow-x: hidden;
+        opacity: 1;
+    }
+    .headlineh1 {
+        font-size: 48px;
+        font-weight: bold;
+        margin-left: 10px;
+        margin-bottom: 100px;
+    }
+    .narrowVideo {
+        position: relative;
+        width: 100%;
+        height: 150px; /*136px*/
+        overflow: hidden;
+        margin: 40px 0;
+    }
+    .introductionText {
+        font-size: 8vw;
+        font-weight: bold;
+        margin: 0 40px;
+        max-width: unset;
+        color: #afafaf;
+        line-height: 1.1;
+        padding: 0 5%;
+    }
+    .introductionTextEntertainment {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0 41px;
+        max-width: unset;
+        color: #afafaf;
+        line-height: 1.1;
+        padding: 0 5%;
+        word-break: break-word;
+    }
+    .subIntroWrapper {
+        padding-left: 5%;
+        padding-right: 0;
+        margin: 0 30px;
+    }
+    .educationAreaWrapper {
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
+    .subIntroText {
+        font-size: 22px;
+        margin: 40px auto;
+        max-width: unset;
+        line-height: 1.2;
+        padding: 0 5%;
+    }
+    .subIntroInnerEntertainment {
+        font-size: 22px;
+        margin: 40px 41px;
+        max-width: unset;
+        line-height: 1.2;
+        padding: 0 5%;
+    }
+    .footerWithForm {
+        background-color: #f9f9f9;
+        padding: 80px 10% 0;
+    }
+    .footerWithFormImageWrapper {
+        width: 100%;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+    .bigRotatedWord,
+    .bigRotatedWordArtists {
+        display: none;
+    }
+    .bigWordSp {
+        display: block;
+        font-size: 64px;
+        font-weight: bold;
+        letter-spacing: -4px;
+        color: #9b9b9b;
+        padding-left: 17px;
+        padding-top: 40px;
+    }
+    .drawerCloseButton {
+        margin-right: 24px;
+        margin-top: 12px;
+    }
+    .menuMobileWrapper {
+        width: 100%;
+        height: 100%;
+    }
+    .menuListMobile {
+        display: block;
+        z-index: 9998;
+        left: -10px;
+        top: 192px;
+        color: #fff;
+        position: absolute;
+    }
+    .menuListMobile ul li {
+        font-size: 10vw;
+        text-align: left;
+        font-weight: bold;
+    }
+    .headerWrapperMobile {
+        position: fixed;
+        width: 100%;
+        height: 60px;
+        z-index: 1199;
+        background: #fff;
+        padding-bottom: 10px;
+    }
+    .headerLogo {
+        width: 188px;
+        height: 50px;
+        position: fixed;
+        top: 10px;
+        left: 20px;
+        z-index: 100;
+    }
+    .mainMenuItem {
+        position: fixed;
+        top: 2%;
+        right: 20px;
+        width: 35px;
+        height: 35px;
+        z-index: 8;
+    }
+    .burgerMenuIcon {
+        color: #D22F29;;
+        width: 35px;
+        height: 4px;
+        background: currentColor;
+        position: relative;
+        left: -50px;
+        top: 11px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+    }
+    .signatureFixed {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateX(-43%) translateY(-50%) rotate(270deg);
+        z-index: 9999;
+        display: none;
+    }
+    .languageWrapper {
+        position: fixed;
+        display: none;
+        font-weight: 400;
+        top: 65px;
+        right: 8.3%;
+        gap: 0 15px;
+        z-index: 1199;
+        display: none;
+    }
+    .shoppingBagWrapper {
+        top: 10px;
+        right: 80px;
+        z-index: 10000;
+    }
+    .flipCardMobile {
+        position: absolute;
+        background-color: transparent;
+        z-index: 1199;
+        left: 20px;
+        top: 120px;
+        cursor: pointer;
+        width: 180px;
+        height: 35px;
+        text-align: center;
+        perspective: 1000px;
+        display: block;
+    }
+    .flipCardTablet {
+        display: none;
+    }
+    .formButtonInner {
+        color: #C93D38;
+        text-decoration: underline;
+        padding: 5px 0;
+        position: relative;
+    }
+    .brandBackground {
+        width: 100%;
+        height: unset;
+        background-color: #1c1c1c;
+        background-repeat: repeat; 
+        background-origin: padding-box;
+        padding-top: 110px;
+    }
+    .bufferedAreaAgencySmall {
+        display: none;
+    }
+}
+@media screen and (max-width: 500px) {
+    .headerWrapperMobile {
+        position: fixed;
+        width: 100%;
+        height: 60px;
+        z-index: 1199;
+        background: #fff;
+        padding-bottom: 10px;
+    }
+}

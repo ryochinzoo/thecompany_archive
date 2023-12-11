@@ -1,10 +1,16 @@
 import 'dotenv/config'
 
-const emailPasswordBooking = process.env.mailPassword
-const emailPasswordMailingList = process.env.mailPassword
+const emailPasswordBooking = process.env.NEXT_PUBLIC_MAIL_PASSWORD
+const emailPasswordMailingList = process.env.NEXT_PUBLIC_MAILINGLIST
 
 export default function ContactApi(req, res) {
     let nodemailer = require('nodemailer')
+    let usage = ""
+    if (req.body.newMailInfo.usage === "BookingRequest") {
+        usage = "Booking Request"
+    } else {
+        usage = "Message"
+    }
     const transporter = nodemailer.createTransport({
         port: req.body.newMailInfo.port,
         host: req.body.newMailInfo.host,
@@ -25,7 +31,7 @@ export default function ContactApi(req, res) {
     {
         from: req.body.email,
         to: req.body.newMailInfo.email,
-        subject: `Booking Request From ${req.body.lastName} ${req.body.firstName}`,
+        subject: `${usage} From ${req.body.lastName} ${req.body.firstName}`,
         text: req.body.message,
         html: `<div>${req.body.message}</div><p>Sent from: ${req.body.email}</p><p>Phone Number: ${req.body.phoneNumber}</p>`
     }

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import VideoPlayer from 'react-player'
-import HappeningStyle from '../../styles/happenings.module.css'
-import DancerStyle from '../../styles/dancerProfile.module.css'
+import DancerStyle from '../../styles/worksPreviewOnSwipe.module.css'
+import dynamic from 'next/dynamic'
+
+const VideoPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
 
 export default function WorksPreviewOnSwipe({init, selectedWork, type, media, isVerticalClicked}) {
     const work = init
@@ -15,7 +16,8 @@ export default function WorksPreviewOnSwipe({init, selectedWork, type, media, is
             alt="clicked image would be appeared"
             objectFit="contain"
             layout="fill"
-            priority
+            loading='lazy'
+            decoding="async"
         />
     } else if (type === "Image") {
         contents = <Image 
@@ -23,11 +25,12 @@ export default function WorksPreviewOnSwipe({init, selectedWork, type, media, is
             alt="clicked image would be appeared"
             objectFit="contain"
             layout="fill"
-            priority
+            loading='lazy'
+            decoding="async"
         />
     } else if (type === "Video" && selectedWork !== 0) {
         contents = <div>
-            <div className={`${DancerStyle.playButtonMiddle} ${isPlaying ? HappeningStyle.fadeOutAnimation : ""}`}
+            <div className={`${DancerStyle.playButtonMiddle} ${isPlaying ? DancerStyle.fadeOutAnimation : ""}`}
                 onClick={()=>{
                     setIsPlaying(!isPlaying)
                 }}
@@ -41,10 +44,9 @@ export default function WorksPreviewOnSwipe({init, selectedWork, type, media, is
                 height="50vh"
                 playing={isPlaying}
                 muted={true}
+                playsinline={true}
             />
         </div>
-    } else if (type === "YoutubeLink" && selectedWork !== 0) {
-        
     }
 
     return (

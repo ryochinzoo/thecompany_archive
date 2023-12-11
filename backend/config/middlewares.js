@@ -13,8 +13,13 @@ module.exports = [
       jsonLimit: "1024mb", // modify JSON body
       textLimit: "1024mb", // modify text body
       formidable: {
-        maxFileSize: 200 * 1024 * 1024, // multipart data, modify here limit of uploaded file size
+        maxFileSize: 1200 * 1024 * 1024, // multipart data, modify here limit of uploaded file size
       },
+      settings: {
+        cache: {
+          enabled: true,
+        }
+      }
     },
   },
   'strapi::session',

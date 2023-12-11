@@ -1,21 +1,24 @@
 import { useState, useEffect, useRef } from "react"
 import { useMediaQuery } from 'react-responsive'
 import { useInView } from "react-intersection-observer"
-import ContentsBlock from "../atoms/contensBlock"
-import utilStyles from "../../styles/utils.module.css"
 import Modal from "react-modal"
 import { useModalShowContext } from "../../context/modalContext"
 import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
-import SwiperCore, { Navigation } from "swiper"
+import { Navigation } from "swiper"
 import "swiper/css"
 import "swiper/css/navigation"
 import { ThreeDots } from "react-loader-spinner"
-import swiperNavUpdate from "../../styles/swiperNavigationUpdate.module.css"
-import ReactPlayer from "react-player/lazy"
+import utilStyles from "../../styles/swipeArea.module.css"
+
+import dynamic from 'next/dynamic'
+
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
+const SoundButton = dynamic(() => import('../atoms/soundButton'))
+const ContentsBlock = dynamic(() => import('../atoms/contensBlock'))
 
 
-export default function SwipeArea({isMenuClicked, handleChange, brandState, listedContents, isContentChanged, handleSwiperUpdate}) {
+export default function SwipeArea({isMenuClicked, handleChange, brandState, listedContents, isContentChanged, handleSwiperUpdate, allData}) {
     const { contactModalShowState, setContactModalShowState } = useModalShowContext()
     const [ modalImageState, setModalImageState ] = useState("")
     const [ modalDescriptionState, setModalDescriptionState] = useState("")
@@ -24,6 +27,7 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
     const [ navArrowFadeOutState, setNavArrowFadeOutState ] = useState(false)
     const [ logoImgSize, setLogoImgSize ] = useState(100)
     const [ perViewNum, setPerViewNum] = useState(3)
+    const [fixedHeight, setFixedHeight] = useState(0)
     const [ slideOffsetLeft, setSlideOffsetLeft] = useState(230)
     const [ slideOffsetRight, setSlideOffsetRight] = useState(444)
     const [ spaceBetweenSlides, setSpaceBetweenSlides ] = useState(20)
@@ -34,54 +38,56 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
     const [ swiper, setSwiper ] = useState()
     const [ isVertical, setIsVertical ] = useState()
     const { ref: brandModalNavInViewRef, inView: brandModalNavIsVisible } = useInView()
-    const [ imgSizeData, setImgSizeData ] = useState([{
-        id: 0,
-        components: [{
-            id: 0,
-            width: 0,
-            height: 0,
-        }]
-    }])
+    const [ imgSizeData, setImgSizeData ] = useState(initImageSizeData(allData))
+    const [isMuted, setIsMuted] = useState(true)
+    const handleSoundSwitch = (newValue) => {
+        setIsMuted(prev => {return newValue})
+    }
     const handleSavingData = (newValue) => {
-        if(newValue.state === 0) {
-            if(newValue.id === 0) {
+        const width = newValue.width
+        const height = newValue.height
+        const newId = newValue.id
+        const newState = newValue.state
+        if(newState === 0) {
+            if(newId === 0) {
                 setImgSizeData(imgSizeData.map((img, index) => (index === 0 ?
                                 {id: 0, 
                                     components: [{
                                         id: 0, 
-                                        width: newValue.width, 
-                                        height: newValue.height
+                                        width: width, 
+                                        height: height
                                     }]
                                 } : img)))
             } else {
-                const result = imgSizeData.some(t => t.id === newValue.id)
-                if(!result)
-                    setImgSizeData([...imgSizeData,
-                                    {id: newValue.id, 
-                                        components: [{
-                                            id: 0, 
-                                            width: newValue.width, 
-                                            height: newValue.height
-                                        }]
-                                    }])
+                const result = imgSizeData.some(t => t.id === newId)
+                if(result) {
+                    setImgSizeData(imgSizeData.map((img, index) => (index === newId ?
+                        {id: newId, 
+                            components: [{
+                                id: 0, 
+                                width: width, 
+                                height: height
+                            }]
+                        } : img)))
+                }
             }
         } else {
             imgSizeData.map((img, index) => {
-                if (index === newValue.state - 1) {
+                if (index === newState - 1) {
                     let tempArray = img.components
-                    const result = tempArray.some(t => t.id === newValue.id)
+                    const result = tempArray.some(t => t.id === newId)
                     if (!result) {
-                        tempArray.push({ id: newValue.id, width: newValue.width, height: newValue.height })
+                        tempArray.push({ id: newId, width: width, height: height })
                         tempArray.sort((a, b) => {
                             return a.id - b.id
                         })
-                        setImgSizeData(imgSizeData.map((img, idx) => (idx === newValue.state - 1) ? {id: idx, components: tempArray } : img))
+                        setImgSizeData(imgSizeData.map((img, idx) => (idx === newState - 1) ? {id: idx, components: tempArray } : img))
                     } else {
-                        tempArray.map((tmp, i) => (i === newValue.id) ? { id: newValue.id, width: newValue.width, height: newValue.height } : tmp)
-                        tempArray.sort((a, b) => {
+                        const updateArray = tempArray.map((tmp, i) => (i === newId) ? { id: newId, width: width, height: height } : tmp)
+                        updateArray.sort((a, b) => {
                             return a.id - b.id
                         })
-                        setImgSizeData(imgSizeData.map((img, idx) => (idx === newValue.state - 1) ? {id: idx, components: tempArray } : img))
+                        setImgSizeData(imgSizeData.map((img, idx) => (idx === newState - 1) ? {id: idx, components: updateArray } : img))
                     }
                 }
             })
@@ -111,22 +117,25 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
     }
     const  updateSlidePosition = (newValue) => {
         const v = newValue
-        setCurrentSlidePosition(v)
+        setCurrentSlidePosition((prev) => {return v})
         return v
     }
     useEffect(() => {
         if (isDesktop || isDesktopLarge) {
+            setFixedHeight(310)
             setLogoImgSize(100)
             setPerViewNum(3)
-            setSlideOffsetLeft(230)
+            setSlideOffsetLeft(150)
             setSpaceBetweenSlides(20)
         } else if (isTablet) {
+            setFixedHeight(280)
             setLogoImgSize(50)
             setPerViewNum(1.6)
             setSlideOffsetLeft(150)
             setSlideOffsetRight(0)
             setSpaceBetweenSlides(20)
         } else {
+            setFixedHeight(200)
             setLogoImgSize(30)
             setPerViewNum(1.3)
             setSlideOffsetLeft(20)
@@ -151,13 +160,15 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
                     }
                 }
                 updateSlidePosition(0)
-                swiper.update()
                 swiper.updateProgress()
                 swiper.updateSize()
                 swiper.updateSlides()
                 swiper.updateSlidesClasses()
+                swiper.update()
                 swiper.slideTo(0)
-                setTimeout(()=>{swiper.update()}, 5000)
+                setTimeout(()=>{
+                    swiper.update()
+                }, 5000)
                 isMenuClicked(false)
             }
             if(isContentChanged) {
@@ -170,20 +181,33 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
                 swiper.updateSlidesClasses()
                 handleSwiperUpdate(false)
             }
+            //console.log(imgSizeData)
         } 
-    }, [swiper, isContentChanged, handleSwiperUpdate, isMenuClicked, isDesktop, isDesktopLarge])
+    }, [swiper, isContentChanged, handleSwiperUpdate, isMenuClicked, isDesktop, isDesktopLarge, imgSizeData])
 
     const handleIsVertical = (newValue) => {
         setIsVertical(newValue)
     }
     const onClickSwiperNextArrow = (swiper, currentSlidePosition) => {
-        //swiper.update()
+        swiper.update()
         const length = swiper.slides.length
         if(currentSlidePosition < length - 1) {
             const nextPosition = currentSlidePosition + 1
-            swiper.slideTo(updateSlidePosition(nextPosition))
+            const nextSlidePosition = updateSlidePosition(nextPosition)
+            swiper.slideTo(nextSlidePosition)
         } else {
-            swiper.slideTo(updateSlidePosition(length - 1))
+            const nextSlidePosition = updateSlidePosition(length - 1)
+            swiper.slideTo(nextSlidePosition)
+        }
+    }
+    const onClickSwiperPrevArrow = (swiper, currentSlidePosition) => {
+        //swiper.update()
+        const length = swiper.slides.length
+        if(currentSlidePosition > 0) {
+            const prevPosition = currentSlidePosition - 1
+            swiper.slideTo(updateSlidePosition(prevPosition))
+        } else {
+            swiper.slideTo(updateSlidePosition(0))
         }
     }
 
@@ -203,23 +227,23 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
         const isRightSwipe = distance < -minSwipeDistance
         if (isRightSwipe){
             if (clickedIndexState > 0) {
-                setModalImageState(listedContents.components[clickedIndexState - 1].projectMediaURL)
+                setModalImageState(listedContents[clickedIndexState - 1].projectMediaURL)
                 setClickedIndexState(clickedIndexState - 1)
-                handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[clickedIndexState - 1].width, imgSizeData[listedContents.id - 1].components[clickedIndexState - 1].height))         
+                handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[clickedIndexState - 1].width, imgSizeData[brandState - 1].components[clickedIndexState - 1].height))         
             } else if (clickedIndexState === 0){
-                setModalImageState(listedContents.components[listedContents.components.length - 1].projectMediaURL)
-                setClickedIndexState(listedContents.components.length - 1)
-                handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[listedContents.components.length - 1].width, imgSizeData[listedContents.id - 1].components[listedContents.components.length - 1].height))
+                setModalImageState(listedContents[listedContents.length - 1].projectMediaURL)
+                setClickedIndexState(listedContents.length - 1)
+                handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[listedContents.length - 1].width, imgSizeData[brandState - 1].components[listedContents.length - 1].height))
             }
         } else if (isLeftSwipe) {
-            if (clickedIndexState < listedContents.components.length - 1){
-                setModalImageState(listedContents.components[clickedIndexState + 1].projectMediaURL)
+            if (clickedIndexState < listedContents.length - 1){
+                setModalImageState(listedContents[clickedIndexState + 1].projectMediaURL)
                 setClickedIndexState(clickedIndexState + 1)
-                handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[clickedIndexState + 1].width, imgSizeData[listedContents.id - 1].components[clickedIndexState + 1].height))
-            } else if (clickedIndexState === listedContents.components.length - 1){
-                setModalImageState(listedContents.components[0].projectMediaURL)
+                handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[clickedIndexState + 1].width, imgSizeData[brandState - 1].components[clickedIndexState + 1].height))
+            } else if (clickedIndexState === listedContents.length - 1){
+                setModalImageState(listedContents[0].projectMediaURL)
                 setClickedIndexState(0)
-                handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[0].width, imgSizeData[listedContents.id - 1].components[0].height))
+                handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[0].width, imgSizeData[brandState - 1].components[0].height))
             }
         } 
     }
@@ -230,8 +254,8 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
         const observer = new IntersectionObserver((entries, observer) => {
             entries.map(entry => {
                 if(entry.isIntersecting) {
-                   if(!entry.target.classList.contains(`${swiperNavUpdate.fadeOutAnimation}`)){
-                        entry.target.classList.add(`${swiperNavUpdate.fadeOutAnimation}`)
+                   if(!entry.target.classList.contains(`${utilStyles.fadeOutAnimation}`)){
+                        entry.target.classList.add(`${utilStyles.fadeOutAnimation}`)
                         setNavArrowFadeOutState(true)
                    }
                 }
@@ -249,15 +273,16 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
         <div
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
-            onTouchEnd={() => onTouchEnd(clickedIndexState, listedContents)}><Image 
-            src={modalImageState}
-            alt="clicked image would be appeared"
-            objectFit="cover"
-            layout="fill"
-            priority
-        /></div>
+            onTouchEnd={() => onTouchEnd(clickedIndexState, listedContents)}>
+            <Image 
+                src={modalImageState}
+                alt="clicked image would be appeared"
+                objectFit="cover"
+                layout="fill"
+                loading="lazy"
+            /></div>
     } else {
-        modalContents = <><div className={utilStyles.loaderWrapperBig}><ThreeDots 
+        modalContents = <><div className={utilStyles.positionRelative}><div className={utilStyles.loaderWrapperBig}><ThreeDots 
                             wrapperStyle={{
                                 position: "absolute",
                                 top: "50%",
@@ -269,26 +294,29 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
                             height={100}
                             width={100}
                         /></div>
+                        <div className={utilStyles.soundIcon} style={{zIndex: 9998}}>
+                            <SoundButton
+                                isMuted={isMuted}
+                                handleSoundSwitch={handleSoundSwitch}
+                            ></SoundButton>
+                        </div>
                         <ReactPlayer
                             url= {modalImageState}
                             className={isVertical ? utilStyles.zoomedPlayerScaledVertical : utilStyles.zoomedPlayerScaled} 
-                            muted
+                            muted={isMuted}
                             playing
-                            disableDeferredLoading={true}
+                            disabledeferredloading="true"
+                            playsinline={true}
                             width="100%"
                             height="100vh"
                             config={{
-                                vimeo: {
-                                    playerOptions: {
-                                        width: "100%",
-                                        height: "100vh",
-                                        responsive: true,
-                                        controls: false,
-                                        autoplay: true,
-                                    }
-                                }
+                                file: { 
+                                    attributes: { 
+                                        preload: 'none',
+                                    } 
+                                } 
                             }}
-                        /></>
+                        /></div></>
     }
 
     
@@ -297,8 +325,16 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
                 <div className={utilStyles.gradationBlackLeftSide}></div>
                 <div className={utilStyles.gradationBlackRightSide}></div>
             </div>
-            <div className={[swiperNavUpdate.swiperButtonPrev, swiperNavUpdate.swiperButtonDisable].join(" ")} ref={prevRef}>
-                <div className={swiperNavUpdate.swiperButtonPrevArrow}></div>
+            <div ref={prevRef}>
+	            <div className={`${utilStyles.swiperButtonPrevWrapper} 
+	                ${navIsVisible ? utilStyles.fadeOutAnimation : ""}`}
+	                onClick={() => {
+	                    onClickSwiperPrevArrow(swiper, currentSlidePosition)
+	                }}>
+                    <div className={`${ utilStyles.swiperButtonPrev}`}>
+                        <div className={`${ utilStyles.swiperButtonPrevArrow}`}></div>
+                    </div>
+                </div>
             </div>
             
             <Swiper
@@ -309,58 +345,82 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
                 }}
                 spaceBetween={spaceBetweenSlides}
                 slidesPerView={"auto"}
-                slidesPerGroup={1}
                 centeredSlides={false}
                 initialSlide={0}
                 loop={false}
+                freeMode={true}
                 allowTouchMove={true}
                 slidesOffsetBefore={slideOffsetLeft}
                 slidesOffsetAfter={slideOffsetRight}
                 onSwiper={setSwiper}
             >
-            {!brandState ? listedContents.map((contents, index) =>{
+           {listedContents.map((contents, index) =>{
                 return(
-                    <SwiperSlide className={`${utilStyles.positionRelative} ${utilStyles.brandArtistResponsiveWidth} ${utilStyles.swiperFlexibleSize} `} key={index} onClick={() => {
-                            handleChange(contents.id)
-                            handleSwiperUpdate(true)
-                        }}>
-                            
-                        <div className={utilStyles.logoForContentsInAllBrands}>
-                            <Image
-                                src={contents.logoImgUrl}
-                                alt={contents.name}
-                                layout="fill"
-                                objectFit="contain"
-                            />
-                        </div>
-                        <ContentsBlock index={index} contentState={brandState} handleSavingData={handleSavingData} mediaContents={contents} handleIsVertical={handleIsVertical} contentsType={contents.mediaType} contentsLabel={contents.name} contentsGifImgUrl={""} contentsImgUrl={contents.displayPictureUrl} contentsDescription=""/>
-                    </SwiperSlide>
-                )
-            })
-            :
-            listedContents.components.map((contents, index) =>{
-                return(
-                    <SwiperSlide className={`${utilStyles.brandArtistResponsiveWidth} ${utilStyles.swiperFlexibleSize} `} key={index} onClick={() => {
-                            setModalImageState(contents.projectMediaURL)
-                            setModalDescriptionState(contents.projectDescription)
-                            setModalMediaTypeState(contents.mediaType)
-                            setContactModalShowState(true)
-                            setClickedIndexState(swiper.clickedIndex)
-                        }}>
-                        <ContentsBlock index={index} contentState={brandState} handleSavingData={handleSavingData} mediaContents={contents} handleIsVertical={handleIsVertical} contentsType={contents.mediaType} contentsLabel={contents.projectName} contentsGifImgUrl={contents.projektGifURL}  contentsImgUrl={contents.projectMediaURL} contentsDescription={contents.projectDescription}/>
+                    <SwiperSlide className={`${utilStyles.brandArtistResponsiveWidth} ${utilStyles.swiperFlexibleSize} `} key={index}>
+                        {!brandState ?
+                            <div onClick={() => {
+                                handleChange(contents.id)
+                                handleSwiperUpdate(true)
+                            }}>   
+                                <div className={utilStyles.logoForContentsInAllBrands}>
+                                    <Image
+                                        src={contents.logoImgUrl}
+                                        alt={contents.name}
+                                        layout="fill"
+                                        objectFit="contain"
+                                        decoding='async'
+                                        loading='lazy'
+                                    />
+                                </div>
+                                <ContentsBlock 
+                                    index={index} 
+                                    contentState={brandState} 
+                                    handleSavingData={handleSavingData} 
+                                    mediaContents={contents} 
+                                    handleIsVertical={handleIsVertical} 
+                                    contentsType={contents.mediaType} 
+                                    ontentsLabel={contents.name} 
+                                    contentsPreviewPhotoUrl={contents.displayPictureUrl} 
+                                    contentsPreviewVideoUrl={contents.previewVideoUrl} 
+                                    contentsImgUrl={contents.displayPictureUrl}
+                                    contentsDescription=""
+                                />
+                            </div> 
+                            :
+                            <div onClick={() => {
+                                setModalImageState(contents.projectMediaURL)
+                                setModalDescriptionState(contents.projectDescription)
+                                setModalMediaTypeState(contents.mediaType)
+                                setContactModalShowState(true)
+                                setClickedIndexState(swiper.clickedIndex)
+                            }}>  
+                                <ContentsBlock 
+                                    index={index} 
+                                    contentState={brandState} 
+                                    handleSavingData={handleSavingData} 
+                                    mediaContents={contents} 
+                                    handleIsVertical={handleIsVertical} 
+                                    contentsType={contents.mediaType} 
+                                    contentsLabel={contents.projectName} 
+                                    contentsPreviewPhotoUrl={contents.displayPictureUrl} 
+                                    contentsPreviewVideoUrl={contents.previewVideoUrl} 
+                                    contentsImgUrl={contents.projectMediaURL} 
+                                    contentsDescription={contents.projectDescription}/>
+                            </div>
+                        }
                     </SwiperSlide>
                 )
             })}
             </Swiper>
             
             <div ref={nextRef}>
-                <div ref={navInViewRef} className={`${swiperNavUpdate.swiperButtonNextWrapper} 
-                ${navIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`}>
-                    <div className={`${ swiperNavUpdate.swiperButtonNext}`}
-                    onClick={() => {
-                        onClickSwiperNextArrow(swiper, currentSlidePosition)
-                    }}>
-                        <div className={`${ swiperNavUpdate.swiperButtonNextArrow}`}></div>
+                <div ref={navInViewRef} className={`${utilStyles.swiperButtonNextWrapper} 
+                ${navIsVisible ? utilStyles.fadeOutAnimation : ""}`}
+                onClick={() => {
+                    onClickSwiperNextArrow(swiper, currentSlidePosition)
+                }}>
+                    <div className={`${ utilStyles.swiperButtonNext}`}>
+                        <div className={`${ utilStyles.swiperButtonNextArrow}`}></div>
                     </div>
                 </div>
             </div>
@@ -371,36 +431,36 @@ export default function SwipeArea({isMenuClicked, handleChange, brandState, list
                 {contents}
             <Modal style={{overlay:{zIndex:10000, backgroundColor: "rgba(0, 0, 0, 0.6)"}, contents:{}}} className={utilStyles.contentsModal} isOpen={contactModalShowState} ariaHideApp={false}>
                 <div>
-                    <div ref={brandModalNavInViewRef} className={`${swiperNavUpdate.swiperModalButtonPrevWrapper} ${brandModalNavIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`} onClick={() => {
+                    <div ref={brandModalNavInViewRef} className={`${utilStyles.swiperModalButtonPrevWrapper} ${brandModalNavIsVisible ? utilStyles.fadeOutAnimation : ""}`} onClick={() => {
                         if (clickedIndexState > 0) {
-                            setModalImageState(listedContents.components[clickedIndexState - 1].projectMediaURL)
-                            handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[clickedIndexState - 1].width, imgSizeData[listedContents.id - 1].components[clickedIndexState - 1].height))
+                            setModalImageState(listedContents[clickedIndexState - 1].projectMediaURL)
+                            handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[clickedIndexState - 1].width, imgSizeData[brandState - 1].components[clickedIndexState - 1].height))
                             setClickedIndexState(clickedIndexState - 1)
                         } else if (clickedIndexState === 0){
-                            setModalImageState(listedContents.components[listedContents.components.length - 1].projectMediaURL)
-                            handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[listedContents.components.length - 1].width, imgSizeData[listedContents.id - 1].components[listedContents.components.length - 1].height))
-                            setClickedIndexState(listedContents.components.length - 1)
+                            setModalImageState(listedContents[listedContents.length - 1].projectMediaURL)
+                            handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[listedContents.length - 1].width, imgSizeData[brandState - 1].components[listedContents.length - 1].height))
+                            setClickedIndexState(listedContents.length - 1)
                         }
                     }}>
-                        <div  className={`${swiperNavUpdate.swiperModalButtonPrev}`}>
-                            <div className={swiperNavUpdate.swiperButtonPrevArrow}></div>
+                        <div  className={`${utilStyles.swiperModalButtonPrev}`}>
+                            <div className={utilStyles.swiperButtonPrevArrow}></div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div ref={brandModalNavInViewRef} className={`${swiperNavUpdate.swiperModalButtonNextWrapper} ${brandModalNavIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`} onClick={() => {
-                        if (clickedIndexState < listedContents.components.length - 1){
-                            setModalImageState(listedContents.components[clickedIndexState + 1].projectMediaURL)
-                            handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[clickedIndexState + 1].width, imgSizeData[listedContents.id - 1].components[clickedIndexState + 1].height))
+                    <div ref={brandModalNavInViewRef} className={`${utilStyles.swiperModalButtonNextWrapper} ${brandModalNavIsVisible ? utilStyles.fadeOutAnimation : ""}`} onClick={() => {
+                        if (clickedIndexState < listedContents.length - 1){
+                            setModalImageState(listedContents[clickedIndexState + 1].projectMediaURL)
+                            handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[clickedIndexState + 1].width, imgSizeData[brandState - 1].components[clickedIndexState + 1].height))
                             setClickedIndexState(clickedIndexState + 1)
-                        } else if (clickedIndexState === listedContents.components.length - 1){
-                            setModalImageState(listedContents.components[0].projectMediaURL)
-                            handleIsVertical(judgeAspect(imgSizeData[listedContents.id - 1].components[0].width, imgSizeData[listedContents.id - 1].components[0].height))
+                        } else if (clickedIndexState === listedContents.length - 1){
+                            setModalImageState(listedContents[0].projectMediaURL)
+                            handleIsVertical(judgeAspect(imgSizeData[brandState - 1].components[0].width, imgSizeData[brandState - 1].components[0].height))
                             setClickedIndexState(0)
                         }
                     }}>
-                        <div className={`${swiperNavUpdate.swiperModalButtonNext}`} >
-                            <div className={swiperNavUpdate.swiperButtonNextArrow}></div>
+                        <div className={`${utilStyles.swiperModalButtonNext}`} >
+                            <div className={utilStyles.swiperButtonNextArrow}></div>
                         </div>
                     </div>
                 </div>
@@ -426,4 +486,34 @@ export function judgeAspect(w, h) {
     } else {
         return true
     }
+}
+
+export function initImageSizeData(items) {
+    const arr = []
+    items.map((item, index) => {
+        if (index < items.length - 1) {
+            arr.push(
+                {id: index, 
+                    components: [{
+                        id: 0, 
+                        width: 0, 
+                        height: 0
+                    }]
+                }
+            )
+        }
+    })
+    return arr
+}
+
+export function createComponents(items) {
+    const arr = []
+    items.map((item, index) => {
+        arr.push({
+            id: index, 
+            width: 0, 
+            height: 0
+        })
+    })
+    return arr
 }

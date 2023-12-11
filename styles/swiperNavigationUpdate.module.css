@@ -4,7 +4,7 @@
     background: #fff;
     border-radius: 50%;
     outline: 0;
-    z-index: 9997;
+    z-index: 9999;
     position: absolute;
     cursor: pointer;
     top: 50%;
@@ -14,10 +14,20 @@
   .swiperButtonNextWrapper {
     position: absolute;
     top: 50%;
-    right: 12%;
-    width: 150px;
-    height: 100vh;
-    z-index: 9997;
+    right: 5%;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonPrevWrapper {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
     cursor: pointer;
     transform: translateY(-50%);
   }
@@ -49,10 +59,10 @@
   }
   .swiperButtonHappeningsPrevWrapper {
     top: 50%;
-    left: -17%;
+    left: -22%;
     position: absolute;
-    width: 150px;
-    height: 100%;
+    width: 250px;
+    height: 250px;
     z-index: 9997;
     cursor: pointer;
     transform: translateY(-50%);
@@ -75,10 +85,10 @@
   }
   .swiperButtonHappeningsNextWrapper {
     top: 50%;
-    right: -10%;
+    right: -12%;
     position: absolute;
-    width: 150px;
-    height: 100%;
+    width: 250px;
+    height: 250px;
     z-index: 9997;
     cursor: pointer;
     transform: translateY(-50%);
@@ -110,10 +120,10 @@
   }
   .swiperButtonDancerNextWrapper {
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 0%;
-    width: 150px;
-    height: 100%;
+    width: 250px;
+    height: 250px;
     z-index: 9997;
     cursor: pointer;
     transform: translateY(-50%);
@@ -211,10 +221,20 @@
   }
   .swiperButtonDancerPrevWrapper {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 0%;
-    width: 150px;
-    height: 100%;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonDancerPrevWrapperOpened {
+    position: absolute;
+    top: 50%;
+    left: 9%;
+    width: 250px;
+    height: 250px;
     z-index: 9999;
     cursor: pointer;
     transform: translateY(-50%);
@@ -222,9 +242,9 @@
   .swiperButtonShopPrevWrapper {
     position: absolute;
     top: 50%;
-    left: 12%;
-    width: 150px;
-    height: 100vh;
+    left: 3%; /*12%*/
+    width: 250px;
+    height: 250px;
     z-index: 9999;
     cursor: pointer;
     transform: translateY(-50%);
@@ -244,9 +264,9 @@
   .swiperButtonShopNextWrapper {
     position: absolute;
     top: 50%;
-    right: 12%;
-    width: 150px;
-    height: 100vh;
+    right: 5%;
+    width: 250px;
+    height: 250px;
     z-index: 9997;
     cursor: pointer;
     transform: translateY(-50%);
@@ -267,8 +287,8 @@
     position: absolute;
     top: 50%;
     right: 50px;
-    width: 150px;
-    height: 100vh;
+    width: 250px;
+    height: 250px;
     z-index: 9997;
     cursor: pointer;
     transform: translateY(-50%);
@@ -290,8 +310,8 @@
     position: absolute;
     top: 50%;
     left: 50px;
-    width: 150px;
-    height: 100vh;
+    width: 250px;
+    height: 250px;
     z-index: 9999;
     cursor: pointer;
     transform: translateY(-50%);
@@ -309,6 +329,7 @@
     left: 50%;
     transform: translate(-50%, -50%)
   }
+  
   .swiperButtonPrevForFullScreen {
     top: 50%;
     left: 50px;
@@ -430,10 +451,7 @@
     100% { opacity: 0; }
   }
 
-  @keyframes fadeInHover {
-    0% {opacity: 0;}
-    100% { opacity: 1; }
-  }
+  
 
   .fadeInAfterAnimation {
     -webkit-transition: opacity 0.8s;
@@ -445,14 +463,113 @@
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
+  @keyframes fadeInHover {
+    0% {opacity: 0;}
+    100% { opacity: 1; }
+  }
+  @media screen and (min-width: 1600px) {
+    .swiperButtonNextWrapper {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      width: 350px;
+      height: 350px;
+      z-index: 9997;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .swiperButtonHappeningsPrevWrapper {
+      top: 50%;
+      left: -22%;
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      z-index: 9997;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .swiperButtonHappeningsNextWrapper {
+      top: 50%;
+      right: -12%;
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      z-index: 9997;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    
+    .swiperButtonDancerPrevWrapper {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      width: 350px;
+      height: 350px;
+      z-index: 9999;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .swiperButtonDancerNextWrapper {
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      width: 350px;
+      height: 350px;
+      z-index: 9997;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .swiperButtonShopPrevWrapper {
+      position: absolute;
+      top: 50%;
+      left: 3%; /*12%*/
+      width: 350px;
+      height: 350px;
+      z-index: 9999;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .swiperButtonShopNextWrapper {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      width: 350px;
+      height: 350px;
+      z-index: 9997;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .swiperModalButtonPrevWrapper {
+      position: absolute;
+      top: 50%;
+      left: 50px;
+      width: 350px;
+      height: 350px;
+      z-index: 9999;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .swiperModalButtonNextWrapper {
+      position: absolute;
+      top: 50%;
+      right: 50px;
+      width: 350px;
+      height: 350px;
+      z-index: 9997;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+  }
   @media screen and (max-width: 1023px) {
     .swiperButtonHappeningsPrev,
     .swiperButtonHappeningsNext,
     .swiperButtonNextWrapper,
+    .swiperButtonPrevWrapper,
     .swiperButtonHappeningsPrevWrapper,
     .swiperButtonHappeningsNextWrapper,
     .swiperButtonDancerNextWrapper,
     .swiperButtonDancerPrevWrapper,
+    .swiperButtonDancerPrevWrapperOpened,
     .swiperButtonShopPrevWrapper,
     .swiperButtonShopNextWrapper,
     .swiperModalButtonNextWrapper,

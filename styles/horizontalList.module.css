@@ -1,0 +1,22 @@
+.horizontalList {
+    height: 130px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #363636 #979797;
+    display: flex;
+    flex-wrap: nowrap;
+}
+@media screen and (max-width: 1023px) {
+    .horizontalList {
+        height: 130px;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        scrollbar-width: thin;
+        scrollbar-color: #363636 #979797;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+}

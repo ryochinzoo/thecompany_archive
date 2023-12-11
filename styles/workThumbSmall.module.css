@@ -1,0 +1,262 @@
+.positionRelative {
+    position: relative;
+}
+
+.workBlockSmall {
+    width: 84px;
+    height: 84px;
+    object-fit: contain;
+    object-position: center center;
+    flex: 1;
+    text-align: center;
+    margin: 0 auto 10px;
+    position: relative;
+}
+
+.workBlockSmall img {
+    z-index: 1;
+    position: relative;
+    object-position: top;
+}
+
+.workBlockSmallHorizontal {
+    width: 84px;
+    height: 84px;
+    object-fit: contain;
+    object-position: center center;
+    flex: 1;
+    text-align: center;
+    margin: auto 10px;
+    position: relative;
+}
+.workBlockSmallHorizontal img {
+    z-index: 1;
+    position: relative;
+    object-position: top;
+}
+.workIsActive {
+    position: absolute;
+    width: 87px;
+    height: 87px;
+    background:
+    linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0,
+    linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%,
+    linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0,
+    linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%,
+    linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0,
+    linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0,
+    linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%,
+    linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
+
+    background-repeat: no-repeat;
+    background-size: 9px 9px;
+}
+
+.workIsNotActive {
+    text-align: center;
+    width: 87px;
+    height: 87px;
+    position: absolute;
+    background:
+    linear-gradient(to right, transparent 1px, transparent 1px) 0 0,
+    linear-gradient(to right, transparent 1px, transparent 1px) 0 100%,
+    linear-gradient(to left, transparent 1px, transparent 1px) 100% 0,
+    linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%,
+    linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0,
+    linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0,
+    linear-gradient(to top, transparent 1px, transparent 1px) 0 100%,
+    linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 9px 9px;
+}
+.innerBorder {
+    border: 1px solid #c4c4c4;
+    width: 79px;
+    height: 79px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin: 4px 5px;
+}
+
+.innerBorderVideo {
+    border: 1px solid #c4c4c4;
+    width: 79px;
+    height: 79px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin: 4px 4px;
+}
+
+.playerWrapperSmall {
+    position: relative;
+    width: auto;
+    height: auto;
+}
+.playButtonSmall {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 3px solid #f9f9f9;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.playButtonMarkSmall {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    border-style: solid;
+    border-color: transparent transparent transparent #f9f9f9;
+    border-width: 10px 0 10px 15px;
+}
+.reactPlayer {
+    position: relative;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+.reactPlayer > video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 1023px) {
+    .workBlockSmallHorizontal {
+        width: 108px;
+        height: 108px;
+        min-width: 108px;
+        max-width: 108px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .workBlockSmall {
+        width: 16vw;
+        height: 16vw;
+        -o-object-fit: contain;
+        object-fit: contain;
+        -o-object-position: center center;
+        object-position: center center;
+        flex: 1 1;
+        text-align: center;
+        margin: 0 auto 10px;
+        position: relative;
+    }
+    .workBlockSmallHorizontal {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+    .workIsActive {
+        position: absolute;
+        width: 16vw;
+        height: 16vw;
+        background: linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .workIsNotActive {
+        text-align: center;
+        width: 22vw;
+        height: 22vw;
+        position: absolute;
+        background: linear-gradient(to right, transparent 1px, transparent 1px) 0 0, linear-gradient(to right, transparent 1px, transparent 1px) 0 100%, linear-gradient(to left, transparent 1px, transparent 1px) 100% 0, linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0, linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0, linear-gradient(to top, transparent 1px, transparent 1px) 0 100%, linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .innerBorder {
+        border: 1px solid #c4c4c4;
+        width: 15vw;
+        height: 15vw;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        margin: 4px 4px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .workBlockSmall {
+        width: 20vw;
+        height: 18vw;
+        -o-object-fit: contain;
+        object-fit: contain;
+        -o-object-position: center center;
+        object-position: center center;
+        flex: 1 1;
+        text-align: center;
+        margin: 0 auto 10px;
+        position: relative;
+    }
+    .workIsActive {
+        position: absolute;
+        width: 20vw;
+        height: 20vw;
+        background: linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .workIsNotActive {
+        text-align: center;
+        width: 22vw;
+        height: 22vw;
+        position: absolute;
+        background: linear-gradient(to right, transparent 1px, transparent 1px) 0 0, linear-gradient(to right, transparent 1px, transparent 1px) 0 100%, linear-gradient(to left, transparent 1px, transparent 1px) 100% 0, linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0, linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0, linear-gradient(to top, transparent 1px, transparent 1px) 0 100%, linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 9px 9px;
+    }
+    .innerBorder {
+        border: 1px solid #c4c4c4;
+        width: 18vw;
+        height: 18vw;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        margin: 4px 4px;
+    }
+    .innerBorderVideo {
+        border: 1px solid #c4c4c4;
+        width: 20vw;
+        height: 20vw;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        margin: 4px 4px;
+    }
+    .playButtonSmall {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        width: 15vw;
+        height: 15vw;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border: 3px solid #f9f9f9;
+        background-color: transparent;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+    .playerWrapperSmall {
+        position: relative;
+        width: 20vw;
+        height: 20vw;
+    }
+}

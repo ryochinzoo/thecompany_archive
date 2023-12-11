@@ -2,9 +2,10 @@ import AboutStyle from '../styles/about.module.css'
 import { useState, useRef, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import Image from 'next/image'
+import { useTranslation, Trans} from 'next-i18next'
 
 export default function MovingToMove() {
-    
+    const { t } = useTranslation("common")
     const movingToMoveTagRef = useRef()
     const movingToMoveImageRef = useRef()
     const movingToMoveParagraphRef = useRef()
@@ -25,26 +26,15 @@ export default function MovingToMove() {
     })
     const [aboutTextAtEnd, setAboutTextAtEnd] = useState()
     useEffect(() => {
-        let text =""
         {isDesktopLarge || isDesktop ?
-            text=<div className={[AboutStyle.introductionAbout, AboutStyle.movingToMoveParagraph, AboutStyle.movingToMoveDescription].join(" ")}>
-                is the guiding principle of<br />
-                our Philosophy. We want to<br />
-                move people, both<br />
-                physically and emotionally.<br />
-            </div>
-            : isTablet ?
-            text=<div className={[AboutStyle.introductionAbout, AboutStyle.movingToMoveParagraph, AboutStyle.movingToMoveDescription].join(" ")}>
-                is the guiding principle of our Philosophy. We want to move people, both physically and emotionally.<br />
-            </div>
-            :
-            text=<div className={[AboutStyle.introductionAbout, AboutStyle.movingToMoveParagraph, AboutStyle.movingToMoveDescription].join(" ")}>
-                is the guiding principle of our Philosophy. We want to move people, 
-                <br />both physically and emotionally.<br />
-            </div>
-            }
-            setAboutTextAtEnd(text)
-    }, [isDesktop, isDesktopLarge, isTablet])
+            setAboutTextAtEnd(<Trans t={t} i18nKey={"about.movingtomove"}>
+                is the guiding principle of our Philosophy. We want to move people, both physically and emotionally.
+            </Trans>)
+            : 
+            setAboutTextAtEnd(<Trans t={t} i18nKey={"about_sp.movingtomove"}>is the guiding principle of our Philosophy. We want to move people, both physically and emotionally.</Trans>)
+                
+        }
+    }, [isDesktop, isDesktopLarge, t])
     useEffect(() => {
         const rootMarginBottom = 300
         
@@ -73,18 +63,21 @@ export default function MovingToMove() {
 
     return(
         <>
-            <div ref={movingToMoveImageRef} className={AboutStyle.movingToMoveImage}>
+            <div ref={movingToMoveImageRef} className={`${AboutStyle.movingToMoveImage} ${AboutStyle.clipPathAnimationMtoM}`}>
                 <Image
-                    src="/images/aboutPhotoExample.jpg"
+                    src="/images/about_MtoM.gif" /* aboutPhotoExample.jpg*/
                     alt="test"
                     width={400}
                     height={600}
                     objectFit="cover"
+                    priority
                 />  
             </div>
             <div ref={movingToMoveParagraphRef} className={AboutStyle.movingToMoveTagAndParagraph}>
                 <div ref={movingToMoveTagRef} className={`${AboutStyle.movingToMoveTag}`}>#movingtomove</div>
-                {aboutTextAtEnd}
+                <div className={[AboutStyle.introductionAbout, AboutStyle.movingToMoveParagraph, AboutStyle.movingToMoveDescription].join(" ")}>
+                    {aboutTextAtEnd}<br />
+                </div>
             </div>
         </>
     )

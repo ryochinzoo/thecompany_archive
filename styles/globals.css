@@ -1,22 +1,31 @@
 @font-face {
   font-family: 'Nexa';
   src: url('../public/fonts/Fontfabric - Nexa Text Regular.otf') format("opentype");
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Nexa';
   src: url('../public/fonts/Nexa Bold.otf') format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nexa';
+  src: url('../public/fonts/Nexa Bold.otf') format("opentype");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
-
 @font-face {
   font-family: 'Nexa';
   src: url('../public/fonts/Fontfabric - Nexa Text Heavy.otf') format("opentype");
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -24,13 +33,15 @@
   src: url('../public/fonts/Nexa Light.otf') format("opentype");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Shopping Script';
   src: url('../public/fonts/Shopping Script Demo.ttf') format("ttf");
-  font-weight: 300;
+  font-weight: 200;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -38,6 +49,7 @@
   src: url('../public/fonts/Roland Hüse Design - Shopping Script Thin.otf') format("opentype");
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 html,
@@ -47,8 +59,14 @@ body {
   background-color: #f9f9f9;
   font-family: Nexa;/*-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
 }
-
+html {
+  --scroll-behavior: smooth!important;
+  scroll-behavior: smooth!important;
+  scroll-padding-top: 20px;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -59,3 +77,46 @@ a {
 input {
   touch-action: manipulation;
 }
+p {
+  margin-block-start: 0!important;
+  margin-block-end: 0!important;
+  padding: 1em 0;
+}
+.rte, .other-page-section-header {
+  color: #fff;
+}
+.other-page-section-header {
+  padding-top: 100px;
+}
+.rte {
+  position: relative;
+  left: 8.33333%;
+  width: 83.33333%;
+}
+.text-center {
+  text-align: center;
+}
+.other-page {
+  background-color: #1c1c1c;
+  padding: 0.67em 55px 0;
+}
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  background-color:#C93D38!important;
+}
+_::-webkit-full-page-media, _:future, :root .ifSafariAboutHead {
+  font-size: 60px;
+}
+_::-webkit-full-page-media, _:future, :root .ifSafariShopNextWrapper {
+  right: 8%;
+}
+@media screen and (max-width: 767px) {
+  .other-page {
+    background-color: #1c1c1c;
+    padding: 0.67em 0 0;
+    word-wrap: break-word;
+  }
+  _::-webkit-full-page-media, _:future, :root .ifSafariAboutHead {
+    font-size: 46px;
+  }
+}
+:focus { outline: none; }

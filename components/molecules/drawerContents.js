@@ -1,4 +1,4 @@
-import utilStyles from "../../styles/utils.module.css"
+import utilStyles from "../../styles/drawerContents.module.css"
 import parse from 'html-react-parser'
 
 export default function DrawerContents ({titles, handleDrawerChange, setClicked, changeSlide, isDetail}) {

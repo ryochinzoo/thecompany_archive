@@ -1,0 +1,23 @@
+.reactPlayer {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.reactPlayer > iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.reactPlayer > video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}

@@ -181,7 +181,16 @@ export default function SwipeArea({isMenuClicked, handleChange, artistState, lis
             swiper.slideTo(updateSlidePosition(length - 1))
         }
     }
-
+    const onClickSwiperPrevArrow = (swiper, currentSlidePosition) => {
+        //swiper.update()
+        const length = swiper.slides.length
+        if(currentSlidePosition > 0) {
+            const prevPosition = currentSlidePosition - 1
+            swiper.slideTo(updateSlidePosition(prevPosition))
+        } else {
+            swiper.slideTo(updateSlidePosition(0))
+        }
+    }
     const minSwipeDistance = 50 
 
     const onTouchStart = (e) => {
@@ -253,7 +262,7 @@ export default function SwipeArea({isMenuClicked, handleChange, artistState, lis
                                 className={isVertical ? utilStyles.zoomedPlayerScaledVertical : utilStyles.zoomedPlayerScaled} 
                                 muted
                                 playing
-                                disableDeferredLoading={true}
+                                disabledeferredloading="true"
                                 width="100%"
                                 height="100vh"
                                 config={{
@@ -297,9 +306,19 @@ export default function SwipeArea({isMenuClicked, handleChange, artistState, lis
             <div className={utilStyles.gradationWhiteRightSide}></div>
         </div>
     
-        <div className={[swiperNavUpdate.swiperButtonPrev, swiperNavUpdate.swiperButtonDisable].join(" ")} ref={prevRef}>
-            <div className={swiperNavUpdate.swiperButtonPrevArrow}></div>
-        </div><Swiper
+        <div ref={prevRef}>
+            <div className={`${swiperNavUpdate.swiperButtonPrevWrapper} 
+                ${navIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`}
+                onClick={() => {
+                    onClickSwiperPrevArrow(swiper, currentSlidePosition)
+                }}>
+                <div className={`${ swiperNavUpdate.swiperButtonPrev}`}>
+                    <div className={`${ swiperNavUpdate.swiperButtonPrevArrow}`}></div>
+                </div>
+            </div>
+        </div>
+        
+        <Swiper
         modules={[Navigation]}
         navigation = {{
             prevEl: prevRef?.current,
@@ -353,11 +372,11 @@ export default function SwipeArea({isMenuClicked, handleChange, artistState, lis
     	
         <div ref={nextRef}>
         <div ref={navInViewRef}  className={`${swiperNavUpdate.swiperButtonNextWrapper} 
-        ${navIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`}>
-            <div className={`${swiperNavUpdate.swiperButtonNext}`}
-            onClick={() => {
-                onClickSwiperNextArrow(swiper, currentSlidePosition)
-            }}>
+        ${navIsVisible ? swiperNavUpdate.fadeOutAnimation : ""}`}
+        onClick={() => {
+            onClickSwiperNextArrow(swiper, currentSlidePosition)
+        }}>
+            <div className={`${swiperNavUpdate.swiperButtonNext}`}>
                 <div className={`${ swiperNavUpdate.swiperButtonNextArrow}`}></div>
             </div>
         </div>  

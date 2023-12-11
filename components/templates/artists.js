@@ -3,7 +3,7 @@ import ArtistDescriptionAndSwipe from "../organisms/artistDescriptionAndSwipe"
 import utilStyles from "../../styles/utils.module.css"
 import Modal from 'react-modal'
 import FormInModal from '../molecules/formInModal'
-import CommonStyle from '../../styles/commonParts.module.css'
+import CommonStyle from '../../styles/artist.module.css'
 
 export default function Artist({ strapiURL, artists, mailInfo }) {
     const [artistState, setArtistState] = useState(0) //0 is all, other number should be ID for each artist
@@ -45,26 +45,6 @@ export default function Artist({ strapiURL, artists, mailInfo }) {
                 artistState={artistState} 
                 displayTargetData={artistTargetContents[artistState - 1]} 
                 dataForAll={artistNames} /> 
-            <ul className={utilStyles.contentsItemList}>
-                <li className={[getFontColor(0), utilStyles.cursorPointer].join(" ")} key={0} onClick={() => {
-                    setArtistState(0)
-                    handleSwiperUpdate(true)
-                    isMenuClickedCheck(true)
-                }}>
-                    All
-                </li>
-                {artistNames.map((artist, index) => {
-                    return (
-                        <li  key={index} className={[getFontColor(artist.id), utilStyles.cursorPointer].join(" ")} onClick={() => {
-                            setArtistState(artist.id)
-                            handleSwiperUpdate(true)
-                            isMenuClickedCheck(true)
-                        }}>
-                            {artist.name}
-                        </li>
-                    )
-                })}
-            </ul>
             <div className={`${utilStyles.bookingRequestButtonSPWrapper}`}
                 onClick={() => {
                     setFormModalShowState(true)

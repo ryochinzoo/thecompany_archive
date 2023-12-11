@@ -1,0 +1,38 @@
+.shopDrawerMenu {
+    position: relative;
+    top: 0;
+    width: 85%;
+    height: 80vh;
+    overflow-wrap: break-word;
+    margin-top: 30px;
+    /*overflow-y: auto;*/
+    font-weight: 300;
+    min-height: 0;
+}
+.shopDrawerMenu ul {
+    min-height: 100vh;
+}
+
+.shopDrawerMenuItem {
+    font-size: 7vw;
+    color: #f9f9f9;
+    line-height: 1.1;
+    margin-left: 5%;
+    list-style-type: none;
+    cursor: pointer;
+}
+.shopDrawerMenuItem:hover {
+    color: #C93D38;
+}
+
+@media screen and (max-width: 767px) {
+    .shopDrawerMenuItem {
+        font-size: 10vw;
+        color: #f9f9f9;
+        line-height: 1.1;
+        margin-left: 5%;
+        list-style-type: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+}

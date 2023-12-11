@@ -1,14 +1,16 @@
-import CommonStyle from '../../styles/commonParts.module.css'
-import utilStyles from "../../styles/utils.module.css"
+import CommonStyle from '../../styles/formAtTop.module.css'
 import Modal from 'react-modal'
-import { useState } from 'react'
-import FormTextInput from '../atoms/formTextInput'
-import FormTextArea from '../atoms/formTextArea'
-import SubmitButton from '../atoms/submitButton'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import dynamic from 'next/dynamic'
 
-export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
+const FormTextInput = dynamic(() => import('../atoms/formTextInput'))
+const FormTextArea = dynamic(() => import('../atoms/formTextArea'))
+const SubmitButton = dynamic(() => import('../atoms/submitButton'))
+
+export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock, isMain}) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -18,6 +20,7 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
     const [isSubmitClicked, setIsSubmitClicked] = useState(false)
     const [isClearAll, setIsClearAll] = useState(false)
     const [formModalShowState, setFormModalShowState] = useState (false)
+    const [formType, setFormType] = useState("Get in touch")
     const [formValidation, setFormValidation] = useState({
         result: false,
         details: {
@@ -35,6 +38,13 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
             message: ""
         }
     })
+    useEffect(() => {
+        if(isFlipped) {                                         
+            setFormType("Booking request")
+        } else {
+            setFormType("Get in touch")
+        } 
+    }, [isFlipped])
     const clearAll = (newValue) => {
         setIsClearAll(newValue)
     }
@@ -83,14 +93,14 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
             validation.firstName = true
         } else {
             validation.firstName = false
-            errorMessages.firstName = "First Name is required"
+            errorMessages.firstName = "First name is required"
         }
 
         if (lastName.trim().length !== 0) {
             validation.lastName = true
         } else {
             validation.lastName = false
-            errorMessages.lastName = "Last Name is required"
+            errorMessages.lastName = "Last name is required"
         }
 
         if (phoneNumber.trim().length !== 0) {
@@ -99,7 +109,7 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                 validation.phoneNumber = true
             } else {
                 validation.phoneNumber = false
-                errorMessages.phoneNumber = "Phone Number is invalid"
+                errorMessages.phoneNumber = "Phone number is invalid"
             }
         }
 
@@ -153,7 +163,9 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log('Sending')
-        const newMailInfo = createNewObj(mailInfo, "BookingRequest")
+        const formType = isFlipped ? "BookingRequest" : "GetInTouch"
+        console.log(formType)
+        const newMailInfo = createNewObj(mailInfo, formType)
         let data = {
             firstName,
             lastName,
@@ -285,7 +297,7 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                 }}>
                 <div className={`${CommonStyle.flipInner} ${isFlipped ? CommonStyle.flippingAnimation : ""} ${CommonStyle.pcOnly}`}>
                     <div className={`${CommonStyle.flipFront}`}>
-                        <span className={`${CommonStyle.flipText}`}>Get in Touch</span>
+                        <span className={`${CommonStyle.flipText}`}>Get in touch</span>
                     </div>
                     <div className={`${CommonStyle.flipBack}`}>
                     <span className={`${CommonStyle.flipText}`}>Booking request</span>
@@ -293,29 +305,29 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                 </div>
             </div>
             
-            <div className={utilStyles.flipCardTablet}
+            <div className={CommonStyle.flipCardTablet}
                 onClick={() => {
                     setFormModalShowState(true)
                 }}>
-                    <div className={`${utilStyles.formButtonInner} ${utilStyles.formButtonInnerTablet}`}>
+                    <div className={`${CommonStyle.formButtonInner} ${CommonStyle.formButtonInnerTablet}`}>
                         <div>
-                            Get in Touch
+                            {formType}
                         </div>
                     </div>
                 </div>
             <Modal
-                style={{overlay:{zIndex:10000, backgroundColor: "#FA5253"}, contents:{}}} 
+                style={{overlay:{zIndex:10000, backgroundColor: "#FA5253", outline: "none"}, contents:{}}} 
                 className={`${CommonStyle.formTopStyle}`}
                 isOpen={formModalShowState}
                 ariaHideApp={false}
             >
-                <div style={{backgroundColor: '#fff'}} className={utilStyles.headerLogoInModal}></div>
+                <div style={{backgroundColor: '#fff'}} className={CommonStyle.headerLogoInModal}></div>
                 <div className={CommonStyle.modalCloseButton} onClick={() => {
                     setFormModalShowState(false)
                     handleScrollLock(false)
                 }}></div>
                 <div className={`${CommonStyle.modalFormHeadline}`}>
-                    {isFlipped?
+                    {isFlipped ?
                     "Booking"
                     :
                     "Hello.."
@@ -325,7 +337,7 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                     <div className={`${CommonStyle.inputArea}`}>
                         <form onSubmit={handleSubmit} >
                             <FormTextInput
-                                placeholder={"First Name"}
+                                placeholder={"First name"}
                                 isRequired={true}
                                 isModal={true}
                                 isSignUp={false}
@@ -336,9 +348,10 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                                 hasError={formValidation.details["firstName"]}
                                 isSubmitClicked={isSubmitClicked}
                                 isClearAll={isClearAll}
+                                isMain={isMain}
                             ></FormTextInput>
                             <FormTextInput
-                                placeholder={"Last Name"}
+                                placeholder={"Last name"}
                                 isRequired={true}
                                 isModal={true}
                                 isSignUp={false}
@@ -349,6 +362,7 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                                 hasError={formValidation.details["lastName"]}
                                 isSubmitClicked={isSubmitClicked}
                                 isClearAll={isClearAll}
+                                isMain={isMain}
                             ></FormTextInput>
                             <FormTextInput
                                 placeholder={"E-mail"}
@@ -362,9 +376,10 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                                 hasError={formValidation.details["email"]}
                                 isSubmitClicked={isSubmitClicked}
                                 isClearAll={isClearAll}
+                                isMain={isMain}
                             ></FormTextInput>
                             <FormTextInput
-                                placeholder={"Phone Number"}
+                                placeholder={"Phone number"}
                                 isRequired={false}
                                 isModal={true}
                                 isSignUp={false}
@@ -375,6 +390,7 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                                 hasError={formValidation.details["phoneNumber"]}
                                 isSubmitClicked={isSubmitClicked}
                                 isClearAll={isClearAll}
+                                isMain={isMain}
                             ></FormTextInput>
                             <FormTextArea
                                 placeholder={"A few sentences about your project..."}
@@ -397,23 +413,24 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                         </form>
                     </div>
                     <div className={`${CommonStyle.generalInfo}`}>
-                        <div className={`${CommonStyle.infoHeadline}`}>Contact Us</div> 
+                        <div className={`${CommonStyle.infoHeadline}`}>Contact us</div> 
                         <div className={`${CommonStyle.infoDetail}`}>
-                            contact@thecompanyberlin.com <br />
-                            IG: @thecompanyberlin
+                            <a href="mailto:contact@thecompanyberlin.com">contact(at)thecompanyberlin.com</a><br />
+                            IG: <Link href="https://www.instagram.com/thecompanyberlin/" passHref={true}><a target='_blank'>@thecompanyberlin</a></Link>
                         </div>
                         
-                        <div className={`${CommonStyle.infoHeadline}`}>Follow Us</div> 
+                        <div className={`${CommonStyle.infoHeadline}`}>Follow</div> 
                         <div className={`${CommonStyle.infoDetail}`}>
-                            Instagram <br />
-                            Facebook <br />
-                            TikTok
+                            <Link href="https://www.instagram.com/thecompanyberlin/" passHref={true}><a target='_blank'>Instagram</a></Link>
                         </div>
                         <div className={`${CommonStyle.infoHeadline}`}>Sign up for updates:</div>
-                            <form onSubmit={handleSubmitSignup} >
+                        <form action="https://thecompanyberlin.us20.list-manage.com/subscribe/post" method="POST">
+                            <input type="hidden" name="u" value="c94d38fd085b70f961c3972c6" />
+                            <input type="hidden" name="id" value="074950964e" />
+                            <input type="hidden" name="MERGE0" value={emailSignUp} />
                                 <div className={`${CommonStyle.signupWrapper}`}>
                                     <FormTextInput
-                                        placeholder = {"Email Address"}
+                                        placeholder = {"Email address"}
                                         isRequired = {false}
                                         isModal = {true}
                                         isSignUp = {true}
@@ -425,7 +442,7 @@ export default function FormAtTop ({isFlipped, mailInfo, handleScrollLock}) {
                                         isSubmitClicked={isSubmitClicked}
                                         isClearAll={isClearAll}
                                     ></FormTextInput>
-                                    <button className={`${CommonStyle.signUpSubmit}`} onClick={()=>{handleSubmitSignup}}>→</button>
+                                    <button type="submit" className={`${CommonStyle.signUpSubmit}`} onClick={() => {setIsClearAll(true)}}>→</button>
                                     <ToastContainer />
                                 </div>
                             </form>

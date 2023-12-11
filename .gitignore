@@ -35,3 +35,11 @@ yarn-error.log*
 
 # backend
 
+# pem
+localhost.pem
+localhost-key.pem
+server.key
+
+#other
+.htaccess
+index_backup.js

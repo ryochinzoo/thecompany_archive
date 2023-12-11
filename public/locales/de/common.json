@@ -1,0 +1,165 @@
+{
+    "ui": {},
+    "header": {
+        "hallo": "Hallo"
+    },
+    "about": {
+        "headline": "Eine Institution für Tanz und Choreographie mit dem Fokus auf Individualität.",
+        "intro": "wurde 2017 von <br />Jouana Samia gegründet.",
+        "first": {
+            "one": "Ihr anfänglicher Plan bestand darin, ",
+            "two": "Junge <br />Frauen ",
+            "three": "aus den unterschiedlichsten Tanzbereichen zusammenzubringen und durch reguläres Training zu stärken."
+        },
+        "second": {
+            "one": "Sie selbst ",
+            "two": "hat ihre Wurzeln <br />im Urban Dance ",
+            "three": "und erweiterte ihre tänzerischen <br />Fähigkeiten später durch Training <br />in Ballett, Dancehall, Commercial und Heels."
+        },
+        "third": {
+            "one": "Jouana Samia ",
+            "two": "merkte<br /> schnell, ",
+            "three": "dass die Mischung und der Austausch dieser verschiedenen Tanzstile bisher noch nicht existierten. "
+        },
+        "gradation": {
+            "before_company": "Das Bewusstsein dafür entstand aus der ursprünglichen Idee für ",
+            "after_company": "vor allem dem Austausch unterschiedlicher ethnischer Hintergründe und Tanzstile. Ziel war es, etwas Größeres für die nächste Generation zu erschaffen – von einem reinen Frauen-Kollektiv hin zu einem offenen Raum für jede tanzliebende Person, unabhängig von deren Geschlecht, Herkunft, Religion oder Alter."
+        },
+        "movingtomove": "ist der Leitgedanke unserer Philosophie. Wir wollen die Menschen bewegen, sowohl körperlich als auch emotional.",
+        "last": {
+            "left": "Wir freuen uns darüber, ",
+            "right": "dass zahlreiche junge Talente uns und unserer Reise vertrauen und durch unsere Arbeit zur Geschichte der deutschen Tanzkultur beitragen."
+        }
+    },
+    "about_sp": {
+        "intro": "wurde 2017 von Jouana Samia gegründet.",
+        "first": {
+            "one": "Ihr anfänglicher Plan bestand darin, ",
+            "two": "Junge <br />Frauen ",
+            "three": "aus den unterschiedlichsten Tanzbereichen zusammenzubringen und durch reguläres Training zu stärken."
+        },
+        "second": {
+            "one": "Sie selbst ",
+            "two": "hat ihre Wurzeln im Urban Dance ",
+            "three": "und erweiterte ihre tänzerischen Fähigkeiten <br />später durch Training in Ballett, Dancehall, Commercial und Heels."
+        },
+        "third": {
+            "one": "Jouana Samia ",
+            "two": "merkte<br /> schnell, ",
+            "three": "dass die Mischung und der Austausch dieser verschiedenen Tanzstile bisher noch nicht existierten. "
+        },
+        "gradation": {
+            "before_company": "Das Bewusstsein dafür entstand aus der ursprünglichen Idee für ",
+            "after_company": "vor allem dem Austausch unterschiedlicher ethnischer Hintergründe und Tanzstile. Ziel war es, etwas Größeres für die nächste Generation zu erschaffen – von einem reinen Frauen-Kollektiv hin zu einem offenen Raum für jede tanzliebende Person, unabhängig von deren Geschlecht, Herkunft, Religion oder Alter."
+        },
+        "movingtomove": "ist der Leitgedanke unserer Philosophie. Wir wollen die Menschen bewegen, sowohl körperlich als auch emotional.",
+        "last": {
+            "left": "Wir freuen uns darüber, ",
+            "right": "dass zahlreiche junge Talente uns und unserer Reise vertrauen und durch unsere Arbeit zur Geschichte der deutschen Tanzkultur beitragen."
+        }
+    },
+    "education_head": {
+        "first_paragraph": "Wir unterstützen Tänzer:innen durch diverse Workshops mit nationalen und internationalen Dozenten.",
+        "second_paragraph": "Seit 2017 bilden wir besondere Talente in geschlossenen Trainings zu professionellen Tänzern aus, mit dem Fokus, primär ihre Individualität zu fördern."
+    },
+    "entertainment_head": {
+        "first_paragraph": "Unsere Expertise in Event- wie auch Werbeproduktionen ermöglicht es uns seit vielen Jahren,",
+        "second_paragraph": "Kreationen wie Show-Konzepte und Choreographie, aber auch Talente für die Entertainment-Branche und diversen Produktionen zu vermitteln."
+    },
+    "happenings_head": {
+        "first_paragraph": "Neben einem festen Training für unsere ",
+        "first_paragraph2": "-Mitglieder haben wir uns mit verschiedenen Events in der deutschen Tanzszene etabliert, welche sowohl den Austausch innerhalb der Berliner Szene als auch über deren Grenzen hinaus ermöglichen sollen.",
+        "second_paragraph": "Wir haben regelmäßig Leute aus der ganzen Welt zu Gast, sodass unsere Community immer weiter wächst."
+    },
+    "happenings_main": {
+        "the_intensive": {
+            "first_paragraph": {
+                "text": "Ein Wochenende vollgepackt mit Classes in den unterschiedlichsten Tanzstilen für ein besonders intensives Trainingserlebnis.<br />"
+            },
+            "second_paragraph": {
+                "text": "Egal, ob klassisches Technik-Training, Mindset-Übungen, Heels, Commercial oder Hip Hop – hier wird den Teilnehmer*innen regelmäßig alles abverlangt, um sie aus ihrer eigenen Comfort Zone zu locken und ihnen Raum zum Wachsen zu geben.<br />"
+            },
+            "third_paragraph": {
+                "text": "Neben der individuellen Entwicklung der Teilnehmer*innen fördern die INTENSIVES den Community-Aspekt durch Panel Talks und Quality Time miteinander. Inzwischen sind bereits fünf Editionen dieses Events erfolgreich abgelaufen – und das sechste steht schon in den Startlöchern. <br />"
+            }
+        },
+
+        "the_intensive_sp": {
+            "first_paragraph": {
+                "text": "Ein Wochenende vollgepackt mit Classes in den unterschiedlichsten Tanzstilen für ein besonders intensives Trainingserlebnis.<br />"
+            },
+            "second_paragraph": {
+                "text": "Egal, ob klassisches Technik-Training, Mindset-Übungen, Heels, Commercial oder Hip Hop – hier wird den Teilnehmer*innen regelmäßig alles abverlangt, um sie aus ihrer eigenen Comfort Zone zu locken und ihnen Raum zum Wachsen zu geben.<br />"
+            },
+            "third_paragraph": {
+                "text": "Neben der individuellen Entwicklung der Teilnehmer*innen fördern die INTENSIVES den Community-Aspekt durch Panel Talks und Quality Time miteinander. Inzwischen sind bereits fünf Editionen dieses Events erfolgreich abgelaufen – und das sechste steht schon in den Startlöchern. <br />"
+            }
+        },
+
+        "the_tour": {
+            "first_paragraph": {
+                "text": "1 Tour quer durch Deutschland, 10 Städte, 20 Classes und über 500 Teilnehmer*innen.<br />"
+            },
+            "second_paragraph": {
+                "text": "So ging Jouana Samia mit einem kleinen Team im Gepäck als ",
+                "text2": " im September auf große Tournee durch insgesamt zehn verschiedene deutsche Städte, von Hamburg bis München.<br />"
+            },
+            "third_paragraph": {
+                "text": "Ein wesentlich wichtiger Aspekt dieser Tour war der anschließende Mindset-orientierte Talk zusammen mit den Schüler*innen, da ihr eigentliches Ziel darauf lag, sie mental auf die Industrie vorzubereiten. Jouana erreichte neben mehr als 500 Nachwuchs-Talenten auch mehrere Tausende über Social Media, weshalb ihr durch die Tour die Vision für das nächste Projekt kam.<br />"
+            }
+        },
+
+        "the_tour_sp": {
+            "first_paragraph": {
+                "text": "1 Tour quer durch Deutschland, 10 Städte, 20 Classes und über 500 Teilnehmer*innen.<br />"
+            },
+            "second_paragraph": {
+                "text": "So ging Jouana Samia mit einem kleinen Team im Gepäck als ",
+                "text2": " im September auf große Tournee durch insgesamt zehn verschiedene deutsche Städte, von Hamburg bis München.<br />"
+            },
+            "third_paragraph": {
+                "text": "Ein wesentlich wichtiger Aspekt dieser Tour war der anschließende Mindset-orientierte Talk zusammen mit den Schüler*innen, da ihr eigentliches Ziel darauf lag, sie mental auf die Industrie vorzubereiten. Jouana erreichte neben mehr als 500 Nachwuchs-Talenten auch mehrere Tausende über Social Media, weshalb ihr durch die Tour die Vision für das nächste Projekt kam.<br />"
+            }
+        },
+
+        "the_ball": {
+            "first_paragraph": {
+                "text": "Die Idee: Die Vielfalt der Berliner Tanzszene anhand verschiedener Choreographen und Tanzstile zu zeigen.<br />"
+            },
+            "second_paragraph": {
+                "text": "Der Ball verlief unter dem vorgegebenen Thema &bdquo;Die 4 Elemente&Prime;. Jeder Choreograph bekam jeweils ein Element zugewiesen, wozu er frei in seiner Auswahl an Musik und Tänzer*innen ein eigenes Stück gestalten konnte.<br />"
+            },
+            "third_paragraph": {
+                "text": "Das Visual Team kreierte parallel zu den Songs der Choreographen die passenden Visuals, die im Hintergrund der Performances auf einer riesigen LED-Leinwand abgespielt wurden, sodass die Zuschauer des ausverkauften Events auf eine multimediale Reise durch die vier Elemente Feuer, Wasser, Erde und Luft genommen wurden.<br />"
+            }
+        },
+
+        "the_ball_sp": {
+            "first_paragraph": {
+                "text": "Die Idee: Die Vielfalt der Berliner Tanzszene anhand verschiedener Choreographen und Tanzstile zu zeigen.<br />"
+            },
+            "second_paragraph": {
+                "text": "Der Ball verlief unter dem vorgegebenen Thema &bdquo;Die 4 Elemente&Prime;. Jeder Choreograph bekam jeweils ein Element zugewiesen, wozu er frei in seiner Auswahl an Musik und Tänzer*innen ein eigenes Stück gestalten konnte.<br />"
+            },
+            "third_paragraph": {
+                "text": "Das Visual Team kreierte parallel zu den Songs der Choreographen die passenden Visuals, die im Hintergrund der Performances auf einer riesigen LED-Leinwand abgespielt wurden, sodass die Zuschauer des ausverkauften Events auf eine multimediale Reise durch die vier Elemente Feuer, Wasser, Erde und Luft genommen wurden.<br />"
+            }
+        }
+    },
+    "brands": {
+        "main_description": "Tanzen ist eine ganz besondere Form des künstlerischen Ausdrucks, die Menschen immer mehr in ihren Bann zieht. Das haben mittlerweile auch die großen Marken erkannt, welche zunehmend Tänzer in ihren Werbungen verwenden, um zum einen deren Talent und Kreativität einem weltweiten Publikum zu präsentieren und damit gleichzeitig die Botschaft und die Werte der Marke zu fördern. Dies geschieht bei ",
+        "main_description2": " in den unterschiedlichsten Formen – von klassischen Werbespots über Fashion Shows bis hin zu Printkampagnen."
+    },
+    "artists": {
+        "main_description": "Im Zuge der wachsenden Bekanntheit von ",
+        "main_description2": " sind auch immer mehr Musiker*innen auf die choreographische Arbeit von Jouana Samia aufmerksam geworden, sodass sie mittlerweile ein großes Portfolio an Artists aufweisen kann, die regelmäßig auf ihre kreative Vision vertrauen. Sie übernimmt dabei meist nicht nur den Bereich der Choreographie und stellt die Tänzer*innen, sondern beweist oftmals auch ihre Expertise in den Bereichen Styling und Art Direction. Was am Ende dabei rauskommt, sind individuell auf den Artist und Song zugeschnittene Musikvideos und Performances – egal ob im Fernsehen, auf Festivals oder für ausverkaufte Tourneen. "
+    },
+    "studio": {
+        "main_description": "THESTUDIO ist unser geräumiges Studio im Herzen von Berlin Schöneberg. Hier findet das tägliche Training unseres Tanzprogramms von THECOMPANY statt. Der sonnendurchflutete und hell eingerichtete Tanzraum ist 117qm groß und bietet Platz für ca. 40 Nutzer*innen. Eine großzügige Spiegelfront verleiht dem Raum eine einladende, freundliche Atmosphäre. Unser professioneller Harlequin Tanzboden bietet optimale Bedingungen für Tänzer*innen sämtlicher Stilrichtungen. Auch für Yoga, Pilates, Schauspiel Kurse o.ä. bietet der Raum bestmögliche Voraussetzungen. Darüber hinaus ist THESTUDIO mit professionellen Lautsprechern sowie mit zwei großen Scheinwerfern ausgestattet und eignet sich somit insbesondere auch für Foto und Video Shootings. <br /><br />Raumbuchungsanfragen können per Mail an ",
+        "main_description2": " gestellt werden."
+    },
+    "footer": {
+        "and": "und",
+        "privacyNotice": "Datenschutzerklärung"
+    }
+}

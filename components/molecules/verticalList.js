@@ -1,4 +1,4 @@
-import DancerStyle from '../../styles/dancerProfile.module.css'
+import DancerStyle from '../../styles/verticalList.module.css'
 
 export default function VerticalList({ children }) {
     return(

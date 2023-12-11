@@ -1,0 +1,122 @@
+.imageWrapper {
+    margin-bottom: -8px;
+}
+.imagePreviewWrapper {
+    position: relative;
+}
+.removeDots {
+    display: none;
+}
+.videoWrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+}
+.objectPositionTop img {
+    object-position: top;
+}
+.arrowWrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    z-index: 4;
+    color: #f4f4f4;
+    cursor: pointer;
+}
+.arrowUpRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.arrowUpRight::before{
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: -22px;
+    box-sizing: border-box;
+    width: 16px;
+    height: 10px;
+    border: 8px solid transparent;
+    border-left: 8px solid rgba(244, 244, 244, 0.6);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.arrowUpRight::after{
+    content: "";
+    position: absolute;
+    left: -26px;
+    top: 24px;
+    width: 8px;
+    height: 10px;
+    border-left: 4px solid rgba(244, 244, 244, 0.6);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.arrowDownLeft {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.arrowDownLeft::before{
+    content: "";
+    position: absolute;
+    top: 36px;
+    left: 11px;
+    box-sizing: border-box;
+    width: 16px;
+    height: 10px;
+    border: 8px solid transparent;
+    border-left: 8px solid rgba(244, 244, 244, 0.6);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+.arrowDownLeft::after{
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: 33px;
+    width: 8px;
+    height: 10px;
+    border-left: 4px solid rgba(244, 244, 244, 0.6);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.playerWrapper {
+    position: relative;
+    cursor: pointer;
+    padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+.videoWrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+}
+.projectLabel{
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+    line-height: 20px;
+    display: inline-block;
+}
+.projectBlankLabel {
+    display: block;
+    height: 37px;
+}
+.clickable {
+    cursor: pointer;
+}
+.positionRelative {
+    position: relative;
+}

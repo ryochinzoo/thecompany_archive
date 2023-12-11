@@ -1,27 +1,27 @@
-import ReactPlayer from "react-player/lazy"
+import dynamic from 'next/dynamic'
 
-import utilStyles from "../../styles/utils.module.css"
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
 
-export default function NarrowVideo({ URL }) {
+import utilStyles from "../../styles/narrowVideo.module.css"
+
+export default function NarrowVideo({ URL, playingInView }) {
     return(
         <>
         <ReactPlayer
                 url={URL}
                 className={utilStyles.zoomedPlayer} 
-                playing={true}
+                playing={playingInView}
+                playsinline={true}
                 loop={true}
                 muted
                 width="100vw"
                 height="100vh"
                 config={{
-                    vimeo: {
-                        playerOptions: {
-                            height: "100vh",
-                            width: "100vw",
-                            responsive: true,
-                            controls: false,
-                        }
-                    }
+                    file: { 
+                        attributes: { 
+                            preload: 'none',
+                        } 
+                    } 
                 }}
             />
         </>

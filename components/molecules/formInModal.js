@@ -1,13 +1,14 @@
-import CommonStyle from '../../styles/commonParts.module.css'
-import utilStyles from "../../styles/utils.module.css"
-import FormTextInput from '../atoms/formTextInput'
-import FormTextArea from '../atoms/formTextArea'
-import SubmitButton from '../atoms/submitButton'
+import CommonStyle from '../../styles/formInModal.module.css'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import dynamic from 'next/dynamic'
 
-export default function FormInModal ({modalShowStateHandle, mailInfo}) {
+const FormTextInput = dynamic(() => import('../atoms/formTextInput'))
+const FormTextArea = dynamic(() => import('../atoms/formTextArea'))
+const SubmitButton = dynamic(() => import('../atoms/submitButton'))
+
+export default function FormInModal ({modalShowStateHandle, mailInfo, isMain}) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -81,14 +82,14 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
             validation.firstName = true
         } else {
             validation.firstName = false
-            errorMessages.firstName = "First Name is required"
+            errorMessages.firstName = "First name is required"
         }
 
         if (lastName.trim().length !== 0) {
             validation.lastName = true
         } else {
             validation.lastName = false
-            errorMessages.lastName = "Last Name is required"
+            errorMessages.lastName = "Last name is required"
         }
 
         if (phoneNumber.trim().length !== 0) {
@@ -97,7 +98,7 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                 validation.phoneNumber = true
             } else {
                 validation.phoneNumber = false
-                errorMessages.phoneNumber = "Phone Number is invalid"
+                errorMessages.phoneNumber = "Phone number is invalid"
             }
         }
 
@@ -276,7 +277,7 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
     }
     return(
         <>
-            <div style={{backgroundColor: '#fff'}} className={utilStyles.headerLogoInModal}></div>
+            <div style={{backgroundColor: '#fff'}} className={CommonStyle.headerLogoInModal}></div>
             <div className={CommonStyle.modalCloseButton} onClick={() => {
                 modalShowStateHandle(false)
             }}></div>
@@ -287,7 +288,7 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                 <div className={`${CommonStyle.inputArea}`}>
                     <form onSubmit={handleSubmit} >
                         <FormTextInput
-                            placeholder={"First Name"}
+                            placeholder={"First name"}
                             isRequired={true}
                             isModal={true}
                             isSignUp={false}
@@ -298,9 +299,10 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                             hasError={formValidation.details["firstName"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                         <FormTextInput
-                            placeholder={"Last Name"}
+                            placeholder={"Last name"}
                             isRequired={true}
                             isModal={true}
                             isSignUp={false}
@@ -311,6 +313,7 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                             hasError={formValidation.details["lastName"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                         <FormTextInput
                             placeholder={"E-mail"}
@@ -324,9 +327,10 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                             hasError={formValidation.details["email"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                         <FormTextInput
-                            placeholder={"Phone Number"}
+                            placeholder={"Phone number"}
                             isRequired={false}
                             isModal={true}
                             isSignUp={false}
@@ -337,6 +341,7 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                             hasError={formValidation.details["phoneNumber"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                         <FormTextArea
                             placeholder={"A few sentences about your project..."}
@@ -372,10 +377,13 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                         TikTok
                     </div>
                     <div className={`${CommonStyle.infoHeadline}`}>Sign up for updates:</div>
-                        <form onSubmit={handleSubmitSignup} >
+                        <form action="https://thecompanyberlin.us20.list-manage.com/subscribe/post" method="POST">
+                            <input type="hidden" name="u" value="c94d38fd085b70f961c3972c6" />
+                            <input type="hidden" name="id" value="074950964e" />
+                            <input type="hidden" name="MERGE0" value={emailSignUp} />
                             <div className={`${CommonStyle.signupWrapper} ${CommonStyle.inModal}`}>
                                 <FormTextInput
-                                    placeholder = {"Email Address"}
+                                    placeholder = {"Email address"}
                                     isRequired = {false}
                                     isModal = {true}
                                     isSignUp = {true}
@@ -387,7 +395,7 @@ export default function FormInModal ({modalShowStateHandle, mailInfo}) {
                                     isSubmitClicked={isSubmitClicked}
                                     isClearAll={isClearAll}
                                 ></FormTextInput>
-                                <button className={`${CommonStyle.signUpSubmit}`}>→</button>
+                                <button type="submit" className={`${CommonStyle.signUpSubmit}`} onClick={() => {setIsClearAll(true)}}>→</button>
                                 <ToastContainer />
                             </div>
                         </form>

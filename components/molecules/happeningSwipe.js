@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import "swiper/css"
 import "swiper/css/navigation"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -51,7 +51,7 @@ export default function HappeningSwipe({ items }) {
                         })
                     } else {
                         return (
-                            <SwiperSlide></SwiperSlide>
+                            <SwiperSlide key={index}></SwiperSlide>
                         )
                     }
                 })}

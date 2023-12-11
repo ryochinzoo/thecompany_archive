@@ -82,7 +82,7 @@ export function getTargetArray(items, target) {
     let result = null
     const regx = new RegExp(target, 'gi')
     items.map(item => {
-        if (item.title.match(regx)) {
+        if (item.title[0].match(regx)) {
             result = item
         }
     })

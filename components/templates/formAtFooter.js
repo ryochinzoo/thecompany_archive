@@ -1,13 +1,14 @@
-import CommonStyle from '../../styles/commonParts.module.css'
-import utilStyles from "../../styles/utils.module.css"
+import CommonStyle from '../../styles/formAtFooter.module.css'
 import { useState } from 'react'
-import FormTextInput from '../atoms/formTextInput'
-import FormTextArea from '../atoms/formTextArea'
-import SubmitButton from '../atoms/submitButton'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import dynamic from 'next/dynamic'
 
-export default function FormAtFooter ({mailInfo}) {
+const FormTextInput = dynamic(() => import('../atoms/formTextInput'))
+const FormTextArea = dynamic(() => import('../atoms/formTextArea'))
+const SubmitButton = dynamic(() => import('../atoms/submitButton'))
+
+export default function FormAtFooter ({mailInfo, isMain}) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -75,14 +76,14 @@ export default function FormAtFooter ({mailInfo}) {
             validation.firstName = true
         } else {
             validation.firstName = false
-            errorMessages.firstName = "First Name is required"
+            errorMessages.firstName = "First name is required"
         }
 
         if (lastName.trim().length !== 0) {
             validation.lastName = true
         } else {
             validation.lastName = false
-            errorMessages.lastName = "Last Name is required"
+            errorMessages.lastName = "Last name is required"
         }
 
         if (phoneNumber.trim().length !== 0) {
@@ -91,7 +92,7 @@ export default function FormAtFooter ({mailInfo}) {
                 validation.phoneNumber = true
             } else {
                 validation.phoneNumber = false
-                errorMessages.phoneNumber = "Phone Number is invalid"
+                errorMessages.phoneNumber = "Phone number is invalid"
             }
         }
 
@@ -121,7 +122,7 @@ export default function FormAtFooter ({mailInfo}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log('Sending')
-        const newMailInfo = createNewObj(mailInfo, "BookingRequest")
+        const newMailInfo = createNewObj(mailInfo, "GetInTouch")
         let data = {
             firstName,
             lastName,
@@ -191,7 +192,7 @@ export default function FormAtFooter ({mailInfo}) {
                 <form onSubmit={handleSubmit} >
                     <div className={`${CommonStyle.flexTextInput}`}>
                         <FormTextInput
-                            placeholder={"First Name"}
+                            placeholder={"First name"}
                             isRequired={true}
                             isModal={false}
                             isSignUp={false}
@@ -202,9 +203,10 @@ export default function FormAtFooter ({mailInfo}) {
                             hasError={formValidation.details["firstName"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                         <FormTextInput
-                            placeholder={"Last Name"}
+                            placeholder={"Last name"}
                             isRequired={true}
                             isModal={false}
                             isSignUp={false}
@@ -215,6 +217,7 @@ export default function FormAtFooter ({mailInfo}) {
                             hasError={formValidation.details["lastName"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                     </div>
                     <div className={`${CommonStyle.flexTextInput}`}>
@@ -230,9 +233,10 @@ export default function FormAtFooter ({mailInfo}) {
                             hasError={formValidation.details["email"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                         <FormTextInput
-                            placeholder={"Phone Number"}
+                            placeholder={"Phone number"}
                             isRequired={false}
                             isModal={false}
                             isSignUp={false}
@@ -243,6 +247,7 @@ export default function FormAtFooter ({mailInfo}) {
                             hasError={formValidation.details["phoneNumber"]}
                             isSubmitClicked={isSubmitClicked}
                             isClearAll={isClearAll}
+                            isMain={isMain}
                         ></FormTextInput>
                     </div>
                     <div className={`${CommonStyle.textAreaWrapper}`}>

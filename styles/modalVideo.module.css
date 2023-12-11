@@ -1,0 +1,31 @@
+.loaderWrapperBig {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.zoomedPlayerScaledVertical {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: calc(100vh * (9/16))!important;
+    min-height: 100vh;
+    object-fit: cover;
+}
+.zoomedPlayerScaled {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    min-width: calc(100vh * (16/9));
+    min-height: 100vh;
+    object-fit: cover;
+}
+.soundIcon {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    bottom: 50px;
+    left: 40px;
+    z-index: 6;
+}

@@ -3429,7 +3429,7 @@
   "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.2.1.tgz"
   "version" "1.2.1"
 
-"cluster-key-slot@1.1.0":
+"cluster-key-slot@^1.1.0", "cluster-key-slot@1.1.0":
   "integrity" "sha512-2Nii8p3RwAPiFwsnZvukotvow2rIHM+yQ6ZcBXGHdniadkYGZYiGmkHJIbZPIV9nfv7m/U1IPMVVcAhoWFeklw=="
   "resolved" "https://registry.npmjs.org/cluster-key-slot/-/cluster-key-slot-1.1.0.tgz"
   "version" "1.1.0"
@@ -3921,7 +3921,7 @@
   "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.24.0.tgz"
   "version" "2.24.0"
 
-"debug@*", "debug@^4.1.0", "debug@^4.1.1", "debug@^4.3.2", "debug@4", "debug@4.3.2":
+"debug@*", "debug@^4.1.0", "debug@^4.1.1", "debug@^4.3.1", "debug@^4.3.2", "debug@4", "debug@4.3.2":
   "integrity" "sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-4.3.2.tgz"
   "version" "4.3.2"
@@ -4114,7 +4114,7 @@
   "resolved" "https://registry.npmjs.org/delegates/-/delegates-1.0.0.tgz"
   "version" "1.0.0"
 
-"denque@^1.4.1":
+"denque@^1.1.0", "denque@^1.4.1":
   "integrity" "sha512-XwE+iZ4D6ZUB7mfYRMb5wByE8L74HCn30FBN7sWnXksWc1LO1bPDl67pBR9o/kC4z/xSNAwkMYcGgqDV3BE3Hw=="
   "resolved" "https://registry.npmjs.org/denque/-/denque-1.5.1.tgz"
   "version" "1.5.1"
@@ -5713,6 +5713,23 @@
   dependencies:
     "loose-envify" "^1.0.0"
 
+"ioredis@^4.17.1":
+  "integrity" "sha512-3GYo0GJtLqgNXj4YhrisLaNNvWSNwSS2wS4OELGfGxH8I69+XfNdnmV1AyN+ZqMh0i7eX+SWjrwFKDBDgfBC1A=="
+  "resolved" "https://registry.npmjs.org/ioredis/-/ioredis-4.28.5.tgz"
+  "version" "4.28.5"
+  dependencies:
+    "cluster-key-slot" "^1.1.0"
+    "debug" "^4.3.1"
+    "denque" "^1.1.0"
+    "lodash.defaults" "^4.2.0"
+    "lodash.flatten" "^4.4.0"
+    "lodash.isarguments" "^3.1.0"
+    "p-map" "^2.1.0"
+    "redis-commands" "1.7.0"
+    "redis-errors" "^1.2.0"
+    "redis-parser" "^3.0.0"
+    "standard-as-callback" "^2.1.0"
+
 "ip@^1.1.0":
   "integrity" "sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg=="
   "resolved" "https://registry.npmjs.org/ip/-/ip-1.1.8.tgz"
@@ -6447,6 +6464,18 @@
     "path-to-regexp" "^1.1.1"
     "urijs" "^1.19.0"
 
+"koa-router@^8.0.8":
+  "integrity" "sha512-2rNF2cgu/EWi/NV8GlBE5+H/QBoaof83X6Z0dULmalkbt7W610/lyP2EOLVqVrUUFfjsVWL/Ju5TVBcGJDY9XQ=="
+  "resolved" "https://registry.npmjs.org/koa-router/-/koa-router-8.0.8.tgz"
+  "version" "8.0.8"
+  dependencies:
+    "debug" "^4.1.1"
+    "http-errors" "^1.7.3"
+    "koa-compose" "^4.1.0"
+    "methods" "^1.1.2"
+    "path-to-regexp" "1.x"
+    "urijs" "^1.19.2"
+
 "koa-send@^5.0.0":
   "integrity" "sha512-tmcyQ/wXXuxpDxyNXv5yNNkdAMdFRqwtegBXUaowiQzUKqJehttS0x2j0eOZDQAyloAth5w6wwBImnFzkUz3pQ=="
   "resolved" "https://registry.npmjs.org/koa-send/-/koa-send-5.0.1.tgz"
@@ -6616,6 +6645,16 @@
   "resolved" "https://registry.npmjs.org/lodash.deburr/-/lodash.deburr-4.1.0.tgz"
   "version" "4.1.0"
 
+"lodash.defaults@^4.2.0":
+  "integrity" "sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ=="
+  "resolved" "https://registry.npmjs.org/lodash.defaults/-/lodash.defaults-4.2.0.tgz"
+  "version" "4.2.0"
+
+"lodash.flatten@^4.4.0":
+  "integrity" "sha512-C5N2Z3DgnnKr0LOpv/hKCgKdb7ZZwafIrsesve6lmzvZIRZRGaZ/l6Q8+2W7NaT+ZwO3fFlSCzCzrDCFdJfZ4g=="
+  "resolved" "https://registry.npmjs.org/lodash.flatten/-/lodash.flatten-4.4.0.tgz"
+  "version" "4.4.0"
+
 "lodash.get@^4.4.2":
   "integrity" "sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ=="
   "resolved" "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
@@ -6625,6 +6664,11 @@
   "integrity" "sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8= sha512-W3Bx6mdkRTGtlJISOvVD/lbqjTlPPUDTMnlXZFnVwi9NKJ6tiAk6LVdlhZMm17VZisqhKcgzpO5Wz91PCt5b0w=="
   "resolved" "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz"
   "version" "4.3.0"
+
+"lodash.isarguments@^3.1.0":
+  "integrity" "sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg=="
+  "resolved" "https://registry.npmjs.org/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz"
+  "version" "3.1.0"
 
 "lodash.isboolean@^3.0.3":
   "integrity" "sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY= sha512-Bz5mupy2SVbPHURB98VAcw+aHh4vRV5IPNhILUCsOzRmsTmSQ17jIuqopAentWoehktxGd9e/hbIXq980/1QJg=="
@@ -7624,6 +7668,11 @@
   dependencies:
     "p-limit" "^2.2.0"
 
+"p-map@^2.1.0":
+  "integrity" "sha512-y3b8Kpd8OAN444hxfBbFfj1FY/RjtTd8tzYwhUqNYXx0fXx2iX4maP4Qr6qhIKbQXI02wTLAda4fYUbDagTUFw=="
+  "resolved" "https://registry.npmjs.org/p-map/-/p-map-2.1.0.tgz"
+  "version" "2.1.0"
+
 "p-map@^3.0.0":
   "integrity" "sha512-d3qXVTF/s+W+CdJ5A29wywV2n8CQQYahlgz2bFiA+4eVNJbHJodPZ+/gXwPGh0bOqA+j8S+6+ckmvLGPk1QpxQ=="
   "resolved" "https://registry.npmjs.org/p-map/-/p-map-3.0.0.tgz"
@@ -7856,7 +7905,7 @@
   dependencies:
     "isarray" "0.0.1"
 
-"path-to-regexp@^6.1.0":
+"path-to-regexp@^6.1.0", "path-to-regexp@^6.2.0":
   "integrity" "sha512-f66KywYG6+43afgE/8j/GoiNyygk/bnoCbps++3ErRKsIYkGGupyv07R2Ok5m9i67Iqc+T2g1eAUGUPzWhYTyg=="
   "resolved" "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-6.2.0.tgz"
   "version" "6.2.0"
@@ -7865,6 +7914,13 @@
   "integrity" "sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ=="
   "resolved" "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.7.tgz"
   "version" "0.1.7"
+
+"path-to-regexp@1.x":
+  "integrity" "sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA=="
+  "resolved" "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-1.8.0.tgz"
+  "version" "1.8.0"
+  dependencies:
+    "isarray" "0.0.1"
 
 "path-type@^4.0.0":
   "integrity" "sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw=="
@@ -8541,12 +8597,22 @@
   dependencies:
     "resolve" "^1.20.0"
 
-"redis-errors@^1.0.0":
+"redis-commands@1.7.0":
+  "integrity" "sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ=="
+  "resolved" "https://registry.npmjs.org/redis-commands/-/redis-commands-1.7.0.tgz"
+  "version" "1.7.0"
+
+"redis-errors@^1.0.0", "redis-errors@^1.2.0":
   "integrity" "sha1-62LSrbFeTq9GEMBK/hUpOEJQq60= sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w=="
   "resolved" "https://registry.npmjs.org/redis-errors/-/redis-errors-1.2.0.tgz"
   "version" "1.2.0"
 
-"redis-parser@3.0.0":
+"redis-lru@^0.6.0":
+  "integrity" "sha512-nDH+EHcUXp+cJdnkq8Hb+99kr82EDmAiFY40Bb02nB00A4N/dUqw3SCIJSgH8SUP2uee9EFijbMlf5WSul22uw=="
+  "resolved" "https://registry.npmjs.org/redis-lru/-/redis-lru-0.6.0.tgz"
+  "version" "0.6.0"
+
+"redis-parser@^3.0.0", "redis-parser@3.0.0":
   "integrity" "sha1-tm2CjNyv5rS4pCin3vTGvKwxyLQ= sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A=="
   "resolved" "https://registry.npmjs.org/redis-parser/-/redis-parser-3.0.0.tgz"
   "version" "3.0.0"
@@ -9486,6 +9552,11 @@
   "resolved" "https://registry.npmjs.org/stack-trace/-/stack-trace-0.0.10.tgz"
   "version" "0.0.10"
 
+"standard-as-callback@^2.1.0":
+  "integrity" "sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A=="
+  "resolved" "https://registry.npmjs.org/standard-as-callback/-/standard-as-callback-2.1.0.tgz"
+  "version" "2.1.0"
+
 "static-extend@^0.1.1":
   "integrity" "sha512-72E9+uLc27Mt718pMHt9VMNiAL4LMsmDbBva8mxWUCkT07fSzEGMYUCk0XWY6lp0j6RBAG4cJ3mWuZv2OE3s0g=="
   "resolved" "https://registry.npmjs.org/static-extend/-/static-extend-0.1.2.tgz"
@@ -9610,6 +9681,30 @@
     "fs-extra" "^9.1.0"
     "lodash" "4.17.21"
     "reportback" "^2.0.2"
+    "strapi-utils" "3.6.11"
+
+"strapi-middleware-cache@^2.1.8":
+  "integrity" "sha512-QRHzurX091UMN8EqDh/1lFoBW7OYmhAKJ7l4Q/0Wf1pWNgKaOcSR1SndAt94Wby82cQXcvOP2D505sqd/LimqA=="
+  "resolved" "https://registry.npmjs.org/strapi-middleware-cache/-/strapi-middleware-cache-2.1.8.tgz"
+  "version" "2.1.8"
+  dependencies:
+    "chalk" "^4.1.0"
+    "ioredis" "^4.17.1"
+    "koa-router" "^8.0.8"
+    "lodash" "^4.17.15"
+    "lru-cache" "^5.1.1"
+    "path-to-regexp" "^6.2.0"
+    "pluralize" "^8.0.0"
+    "redis-lru" "^0.6.0"
+
+"strapi-plugin-i18n@^3.6.11":
+  "integrity" "sha512-HvLGs4fxsYySZKazh7Gj7oBUS+eecz638GiBR4Fs1epIuYQBWrsObpXDidJDkArqODrwGgOV7jUVxPJkfVvYbw=="
+  "resolved" "https://registry.npmjs.org/strapi-plugin-i18n/-/strapi-plugin-i18n-3.6.11.tgz"
+  "version" "3.6.11"
+  dependencies:
+    "lodash" "4.17.21"
+    "p-map" "4.0.0"
+    "pluralize" "8.0.0"
     "strapi-utils" "3.6.11"
 
 "strapi-utils@3.6.11":
@@ -10305,7 +10400,7 @@
   dependencies:
     "punycode" "^2.1.0"
 
-"urijs@^1.19.0":
+"urijs@^1.19.0", "urijs@^1.19.2":
   "integrity" "sha512-HXgFDgDommxn5/bIv0cnQZsPhHDA90NPHD6+c/v21U5+Sx5hoP8+dP9IZXBU1gIfvdRfhG8cel9QNPeionfcCQ=="
   "resolved" "https://registry.npmjs.org/urijs/-/urijs-1.19.11.tgz"
   "version" "1.19.11"

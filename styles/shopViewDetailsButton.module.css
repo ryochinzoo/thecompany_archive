@@ -1,0 +1,108 @@
+.shopAddToBag {
+    background-color: #000;
+    border: 1px solid #fff;
+}
+.shopAddToBag {
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 17px;
+    width: 331px;
+    height: 56px;
+    padding: 16px 0;
+    text-align: center;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin: 11px 0;
+    z-index: 3;
+}
+.shopViewDetailsButton {
+    color: #ffffff;
+    position: relative;
+    font-weight: 500;
+    overflow: hidden;
+    font-size: 17px;
+    width: 214px;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    margin: 10px auto;
+    z-index: 3;
+}
+
+.shopViewDetailsButton {
+    background-color: #000;
+    border: 1px solid #fff;
+}
+
+.shopViewDetailsButton::before,
+.shopAddToBag::before { 
+    content: "";
+    width: 120%;
+    height: 200%;
+    position: absolute;
+    top: -50%;
+    right: 0;
+    z-index: -1;
+    background: #fff;
+    border-radius: 0 100% 100% 0;
+    transform: translateX(-100%);
+    transition: transform ease .3s;
+}
+
+.shopViewDetailsButton:hover,
+.shopAddToBag:hover {
+    color:#000;
+}
+
+.shopViewDetailsButton:hover::before,
+.shopAddToBag:hover::before {
+    transform: translateX(10%);
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .shopAddToBag {
+        color: #ffffff;
+        position: relative;
+        font-weight: 500;
+        font-size: 20px;
+        width: 42vw;
+        padding: 12px 0;
+        text-align: center;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        margin: 15px 0;
+        z-index: 3;
+    }
+}
+@media screen and (max-width: 767px) {
+    .shopAddToBag {
+        color: #ffffff;
+        position: relative;
+        font-weight: 500;
+        font-size: 20px;
+        width: 70vw;
+        padding: 12px 0;
+        text-align: center;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        margin: 15px auto;
+        z-index: 3;
+    }
+}
+@media screen and (max-width: 500px) {
+    .shopViewDetailsButton {
+        color: #ffffff;
+        position: relative;
+        font-weight: 500;
+        font-size: 17px;
+        width: 60vw;
+        padding: 15px 0;
+        text-align: center;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        margin: 10px auto;
+        z-index: 3;
+    }
+}

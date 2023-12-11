@@ -1,0 +1,165 @@
+{
+    "ui": {},
+    "header": {
+        "hallo": "Hello"
+    },
+    "about": {
+        "headline": "An institution for dance and choreography with a focus on individuality.",
+        "intro": "was founded in 2017<br /> by Jouana Samia.",
+        "first": {
+            "one": "Her initial plan was to ",
+            "two": "bring together <br />young <br />women ",
+            "three": "from diverse dance backgrounds and empower them through regular training."
+        },
+        "second": {
+            "one": "She herself ",
+            "two": "is rooted in <br />urban dance ",
+            "three": "and later expanded her dance skills by training in ballet, dancehall, commercial and heels."
+        },
+        "third": {
+            "one": "Jouana Samia",
+            "two": "quickly <br />realized ",
+            "three": "that the mixture and exchange of these different dance styles did not exist before."
+        },
+        "gradation": {
+            "before_company": "The awareness of this came from the original idea for ",
+            "after_company": "especially the exchange of different ethnic backgrounds and dance styles. The goal was to create something bigger for the next generation - from a pure women's collective to an open space for every dance-loving person, regardless of their gender, origin, religion or age."
+        },
+        "movingtomove": "is the guiding principle of our philosophy. We want to move people, both physically and emotionally.",
+        "last": {
+            "left": "We are happy",
+            "right": "that numerous young talents trust us and our journey and contribute to the history of German dance culture through our work."
+        }
+    },
+    "about_sp": {
+        "intro": "was founded in 2017 by Jouana Samia.",
+        "first": {
+            "one": "Her initial plan was to ",
+            "two": "bring together <br />young <br />women ",
+            "three": "from diverse dance backgrounds and empower them through regular training."
+        },
+        "second": {
+            "one": "She herself ",
+            "two": "is rooted in urban dance ",
+            "three": "and later expanded her dance skills by training in ballet, dancehall, commercial and heels."
+        },
+        "third": {
+            "one": "Jouana Samia",
+            "two": "quickly <br />realized ",
+            "three": "that the mixture and exchange of these different dance styles did not exist before."
+        },
+        "gradation": {
+            "before_company": "The awareness of this came from the original idea for ",
+            "after_company": "especially the exchange of different ethnic backgrounds and dance styles. The goal was to create something bigger for the next generation - from a pure women's collective to an open space for every dance-loving person, regardless of their gender, origin, religion or age."
+        },
+        "movingtomove": "is the guiding principle of our philosophy. We want to move people, both physically and emotionally.",
+        "last": {
+            "left": "We are happy",
+            "right": "that numerous young talents trust us and our journey and contribute to the history of German dance culture through our work."
+        }
+    },
+    "education_head": {
+        "first_paragraph": "We support dancers through various workshops with national and international instructors. ",
+        "second_paragraph": "Since 2017, we have been training exceptional talents in closed sessions to become professional dancers, with a primary focus on nurturing their individuality."
+    },
+    "entertainment_head": {
+        "first_paragraph": "Our expertise in event and advertising productions has allowed us",
+        "second_paragraph": " to connect talents to the entertainment industry and various productions, offering creations such as show concepts and choreography."
+    },
+    "happenings_head": {
+        "first_paragraph": "In addition to a fixed training for our ",
+        "first_paragraph2": " members, we have firmly established ourselves in the German dance scene by hosting various events, which are intended to facilitate exchange within the Berlin scene as well as beyond its borders.",
+        "second_paragraph": "We regularly have guests from all over the world, so that our community keeps growing. "
+    },
+    "happenings_main": {
+        "the_intensive": {
+            "first_paragraph": {
+                "text": "A weekend packed with classes in a wide variety of dance styles for a particularly intensive training experience.<br />"
+            },
+            "second_paragraph": {
+                "text": "Whether classical technique training, mindset exercises, heels, commercial or hip hop - here the participants are regularly asked to do everything they can to get them out of their own comfort zone and give them room to grow.<br />"
+            },
+            "third_paragraph": {
+                "text": "In addition to the individual development of the participants, the INTENSIVES promote the community aspect through panel talks and quality time together. In the meantime, five editions of this event have been held successfully - and the sixth is already in the starting blocks.<br />"
+            }
+        },
+
+        "the_intensive_sp": {
+            "first_paragraph": {
+                "text": "A weekend packed with classes in a wide variety of dance styles for a particularly intensive training experience.<br />"
+            },
+            "second_paragraph": {
+                "text": "Whether classical technique training, mindset exercises, heels, commercial or hip hop - here the participants are regularly asked to do everything they can to get them out of their own comfort zone and give them room to grow.<br />"
+            },
+            "third_paragraph": {
+                "text": "In addition to the individual development of the participants, the INTENSIVES promote the community aspect through panel talks and quality time together. In the meantime, five editions of this event have been held successfully - and the sixth is already in the starting blocks.<br />"
+            }
+        },
+
+        "the_tour": {
+            "first_paragraph": {
+                "text": "1 tour across Germany, 10 cities, 20 classes and over 500 participants.<br />"
+            },
+            "second_paragraph": {
+                "text": "So in September 2019, Jouana Samia went on a big tour together with a small team as ",
+                "text2": " through a total of ten different German cities, from Hamburg to Munich.<br />"
+            },
+            "third_paragraph": {
+                "text": "A very important aspect of this tour was the subsequent mindset-oriented talk together with the students, as her main goal was to prepare them mentally for the industry. Jouana reached not only more than 500 young talents but also several thousands via social media, which is why the tour gave her the vision for her next project.<br />"
+            }
+        },
+
+        "the_tour_sp": {
+            "first_paragraph": {
+                "text": "1 tour across Germany, 10 cities, 20 classes and over 500 participants.<br />"
+            },
+            "second_paragraph": {
+                "text": "So in September 2019, Jouana Samia went on a big tour together with a small team as ",
+                "text2": " through a total of ten different German cities, from Hamburg to Munich.<br />"
+            },
+            "third_paragraph": {
+                "text": "A very important aspect of this tour was the subsequent mindset-oriented talk together with the students, as her main goal was to prepare them mentally for the industry. Jouana reached not only more than 500 young talents but also several thousands via social media, which is why the tour gave her the vision for her next project.<br />"
+            }
+        },
+
+        "the_ball": {
+            "first_paragraph": {
+                "text": "The idea: to show the diversity of the Berlin dance scene through different choreographers and dance styles.<br />"
+            },
+            "second_paragraph": {
+                "text": "The ball took place under the given theme &bdquo;The 4 Elements&Prime;. Each choreographer was assigned an element, to which he could freely create a piece in his own choice of music and dancers.<br />"
+            },
+            "third_paragraph": {
+                "text": "The visual team created the matching visuals parallel to the songs of the choreographers, which were played in the background of the performances on a huge LED screen, so that the spectators of the sold-out event were taken on a multimedia journey through the four elements fire, water, earth and air.<br />"
+            }
+        },
+
+        "the_ball_sp": {
+            "first_paragraph": {
+                "text": "The idea: to show the diversity of the Berlin dance scene through different choreographers and dance styles.<br />"
+            },
+            "second_paragraph": {
+                "text": "The ball took place under the given theme &bdquo;The 4 Elements&Prime;. Each choreographer was assigned an element, to which he could freely create a piece in his own choice of music and dancers.<br />"
+            },
+            "third_paragraph": {
+                "text": "The visual team created the matching visuals parallel to the songs of the choreographers, which were played in the background of the performances on a huge LED screen, so that the spectators of the sold-out event were taken on a multimedia journey through the four elements fire, water, earth and air.<br />"
+            }
+        }
+    },
+    "brands": {
+        "main_description": "Dancing is a very special form of artistic expression that captivates people more and more. This has now been recognized by major brands, which are increasingly using dancers in their advertisements, on the one hand to showcase their talent and creativity to a worldwide audience, and on the other hand to promote the brand's message and values. At ",
+        "main_description2": ", this happens in a variety of forms - from classic commercial spots to fashion shows or print campaigns."
+    },
+    "artists": {
+        "main_description": "In the course of ",
+        "main_description2": "'s growing popularity, more and more musicians have become aware of Jouana Samia's choreographic work, so that she can now boast a large portfolio of artists who regularly rely on her creative vision. She not only takes care of the choreography and provides the dancers, but often also proves her expertise in the areas of styling and art direction. What comes out in the end are music videos and performances individually tailored to the artist and song - whether on television, at festivals or for sold-out tours."
+    },
+    "studio": {
+        "main_description": "THESTUDIO is our spacious studio in the heart of Berlin Schöneberg. The daily training of our THECOMPANY dance program takes place here. Our sun-drenched and brightly furnished dance room is 117sqm in size and offers space for about 40 users. Thanks to a generous mirrored front, the room has an inviting, friendly atmosphere. Our professional Harlequin dance floor offers optimal conditions for dancers of all styles. The room also offers the best possible conditions for yoga, Pilates, acting classes and the like. In addition, THESTUDIO is equipped with professional speakers and two large spotlights. It is therefore particularly suitable for photo and video shoots. <br /><br />Room booking requests can be made by email to ",
+        "main_description2": "."
+    },
+    "footer": {
+        "and": "and",
+        "privacyNotice": "Privacy notice"
+    }
+}

@@ -18,7 +18,7 @@
         "VimeoLink"
       ]
     },
-    "ImageOrVideo": {
+    "PreviewPhoto": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -31,6 +31,16 @@
     },
     "VimeoURL": {
       "type": "string"
+    },
+    "PreviewVideo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

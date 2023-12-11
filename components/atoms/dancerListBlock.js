@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import DancerStyle from '../../styles/dancerProfile.module.css'
+import DancerStyle from '../../styles/dancerListBlock.module.css'
 import {useState} from 'react'
 
 export default function DancerListBlock({photo, name, index}) {
@@ -24,7 +24,7 @@ export default function DancerListBlock({photo, name, index}) {
                     alt={name}
                     layout='fill'
                     objectFit='cover'
-                    priority
+                    loading='lazy'
                 />
             </div>
         </>

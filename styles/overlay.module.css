@@ -1,0 +1,14 @@
+.testOverlay {
+    width: 100%;
+    height: 100vh;
+    background: rgb(204, 57, 57);
+    z-index: 9999;
+}
+.textOnlyButton {
+    -moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	background-color: transparent;
+    cursor: pointer;
+}

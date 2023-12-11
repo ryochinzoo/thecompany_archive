@@ -1,0 +1,84 @@
+.inputTextAreaModal {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #fff;
+    padding: 20px 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.inputTextAreaModal:focus {
+    background-color: transparent;
+    border: 1px solid #fff;
+    outline: none;
+}
+
+.inputTextAreaModal::placeholder {
+    opacity: 1;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+
+.inputTextAreaModal::placeholder {
+    opacity: 1;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+.inputTextArea {
+    width: 65%;
+    min-height: 225px;
+    background-color: #fff;
+    border: 1px solid #E1E4ED;
+    padding: 20px 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    color: #979797;
+    font-size: 18px;
+}
+.inputTextArea:focus {
+    background-color: #fff;
+    border: 1px solid #C93D38;
+    outline: none;
+}
+.inputTextArea::placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 18px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+.inputTextArea::placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 18px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .inputTextArea {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .inputTextArea {
+        width: 100%;
+        min-height: 225px;
+        background-color: #fff;
+        border: 1px solid #E1E4ED;
+        padding: 20px 10px;
+        margin-bottom: 8px;
+        border-radius: 5px;
+        color: #979797;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,308 @@
+
+.toastifyCustom {
+    z-index: 10001;
+}
+.flipCard {
+    position: fixed;
+    background-color: transparent;
+    z-index: 1201;
+    right: 15.5%;
+    top: 32px;
+    cursor: pointer;
+    width: 141px;
+    height: 37px;
+    text-align: center;perspective: 1000px;
+    font-weight: 300;
+    font-size: 14.5px;
+    letter-spacing: 0.9px;
+    transition-duration: .2s;
+}
+.flipFront::before,
+.flipBack::before { 
+    content: "";
+    width: 120%;
+    height: 200%;
+    position: absolute;
+    top: -50%;
+    right: 0;
+    z-index: -1;
+    background: #f9f9f9;
+    border-radius: 0 100% 100% 0;
+    transform: translateX(-100%);
+    transition: transform ease .3s;
+}
+
+.flipFront:hover,
+.flipBack:hover {
+    color:#C93D38;
+    border: 2px solid #C93D38;
+}
+.flipFront:hover::before,
+.flipBack:hover::before {
+    transform: translateX(10%);
+}
+.flipInner {
+    position: relative;
+    height: 100%;
+    transition: 0.8s;
+    transform-style: preserve-3d;
+    width: 141px;
+}
+.flippingAnimation {
+    width: 170px;
+    transform: rotateX(180deg);
+}
+
+.flipFront, .flipBack {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border: 2px solid #C93D38;
+  z-index: 1;
+}
+.flipFront {
+    color: #fff;
+    padding: 8px 0;
+    background-color: #C93D38;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+}
+.flipBack {
+    color: #f9f9f9;
+    padding: 8px 0;
+    background-color: #C93D38;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    transform: rotateY(180deg);
+    transform: rotateX(180deg);
+    -webkit-transform: rotateY(180deg);
+    -webkit-transform: rotateX(180deg);
+}
+.flipText {
+    border-bottom: 1px solid #f9f9f9;
+    display: inline-block;
+    line-height: 0.75;
+}
+.flipFront:hover .flipText,
+.flipBack:hover .flipText {
+    border-bottom: 1px solid #C93D38;
+    display: inline-block;
+    line-height: 0.75;
+}
+.signupWrapper, .signupWrapperOther {
+    display: flex;
+    position: relative;
+}
+.modalWrapper {
+    display: flex;
+    padding: 0 15%;
+    margin-top: 40px;
+}
+.modalFormHeadline {
+    font-weight: 700;
+    color: #fff;
+    font-size: 140px;
+    margin-left: 10%;
+    margin-top: 50px;
+}
+
+.signUpSubmit {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 12px;
+    cursor: pointer;
+    font-size: 28px;
+}
+.modalCloseButton {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: fixed;
+    margin-left: auto;
+    margin-right: 80px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    top: 0px;
+    right: 0px;
+}
+.modalCloseButton::before, .modalCloseButton::after{
+    content: "";
+    display: block;
+    width: 70%;
+    height: 3px;
+    background: rgba(255, 255, 255, 1);
+    transform: rotate(45deg);
+    transform-origin:0% 50%;
+    position: absolute;
+    top: 60px;
+    left: 25%;
+}
+.modalCloseButton::after{
+    transform: rotate(-45deg);
+    transform-origin:100% 50%;
+    left: auto;
+    right: 25%;
+}
+.generalInfo {
+    color: #fff;
+    margin-left: 100px;
+}
+.infoHeadline {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.infoDetail {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 2.5;
+    margin-bottom: 40px;
+}
+.inputArea {
+    width: 100%;
+}
+.headerLogoInModal {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000000;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    
+    .flipCard {
+        position: fixed;
+        background-color: transparent;
+        z-index: 1201;
+        right: 32%;
+        top: 20px;
+        cursor: pointer;
+        width: 141px;
+        height: 37px;
+        text-align: center;perspective: 1000px;
+        font-weight: 300;
+        font-size: 14.5px;
+        letter-spacing: 0.9px;
+        transition-duration: .2s;
+        display: none;
+    }
+    .infoHeadline {
+        font-size: 2vw;
+        margin-bottom: 10px;
+    }
+    .infoDetail {
+        font-size: 1.7vw;
+        font-weight: 300;
+        line-height: 2.5;
+        margin-bottom: 40px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .modalCloseButton {
+        margin-right: 0;
+        position: fixed;
+        right: 5%;
+        top: 15px;
+    }
+    
+    .modalCloseButton::before{
+        content: "";
+        display: block;
+        width: 70%;
+        height: 3px;
+        background: rgba(255, 255, 255, 1);
+        transform: rotate(45deg);
+        transform-origin:0% 50%;
+        position: absolute;
+        top: 15px;
+        left: 25%;
+    }    
+    .modalCloseButton::after{
+        transform: rotate(-45deg);
+        transform-origin:100% 50%;
+        left: auto;
+        right: 25%;
+        top: 15px;
+    }
+    .modalFormHeadline {
+        font-size: 14vw;
+        margin-left: 5%;
+        margin-top: 100px;
+    }
+    .generalInfo {
+        margin-left: 0;
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+    .modalWrapper {
+        flex-direction: column;
+        padding: 0 5%;
+    }
+    .flipCard {
+        position: fixed;
+        background-color: transparent;
+        z-index: 1201;
+        right: 18%;
+        top: 40px;
+        cursor: pointer;
+        width: 180px;
+        height: 35px;
+        text-align: center;perspective: 1000px;
+        display: none;
+    }
+    .infoHeadline {
+        font-size: 18px;
+    }
+    .infoDetail div {
+        font-size: 15px;
+    }
+    .signupWrapper {
+        display: block;
+        position: relative;
+        border-bottom: 1px solid #363636;
+    }
+    .signupWrapper.inModal {
+        border-bottom: unset;
+    }
+    .flipCardTablet {
+        display: none;
+    }
+    .formButtonInner {
+        color: #C93D38;
+        text-decoration: underline;
+        padding: 5px 0;
+        position: relative;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .flipCardTablet {
+        display: none;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    
+    .flipCardTablet {
+        position: fixed;
+        background-color: transparent;
+        z-index: 1201;
+        right: 32%;
+        top: 35px;
+        cursor: pointer;
+        text-align: center;
+        perspective: 1000px;
+        display: block;
+        font-size: 16px;
+        color: #C93D38;
+        padding: 0;
+        margin: 0;
+        line-height: 0.75;
+    }
+    .formButtonInnerTablet {
+        width: 100%;
+        border-bottom: 1px solid #C93D38;
+    }
+}

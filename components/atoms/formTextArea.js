@@ -1,4 +1,4 @@
-import CommonStyle from '../../styles/commonParts.module.css'
+import CommonStyle from '../../styles/textArea.module.css'
 import FormErrors from './formErrors'
 import { useRef } from 'react'
 

@@ -3,26 +3,49 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
-    padding: 0 7%;
+    padding: 0 7% 250px;
 }
 .swiperInnerWrapper {
     margin: 0 auto;
     position: relative;
-    width: calc(64vh * (27/13) + 36px);
+    width: calc(60vh * (27/13) + 36px);
 }
 .swiperInnerWrapperClicked {
     margin: 0 auto;
     position: relative;
     width: 100%;
 }
+.formTopStyle {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 .basedCenterPhotoSize {
     width: 100%;
-    height: 64vh;
+    height: 60vh;
 }
 .subSlideContents{
-    transform: scale(0.65);
-    -webkit-transform: scale(0.65);
+    transform: scale(0.70);
+    -webkit-transform: scale(0.70);
+    transition: 0.2s;
 }
+.subSlideContents.hoveredActive {
+    transition-duration: 0.2s;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    padding-bottom: 5px;
+}
+
+.subSlideContents.hoveredActiveNeighbour {
+    transition-duration: 0.2s;
+    transform: scale(0.85);
+    -webkit-transform: scale(0.85);
+}
+
 .subSlideActive {
     transition-duration: 0.2s;
     transform: scale(1);
@@ -32,8 +55,8 @@
 
 .subSlidePrevNext {
     transition-duration: 0.2s;
-    transform: scale(0.8);
-    -webkit-transform: scale(0.8);
+    transform: scale(0.85);
+    -webkit-transform: scale(0.85);
 }
 
 .slideContents {
@@ -80,7 +103,7 @@
 
 .dancerNameInContents {
     color: rgba(0, 0, 0, 1);
-    font-size: 52px;
+    font-size: 28px;
     font-weight: bold;
     line-height: 1;
 }
@@ -202,14 +225,17 @@
     width: 3px;
   }
 .dancerInfoWrapper {
-    padding: 0 0 0 60px;
+    padding: 0 0 0 45px;
     width: 75%;
 }
 .dancerInfoParagraph {
     padding: 0 0 15px;
     font-weight: 200;
 }
-
+.dancerInfoList {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
 .dancerInfoHeadline {
     padding-bottom: 15px;
     font-weight: bold;
@@ -221,12 +247,13 @@
     font-size: 16px;
 }
 .dancerNameContentsWrapper {
-    width: 75%;
+    width: 100%;
     text-align: left;
     padding-left: 42px;
 }
 .dancerInfoBold {
-    font-weight: bold;
+    font-weight: 400;
+    font-size: 21px;
 }
 
 .dancerInfo {
@@ -234,8 +261,8 @@
 }
 
 .dancerTitle {
-    color: #c93d38;
-    font-size: 28px;
+    color: #1c1c1c;
+    font-size: 18px;
     font-weight: 200;
 }
 .paddingBottom40 {
@@ -249,35 +276,6 @@
 
 .positionRelative {
     position: relative;
-}
-.verticalList {
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 130px;
-    height: 50vh;
-    position: relative;
-    top: 80px;
-    scrollbar-width: thin;
-    scrollbar-color: #363636 #979797;
-    
-}
-.verticalList::before, .verticalList::after {
-    content: "";
-}
-
-.verticalList::-webkit-scrollbar {
-    width: 5px;
-}
-
-.verticalList::-webkit-scrollbar-track {
-    background: #979797;
-    border-left: 2px solid #DDE0E5;
-    border-right: 2px solid #DDE0E5;
-}
-
-.verticalList::-webkit-scrollbar-thumb {
-    background: #363636;
-    border-radius: 10px;
 }
 .dancerOverviewFrame {
     overflow-y: auto;
@@ -303,17 +301,6 @@
     background: #363636;
     border-radius: 10px;
 }
-.horizontalList {
-    height: 130px;
-    position: relative;
-    left: 0;
-    bottom: 0;
-    scrollbar-width: thin;
-    scrollbar-color: #363636 #979797;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
 
 .horizontalListModalWrapper {
     position: absolute;
@@ -322,89 +309,6 @@
     z-index: 1;
 }
 
-.workBlockSmall {
-    width: 105px;
-    height: 105px;
-    object-fit: contain;
-    object-position: center center;
-    flex: 1;
-    text-align: center;
-    margin: 0 auto 10px;
-    position: relative;
-}
-
-.workBlockSmallHorizontal {
-    width: 105px;
-    height: 105px;
-    object-fit: contain;
-    object-position: center center;
-    flex: 1;
-    text-align: center;
-    margin: auto 10px;
-    position: relative;
-}
-
-.workIsActive {
-    position: absolute;
-    width: 108px;
-    height: 108px;
-    background:
-    linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0,
-    linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%,
-    linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0,
-    linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%,
-    linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0,
-    linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0,
-    linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%,
-    linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
-
-    background-repeat: no-repeat;
-    background-size: 9px 9px;
-}
-
-.workIsNotActive {
-    text-align: center;
-    width: 108px;
-    height: 108px;
-    position: absolute;
-    background:
-    linear-gradient(to right, transparent 1px, transparent 1px) 0 0,
-    linear-gradient(to right, transparent 1px, transparent 1px) 0 100%,
-    linear-gradient(to left, transparent 1px, transparent 1px) 100% 0,
-    linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%,
-    linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0,
-    linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0,
-    linear-gradient(to top, transparent 1px, transparent 1px) 0 100%,
-    linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
-    background-repeat: no-repeat;
-    background-size: 9px 9px;
-}
-.innerBorder {
-    border: 1px solid #c4c4c4;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    margin: 4px 5px;
-}
-
-.innerBorderVideo {
-    border: 1px solid #c4c4c4;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    margin: 4px 4px;
-}
-
-
-
-.workBlockSmall img {
-    z-index: 1;
-    position: relative;
-}
 .arrowWrapper {
     position: absolute;
     bottom: 0;
@@ -496,6 +400,9 @@
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+.fadeInAnimationCenterPhoto img {
+    object-position: right;
+}
 
 @keyframes fadeIn {
     from {
@@ -508,17 +415,26 @@
 }
 
 .headerWrapper {
-    padding: 40px 7% 10px;
+    padding: 40px 7% 10px 2%;
 }
 
 .dancerSlideHeadline {
-    font-size: 36px;
+    font-size: 32px; /*36px;*/
     font-weight: 300;
     color: #000;
 }
 .backToDancersWrapper {
     text-align: right;
+    min-width: 65px;
+    margin-left: 3%;
+    margin-right: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 75%;
+    z-index: 10000;
 }
+
 .backToDancers {
     color: #000;
     cursor: pointer;
@@ -526,28 +442,37 @@
     position: relative;
     margin-right: 8%;
 }
-.backToDancers::before,
-.backToDancers::after {
+
+.backToDancersArrow {
+    width: 27px;
+    height: 24px;
+    margin-top: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.backToDancersArrow::before,
+.backToDancersArrow::after {
     content: "";
     position: absolute;
     top: 0;
-    left: -32px;
+    left: -5px;
     bottom: 0;
     margin: auto;
 }
-.backToDancers::before {
+.backToDancersArrow::before {
     width: 24px;
     height: 2px;
-    margin-top: 9px;
-    background: #000;
+    margin-top: 10px;
+    background: #9B9B9B;
 }
 
-.backToDancers::after {
+.backToDancersArrow::after {
     width: 9px;
     height: 9px;
-    margin-top: 4px;
-    border-top: 3px solid #000;
-    border-right: 3px solid #000;
+    margin-top: 5px;
+    border-top: 2px solid #9B9B9B;
+    border-right: 2px solid #9B9B9B;
     transform: rotate(-135deg);
 }
 
@@ -558,7 +483,8 @@
 }
 
 .flexWrapperDancerHeaderOpened,
-.flexWrapperDancerHeaderClosed {
+.flexWrapperDancerHeaderClosed,
+.OrSwipe {
     display: none;
 }
 .viewAllArea {
@@ -574,66 +500,6 @@
     display: flex;
     flex-wrap: wrap;
 }
-
-.listedDancerPhoto {
-    position: relative;
-    width: 200px;
-    object-fit: cover;
-    height: 300px;
-    cursor: pointer;
-}
-.listedDancerHoverLayer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-    background: #202020;
-    z-index: 1;
-}
-.listedDancerName {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: xx-large;
-    z-index: 2;
-    font-weight: bold;
-    color: #fff;
-}
-.reactPlayerDancerPreview {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.playButtonMiddle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border: 3px solid #f9f9f9;
-    background-color: transparent;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    opacity: 1;
-}
-.playButtonMarkMiddle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-40%, -50%);
-    border-style: solid;
-    border-color: transparent transparent transparent #f9f9f9;
-    border-width: 25px 0 25px 45px;
-}
 .videoPlayerSize{
     width: 100px;
     height: 100px;
@@ -641,6 +507,337 @@
 .subSwiperForMobile {
     display: block;
     margin-top: 15px;
+}
+
+.contentsModal {
+    width: 100%;
+}
+.otherOptionModal {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.modalContentsWithBackgroundImage {
+    z-index: 9998;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 50px;
+    height: 50px;
+}
+.modalCloseButton {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: fixed;
+    right: 5%;
+    margin-left: auto;
+    margin-right: 0;
+    mix-blend-mode: multiply;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    z-index: 9999;
+}
+.modalCloseButton::before, .modalCloseButton::after{
+    content: "";
+    display: block;
+    width: 70%;
+    height: 3px;
+    background: rgba(133, 133, 133, 0.6);
+    transform: rotate(45deg);
+    transform-origin:0% 50%;
+    position: absolute;
+    top: calc(14% + 3px);
+    left: 25%;
+}
+.modalCloseButton::after{
+    transform: rotate(-45deg);
+    transform-origin:100% 50%;
+    left: auto;
+    right: 25%;
+}
+
+.displayNone {
+    display: none;
+}
+.displayBlock {
+    display: block;
+}
+.gradationGrayLeftSide {
+    background: linear-gradient(-90deg, rgba(221, 224, 229,0) 0%,  rgba(221, 224, 229, 0.2) 5%, rgba(221, 224, 229, 0.9) 45%, rgba(221, 224, 229, 1) 80%);
+    width: calc(60vh * 9/13);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1197;
+    pointer-events: none;
+}
+
+.gradationGrayRightSide {
+    background: linear-gradient(90deg, rgba(221, 224, 229, 0) 0%, rgba(221, 224, 229, 0.2) 5%, rgba(221, 224, 229, 0.9) 45%, rgba(221, 224, 229, 1) 80%);
+    width: calc(60vh * 9/13);
+    height: 100%; /*100% or 82%*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1197;
+    pointer-events: none;
+}
+.fadeOutAnimation {
+    -webkit-animation: fadeOut 1s;
+    animation: fadeOut 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    animation-delay: 0.3s;
+    -webkit-animation-delay: 0.3s;
+}
+.fadeOutAnimation:hover {
+    -webkit-animation: fadeInHover 1s;
+    animation: fadeInHover 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+  @keyframes fadeInHover {
+    0% {opacity: 0;}
+    100% { opacity: 1; }
+  }
+  @keyframes fadeOut {
+      0% {opacity: 1;}
+      100% { opacity: 0; }
+  }
+  .swiperButtonPrevArrow::after {
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 2px;
+    bottom: -2px;
+    left: 24px;
+    width: 32px;
+    height: 2px;
+    background: #000;
+}
+
+.swiperButtonPrevArrow::before {
+    content: "";
+    margin: auto;
+    position:absolute;
+    top: 2px;
+    bottom: -2px;
+    width: 10px;
+    height: 10px;
+    left:24px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: rotate(-135deg);
+}
+.swiperButtonNextArrow {
+    text-align: center;
+    position: relative;
+    color: #000;
+    top: 17%;
+  }
+  .swiperButtonNextArrow::after {
+    content: "";
+    margin: auto;
+    position:absolute;
+    top: 27px;
+    bottom: -27px;
+    right: 24px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: rotate(45deg);
+  }
+
+  .swiperButtonNextArrow::before {
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 27px;
+    bottom: -27px;
+    left: 24px;
+    width: 32px;
+    height: 2px;
+    background: #000;
+  }
+  .swiperModalButtonPrevWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperModalButtonPrev {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  
+.swiperModalButtonNextWrapper {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    width: 250px;
+    height: 250px;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperModalButtonNext {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9997;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swipeWrapper {
+    user-select: none;
+  }
+  .swipeSubWrapper {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(4px 4px 4px #c4c4c4);
+    padding-bottom: 5px;
+    cursor: pointer;
+  }
+  
+  .swiperButtonDancerNextWrapper {
+    position: absolute;
+    top: 40%;
+    right: 0%;
+    width: 250px;
+    height: 250px;
+    z-index: 9997;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonDancerNext {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9997;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swiperButtonDancerPrev {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    outline: 0;
+    z-index: 9999;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+  .swiperButtonDancerPrevWrapper {
+    position: absolute;
+    top: 40%;
+    left: 0%;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  .swiperButtonDancerPrevWrapperOpened {
+    position: absolute;
+    top: 50%;
+    left: 9%;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+@media screen and (min-width: 1600px) {
+    .swiperModalButtonPrevWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50px;
+        width: 350px;
+        height: 350px;
+        z-index: 9999;
+        cursor: pointer;
+        transform: translateY(-50%);
+      }
+      .swiperModalButtonNextWrapper {
+        position: absolute;
+        top: 50%;
+        right: 50px;
+        width: 350px;
+        height: 350px;
+        z-index: 9997;
+        cursor: pointer;
+        transform: translateY(-50%);
+      }
+      .swiperButtonDancerPrevWrapper {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        width: 350px;
+        height: 350px;
+        z-index: 9999;
+        cursor: pointer;
+        transform: translateY(-50%);
+      }
+      .swiperButtonDancerNextWrapper {
+        position: absolute;
+        top: 50%;
+        right: 0%;
+        width: 350px;
+        height: 350px;
+        z-index: 9997;
+        cursor: pointer;
+        transform: translateY(-50%);
+      }
+}
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+    .gradationGrayLeftSide {
+        background: linear-gradient(-90deg, rgba(221, 224, 229,0) 0%,  rgba(221, 224, 229, 0.2) 5%, rgba(221, 224, 229, 0.9) 30%, rgba(221, 224, 229, 1) 60%);
+        width: calc(60vh * 7/13);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1197;
+    }
+    
+    .gradationGrayRightSide {
+        background: linear-gradient(90deg, rgba(221, 224, 229, 0) 0%, rgba(221, 224, 229, 0.2) 5%, rgba(221, 224, 229, 0.9) 30%, rgba(221, 224, 229, 1) 60%);
+        width: calc(60vh * 7/13);
+        height: 100%; /*100% or 82%*/
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1197;
+    }
 }
 @media screen and (max-width: 1199px) {
     .sliderWrapper {
@@ -658,37 +855,56 @@
 }
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
     .swiperInnerWrapper {
-        width: calc(64vh * (22/13) + 36px);
+        width: calc(60vh * (22/13) + 36px);
         margin: 0 auto;
         position: relative;
     }
     .basedCenterPhotoSize {
         width: 100%;
-        height: 64vh;
+        height: 60vh;
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .swiperInnerWrapper {
-        width: calc(64vh * (19/13) + 36px);
+        width: calc(60vh + 36px);
         margin: 0 auto;
         position: relative;
+        min-width: 100%;
     }
     
     .basedCenterPhotoSize {
         width: 100%;
-        height: 64vh;
+        height: 60vh;
+    }
+    .gradationGrayLeftSide {
+        background: linear-gradient(-90deg, rgba(221, 224, 229,0),rgba(221, 224, 229, 1));
+        width: calc(60vh * 5/13);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+    }
+    .gradationGrayRightSide {
+        background: linear-gradient(90deg, rgba(221, 224, 229, 0) 0%,rgba(221, 224, 229, 1));
+        width: calc(60vh * 5/13);
+        height: 100%; /*100% or 82%*/
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 5;
     }
 }
 @media screen and (min-width: 640px) and (max-width: 767px) {
     .swiperInnerWrapper {
-        width: calc(64vh * (15/13) + 36px);
+        width: calc(60vh * (15/13) + 36px);
         margin: 0 auto;
         position: relative;
     }
     
     .basedCenterPhotoSize {
         width: 100%;
-        height: 64vh;
+        height: 60vh;
     }
 }
 @media screen and (max-width: 639px) {
@@ -699,10 +915,18 @@
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    
+    .viewAllOrSwipeWrapper {
+        display: flex;
+        gap: 0 70px;
+        align-items: center;
+        justify-content: space-between;
+        width: 30%;
+        margin-right: 10%;
+        margin-left: 3%;
+    }
     .basedCenterPhotoSize {
         width: 100%;
-        height: 64vh;
+        height: 60vh;
     }
     .basedCenterPhotoSize.isClicked {
         width: 100%;
@@ -710,9 +934,6 @@
     }
     .flexAreaPhoto {
         height: 46vh;
-    }
-    .verticalList {
-        height: 40vh;
     }
     .headerWrapper {
         padding: 40px 7% 0;
@@ -733,6 +954,9 @@
     }
 }
 @media screen and (max-width: 1023px) {
+    .OrSwipe {
+        display: block;
+    }
     .flexWrapperDancerHeader.isClicked {
         justify-content: flex-start;
     }
@@ -744,14 +968,6 @@
         margin-top: 40px;
         justify-content: space-between;
     }
-    .viewAllOrSwipeWrapper {
-        display: flex;
-        gap: 0 70px;
-        align-items: center;
-        justify-content: center;
-        width: 90%;
-        margin-right: 10%;
-    }
     .viewAllArea,
     .viewAllAreaMobile {
         cursor: pointer;
@@ -760,7 +976,8 @@
         margin-left: 0;
         color: #c93d38;
     }
-    .viewAllArea.isClicked {
+    .viewAllArea.isClicked,
+    .OrSwipe.isClicked {
         display: none;
     }
     .backToDancersMobile {
@@ -779,26 +996,6 @@
     .backToDancersWrapper  {
         display: none;
     }
-    .verticalList {
-        overflow-y: auto;
-        overflow-x: hidden;
-        width: 130px;
-        height: 42vh;
-        position: relative;
-        top: 0px;
-        scrollbar-width: thin;
-        scrollbar-color: #363636 #979797;
-    }
-    .horizontalList {
-        height: 130px;
-        position: relative;
-        left: 0;
-        bottom: 0;
-        scrollbar-width: thin;
-        scrollbar-color: #363636 #979797;
-        display: flex;
-        flex-wrap: nowrap;
-    }
     .horizontalListModalWrapper {
         position: absolute;
         bottom: 0px;
@@ -807,12 +1004,6 @@
         overflow: auto;
         width: 100%;
         justify-content: flex-start;
-    }
-    .workBlockSmallHorizontal {
-        width: 108px;
-        height: 108px;
-        min-width: 108px;
-        max-width: 108px;
     }
     .dancerNameContentsWrapper {
         width: 85%;
@@ -913,11 +1104,58 @@
         bottom: 0;
         width: 3px;
       }
+      .swiperButtonHappeningsPrev,
+      .swiperButtonHappeningsNext,
+      .swiperButtonNextWrapper,
+      .swiperButtonPrevWrapper,
+      .swiperButtonHappeningsPrevWrapper,
+      .swiperButtonHappeningsNextWrapper,
+      .swiperButtonDancerNextWrapper,
+      .swiperButtonDancerPrevWrapper,
+      .swiperButtonDancerPrevWrapperOpened,
+      .swiperButtonShopPrevWrapper,
+      .swiperButtonShopNextWrapper,
+      .swiperModalButtonNextWrapper,
+      .swiperModalButtonPrevWrapper {
+        display: none;
+      }
 }
 @media screen and (max-width: 767px) {
+    .gradationGrayLeftSide {
+        background: linear-gradient(-90deg, rgba(221, 224, 229,0),rgba(221, 224, 229, 1));
+        width: 15%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+    }
+    .gradationGrayRightSide {
+        background: linear-gradient(90deg, rgba(221, 224, 229, 0) 0%,rgba(221, 224, 229, 1));
+        width: 15%;
+        height: 100%; /*100% or 82%*/
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 5;
+    }
+    .swiperSlideActive .slide {
+        overflow-y: auto!important;
+    }
+    .viewAllOrSwipeWrapper {
+        display: flex;
+        gap: 0 70px;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        margin-right: 10%;
+    }
+    .formTopStyle {
+        overflow-y: auto;
+    }
     .basedCenterPhotoSize {
         width: 100%;
-        height: 64vh;
+        height: 60vh;
     }
     .basedCenterPhotoSize.isClicked {
         width: 100%;
@@ -951,51 +1189,13 @@
         padding: 0;
     }
     .headerWrapper {
-        padding: 80px 7% 10px;
+        padding: 80px 3% 10px;
     }
     .flexAreaPhoto {
         width: 55%;
         position: relative;
         transition-duration: .8s;
         -webkit-transition-duration: .8s;
-    }
-    .workBlockSmall {
-        width: 16vw;
-        height: 16vw;
-        -o-object-fit: contain;
-        object-fit: contain;
-        -o-object-position: center center;
-        object-position: center center;
-        flex: 1 1;
-        text-align: center;
-        margin: 0 auto 10px;
-        position: relative;
-    }
-    .workIsActive {
-        position: absolute;
-        width: 16vw;
-        height: 16vw;
-        background: linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
-        background-repeat: no-repeat;
-        background-size: 9px 9px;
-    }
-    .workIsNotActive {
-        text-align: center;
-        width: 22vw;
-        height: 22vw;
-        position: absolute;
-        background: linear-gradient(to right, transparent 1px, transparent 1px) 0 0, linear-gradient(to right, transparent 1px, transparent 1px) 0 100%, linear-gradient(to left, transparent 1px, transparent 1px) 100% 0, linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0, linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0, linear-gradient(to top, transparent 1px, transparent 1px) 0 100%, linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
-        background-repeat: no-repeat;
-        background-size: 9px 9px;
-    }
-    .innerBorder {
-        border: 1px solid #c4c4c4;
-        width: 15vw;
-        height: 15vw;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        margin: 4px 4px;
     }
     .verticalWorksArea {
         width: 25%;
@@ -1009,7 +1209,7 @@
         width: 100%;
     }
     .slideContentsClicked {
-        height: 140vh;
+        height: 100vh;
         transform: scale(1);
         -webkit-transform: scale(1);
     }
@@ -1019,32 +1219,14 @@
         scrollbar-width: thin;
         scrollbar-color: #8B7A6A #E2C3A6;
     }
-    .formButton {
-        background-color: transparent;
-        background-color: #C93D38;
-        cursor: pointer;
-        width: 180px;
-        height: 50px;
-        text-align: center;
-        border-radius: 30px;
-        -webkit-border-radius: 30px;
-        margin: 0 0 15px;
-        position: relative;
-    }
-    .formButtonInner {
-        color: #fff;
-        padding: 5px 0;
-        transform: translateY(-50%);
-        top: 50%;
-        position: relative;
-    }
     
     .flexWrapperDancerHeader {
         display: flex;
         align-items: center;
         flex-wrap: nowrap;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: flex-start;
+        gap: 0 20px;
     }
     .flexWrapperDancerHeaderOpened {
         display: flex;
@@ -1062,11 +1244,7 @@
         display: flex;
         gap: 0 15px;
         align-items: center;
-    }
-    .workBlockSmallHorizontal {
-        width: 70px;
-        height: 70px;
-        min-width: 70px;
+        margin-right: 3%;
     }
     .horizontalListModalWrapper {
         position: absolute;
@@ -1081,15 +1259,8 @@
         max-width: 85px;
         margin-right: 0px;
     }
-    .verticalList {
-        overflow-y: auto;
-        overflow-x: hidden;
-        width: 20vw;
-        height: 55vh;
-        position: relative;
-        top: 0px;
-        scrollbar-width: thin;
-        scrollbar-color: #8B7A6A #E2C3A6;
+    .modalContentsWithBackgroundImage {
+        right: 15px;
     }
 }
 @media screen and (max-width: 550px) {
@@ -1099,7 +1270,7 @@
     }
     .basedCenterPhotoSize {
         width: 100%;
-        height: 64vh;
+        height: 60vh;
     }
     .basedCenterPhotoSize.isClicked {
         width: 100%;
@@ -1111,102 +1282,15 @@
         height: auto;
         min-height: 300px;
     }
-    .listedDancerPhoto {
-        position: relative;
-        width: 100%;
-        object-fit: cover;
-        cursor: pointer;
-        height: 100%;
-    }
-    .listedDancerPhoto img {
-        object-fit: cover;
-    }
-    .listedDancerHoverLayer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.7;
-        background: #202020;
-        z-index: 1;
-    }
-    .listedDancerName {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: x-large;
-        z-index: 2;
-        font-weight: bold;
-        color: #fff;
-    }
     .flexAreaPhoto {
         width: 65%;
         position: relative;
         transition-duration: .8s;
         -webkit-transition-duration: .8s;
     }
-    .workBlockSmall {
-        width: 20vw;
-        height: 18vw;
-        -o-object-fit: contain;
-        object-fit: contain;
-        -o-object-position: center center;
-        object-position: center center;
-        flex: 1 1;
-        text-align: center;
-        margin: 0 auto 10px;
-        position: relative;
-    }
-    .workIsActive {
-        position: absolute;
-        width: 20vw;
-        height: 20vw;
-        background: linear-gradient(to right, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to right, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to left, #c93d38 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 0 0, linear-gradient(to bottom, #c93d38 1px, transparent 1px) 100% 0, linear-gradient(to top, #c93d38 1px, transparent 1px) 0 100%, linear-gradient(to top, #c93d38 1px, transparent 1px) 100% 100%;
-        background-repeat: no-repeat;
-        background-size: 9px 9px;
-    }
-    .workIsNotActive {
-        text-align: center;
-        width: 22vw;
-        height: 22vw;
-        position: absolute;
-        background: linear-gradient(to right, transparent 1px, transparent 1px) 0 0, linear-gradient(to right, transparent 1px, transparent 1px) 0 100%, linear-gradient(to left, transparent 1px, transparent 1px) 100% 0, linear-gradient(to left, transparent 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, transparent 1px, transparent 1px) 0 0, linear-gradient(to bottom, transparent 1px, transparent 1px) 100% 0, linear-gradient(to top, transparent 1px, transparent 1px) 0 100%, linear-gradient(to top, transparent 1px, transparent 1px) 100% 100%;
-        background-repeat: no-repeat;
-        background-size: 9px 9px;
-    }
-    .innerBorder {
-        border: 1px solid #c4c4c4;
-        width: 18vw;
-        height: 18vw;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        margin: 4px 4px;
-    }
-    .innerBorderVideo {
-        border: 1px solid #c4c4c4;
-        width: 20vw;
-        height: 20vw;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        margin: 4px 4px;
-    }
     .videoPlayerSize{
         width: 20vw;
         height: 20vw;
-    }
-    .verticalList {
-        overflow-y: auto;
-        overflow-x: hidden;
-        width: 24vw;
-        height: 40vh;
-        position: relative;
-        top: 0px;
-        scrollbar-width: thin;
-        scrollbar-color: #8B7A6A #E2C3A6;
     }
     .flexBottom {
         margin-top: 30px;

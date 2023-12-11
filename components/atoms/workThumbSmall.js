@@ -1,7 +1,8 @@
 import Image from 'next/image'
-import VideoPlayer from 'react-player'
-import HappeningStyle from '../../styles/happenings.module.css'
-import DancerStyle from '../../styles/dancerProfile.module.css'
+import DancerStyle from '../../styles/workThumbSmall.module.css'
+import dynamic from 'next/dynamic'
+
+const VideoPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
 
 export default function WorkThumbSmall({verticalWorkClickedChange, modalChange, handleChange, workIsActive, keyIndex, type, work, isHorizontal }){
     let contents
@@ -21,7 +22,9 @@ export default function WorkThumbSmall({verticalWorkClickedChange, modalChange, 
                     alt={type}
                     objectFit="cover"
                     layout="fill"
+                    quality={30}
                     loading="lazy"
+                    decoding='async'
                 /></div>
             </div></div>
     } else if (type ==="Video") {
@@ -34,29 +37,28 @@ export default function WorkThumbSmall({verticalWorkClickedChange, modalChange, 
         >
             <div className={` ${workIsActive ? DancerStyle.workIsActive : DancerStyle.workIsNotActive}`}>
                 <div className={DancerStyle.innerBorderVideo}>
-                <div className={HappeningStyle.playerWrapperSmall}>
-                    <div className={`${HappeningStyle.playButtonSmall}`}>
-                        <div className={HappeningStyle.playButtonMarkSmall}></div>
+                <div className={DancerStyle.playerWrapperSmall}>
+                    <div className={`${DancerStyle.playButtonSmall}`}>
+                        <div className={DancerStyle.playButtonMarkSmall}></div>
                     </div>
                     <VideoPlayer
-                        className={HappeningStyle.reactPlayer}
+                        className={DancerStyle.reactPlayer}
                         url={work}
                         width="98px"
                         height="98px"
                         playing={false}
+                        playsinline={true}
                         muted={true}
                         config={{
                             file: { 
                               attributes: { 
-                                preload: 'none' 
+                                preload: 'none'
                               } 
                             } 
                           }}
                     />
                 </div></div>
         </div></div>
-    } else if (type === "YoutubeLink") {
-        contents = ""
     }
 
     return (

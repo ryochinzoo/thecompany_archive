@@ -1,0 +1,109 @@
+.formTopStyle {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.templateMargin{
+    /*padding-top: 90px;
+    padding-left: 230px;
+    padding-bottom: 100px;*/
+    position: relative;
+    padding: 50px 0px;
+} 
+
+.letterColorBlack {
+    color: #000;
+}
+.letterColorWhite {
+    color: #fff;
+}
+.letterColorRed {
+    color: #C93D38;
+}
+.contentsItemList {
+    padding: 15px 0;
+    margin: 10px 0 0 30em; /*margin: 55px 0 0 30em;*/
+    width: 60%;
+    text-align: left;
+    z-index: 9998;
+    position: relative;
+}
+.contentsItemList li  {
+    display: inline-block;
+    padding: 0 20px;
+}
+.cursorPointer {
+    cursor: pointer;
+    user-select: none;
+}
+@media screen and (min-width: 2000px) {
+    .templateMargin{
+        position: absolute;
+        padding: 50px 0px;
+        top: 50%;
+        left: 10%;
+        transform: translateY(-50%);
+    }  
+}
+@media screen and (min-width: 1024px) {
+    .bookingRequestButtonSPWrapper {
+        display: none;
+    }
+    
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .contentsItemList {
+        padding: 30px 0;
+        margin: 20px 0 0 8.5em;
+        width: 75%;
+        z-index: 1198;
+        text-align: left;
+    }
+    .templateMargin {
+        padding-top: 120px;
+        /* padding-left: 230px; */
+        padding-bottom: 180px;
+        position: relative;
+    }
+    .bookingRequestButtonSPWrapper {
+        display: none;
+    }
+}
+@media screen and (max-width: 767px) {
+    .contentsItemList {
+        padding: 30px 0;
+        margin: 40px 0 0 0px;
+        width: 90%;
+        z-index: 1198;
+        text-align: left;
+    }
+    .formTopStyle {
+        overflow-y: auto;
+    }
+    .templateMargin {
+        padding-top: 25px;
+        /* padding-left: 230px; */
+        padding-bottom: 80px;
+        position: relative;
+    }
+    .bookingRequestButtonSPWrapper {
+        position: relative;
+        margin: 20px 0 0 auto;
+        display: block;
+        width: 220px;
+        height: 46px;
+        text-align: center;
+        font-weight: 100;
+        right: 20px;
+    }
+    .bookingRequestButtonSP {
+        background-color: #000;
+        color: #fff;
+        padding: 15px 20px;
+    }
+}

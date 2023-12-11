@@ -1,4 +1,4 @@
-import DancerStyle from '../../styles/dancerProfile.module.css'
+import DancerStyle from '../../styles/formButton.module.css'
 
 export default function FormButton() {
     return (

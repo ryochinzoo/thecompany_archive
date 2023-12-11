@@ -1,0 +1,223 @@
+.signUpFooter::placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 14px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+}
+.signUpFooter::-ms-input-placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 14px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+}
+.signUpFooter:focus {
+    background-color: transparent;
+    border-bottom: 2px solid #363636;
+    border-right:none;
+    border-left:none;
+    border-top:none;
+    outline: none;
+}
+.signUpFooter:focus::-ms-input-placeholder,
+.signUpFooter:focus::-webkit-input-placeholder,
+.signUpFooter:focus::placeholder {
+    opacity: 1;
+    outline: none;
+    color: transparent;
+}
+.signUpFooter {
+    max-width: 450px;
+    width: 100%;
+    background-color: transparent;
+    border-right:none;
+    border-left:none;
+    border-top:none;
+    border-bottom: 1px solid #1c1c1c;
+    padding: 20px 0 10px;
+    margin-bottom: 8px;
+    color: #9b9b9b;
+    font-size: 14px;
+}
+.signUpFooterOther::placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 20px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+}
+.signUpFooterOther::-ms-input-placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 20px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+}
+.signUpFooterOther:focus {
+    background-color: transparent;
+    border-bottom: 2px solid #fff;
+    border-right:none;
+    border-left:none;
+    border-top:none;
+    outline: none;
+}
+.signUpFooterOther:focus::-ms-input-placeholder,
+.signUpFooterOther:focus::-webkit-input-placeholder,
+.signUpFooterOther:focus::placeholder {
+    opacity: 1;
+    outline: none;
+    color: transparent;
+}
+.signUpFooterOther {
+    max-width: 450px;
+    width: 100%;
+    background-color: transparent;
+    border-right:none;
+    border-left:none;
+    border-top:none;
+    border-bottom: 1px solid #fff;
+    padding: 20px 0 10px;
+    margin-bottom: 8px;
+    color: #363636;
+    font-size: 18px;
+}
+.inputTextModal {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #fff;
+    padding: 20px 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+}
+.inputTextModal:focus {
+    background-color: transparent;
+    border: 1px solid #fff;
+    outline: none;
+}
+.inputTextModal::placeholder{
+    opacity: 1;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+.inputTextModal::-ms-input-placeholder {
+    opacity: 1;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+
+.inputText {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #E1E4ED;
+    padding: 25px 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: #979797;
+    font-size: 18px;
+}
+.inputText:focus {
+    background-color: #fff;
+    border: 1px solid #C93D38;
+    outline: none;
+}
+.inputText::placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 18px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+.inputText::-ms-input-placeholder {
+    opacity: 1;
+    color: #9b9b9b;
+    font-size: 18px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+    padding-left: 25px;
+}
+.signUp::placeholder {
+    opacity: 1;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+}
+.signUp::-ms-input-placeholder {
+    opacity: 1;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300!important;
+    font-family: 'Nexa';
+}
+.signUp:focus {
+    background-color: transparent;
+    border-bottom: 2px solid #fff;
+    border-right:none;
+    border-left:none;
+    border-top:none;
+    outline: none;
+}
+.signUp:focus::-ms-input-placeholder,
+.signUp:focus::-webkit-input-placeholder,
+.signUp:focus::placeholder {
+    opacity: 1;
+    outline: none;
+    color: transparent;
+}
+.signUp {
+    width: 100%;
+    background-color: transparent;
+    border-right:none;
+    border-left:none;
+    border-top:none;
+    border-bottom: 1px solid #fff;
+    padding: 20px 0 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    
+    .signUpFooter {
+        min-width: 240px;
+        width: 100%;
+        background-color: transparent;
+        border-right:none;
+        border-left:none;
+        border-top:none;
+        border-bottom: 1px solid #363636;
+        padding: 20px 0 10px;
+        margin-bottom: 8px;
+        color: #363636;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .signUpFooter {
+        max-width: 100%;
+        background-color: transparent;
+        border-right: none;
+        border-left: none;
+        border-top: none;
+        border-bottom: unset;
+        padding: 20px 0 0px;
+        margin-bottom: 8px;
+        color: #363636;
+        font-size: 18px;
+    }
+}

@@ -7,15 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "Type": {
-      "type": "enumeration",
-      "enum": [
-        "Image",
-        "Video",
-        "VimeoURL"
-      ],
-      "required": true
-    },
     "Media": {
       "type": "media",
       "multiple": false,
@@ -27,8 +18,22 @@
         "audios"
       ]
     },
-    "VimeoURL": {
-      "type": "string"
+    "MediaType": {
+      "type": "enumeration",
+      "enum": [
+        "Image",
+        "Video"
+      ]
+    },
+    "PreviewPhoto": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

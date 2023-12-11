@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "largest_videos",
+  "info": {
+    "singularName": "largest-video",
+    "pluralName": "largest-videos",
+    "displayName": "LargestVideo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "VideoPosition": {
+      "type": "enumeration",
+      "enum": [
+        "Top",
+        "Agency"
+      ]
+    },
+    "VideoForDesktop": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "VideoForMobile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

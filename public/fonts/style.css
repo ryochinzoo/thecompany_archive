@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Nexa';
     src: url('Fontfabric - Nexa Text Regular.otf') format("opentype");
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -29,7 +29,7 @@
 @font-face {
     font-family: 'Shopping Script';
     src: url('Shopping Script Demo.ttf') format("ttf");
-    font-weight: 300;
+    font-weight: 200;
     font-style: normal;
 }
 

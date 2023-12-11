@@ -1,0 +1,10 @@
+.errorInModalForm {
+    color:#fff
+}
+.errorOnFooterForm {
+    color: #C93D38;
+}
+.errorInModalForm,
+.errorOnFooterForm {
+    margin: 0px 0 8px;
+}

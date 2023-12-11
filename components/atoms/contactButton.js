@@ -3,7 +3,7 @@ export default function ContactButton () {
         <div>
             <button onClick={() => setContactModalShowState(true)}>
                 <a>
-                Get In Touch
+                Get in touch
                 </a>
             </button>
         </div>

@@ -54,7 +54,7 @@ export default function HappeningsEventContentsA ({item}) {
     )
 }
 export function createLink(vid) {
-    const mainCartAddress = "https://thecompanyberlin.com/cart/"
+    const mainCartAddress = "https://thecompanyberlin.myshopify.com/cart/"
     const shoppingData = vid + ":" + 1
     return mainCartAddress + shoppingData
 }

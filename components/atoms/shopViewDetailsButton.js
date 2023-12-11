@@ -1,14 +1,15 @@
-import utilStyles from "../../styles/utils.module.css"
+import utilStyles from "../../styles/shopViewDetailsButton.module.css"
 
 export default function ShopViewDetailsButton ({ isDetails }) {
     return (
         <>
         {isDetails
-        ?   <div className={`${utilStyles.shopAddToBag}`} style={{cursor : "pointer"}}>
-                Add to Shopping Bag
-            </div>
+        ?   <button type="submit" className={`${utilStyles.shopAddToBag}`} style={{cursor : "pointer", display: "block"}}>
+                Add to shopping bag
+            </button>
+            
         :   <div className={`${utilStyles.shopViewDetailsButton}`} style={{cursor : "pointer"}}>
-                View Details
+                View details
             </div>
     }
             

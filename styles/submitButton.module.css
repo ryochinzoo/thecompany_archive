@@ -1,0 +1,77 @@
+.submitButton {
+    background-color: #f9f9f9;
+    color: #000;
+    padding: 13px 43px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    font-weight: bold;
+    font-family: 'Nexa';
+    font-size: 15px;
+    border-color: transparent;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+	overflow: hidden;
+	transition: .3s;
+	z-index: 1;
+	position: relative;
+}
+
+.submitButton:hover {
+    color:#f9f9f9;
+    border-color: #1c1c1c;
+}
+.submitButton::before {
+	content: "";
+	width: 120%;
+	height: 200%;
+	position: absolute;
+	top: -50%;
+	right: 0;
+	z-index: -1;
+	background: #1c1c1c;
+	border-radius: 0 100% 100% 0;
+	transform: translateX(-100%);
+	transition: transform ease .3s;
+}
+.submitButton:hover::before {
+	transform: translateX(10%);
+}
+.submitButtonFooter {
+    background-color: #C93D38;
+    color: #fff;
+    padding: 16px 47px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    font-weight: bold;
+    font-family: 'Nexa';
+    font-size: 15px;
+    border-color: transparent;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+	overflow: hidden;
+	transition: .3s;
+	z-index: 1;
+	position: relative;
+}
+.submitButtonFooter:hover {
+    color:#f9f9f9;
+    border-color: #1c1c1c;
+}
+.submitButtonFooter::before {
+	content: "";
+	width: 120%;
+	height: 200%;
+	position: absolute;
+	top: -50%;
+	right: 0;
+	z-index: -1;
+	background: #1c1c1c;
+	border-radius: 0 100% 100% 0;
+	transform: translateX(-100%);
+	transition: transform ease .3s;
+}
+.submitButtonFooter:hover::before {
+	transform: translateX(10%);
+}
