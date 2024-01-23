@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import { appWithTranslation } from 'next-i18next'
 import Head from 'next/head'
+import Script from 'next/script'
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -31,6 +33,18 @@ function MyApp({ Component, pageProps }) {
           <meta name="twitter:image:width" content="1200" />
           <meta name="twitter:image:height" content="630" />
       </Head>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+        />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+        `}
+      </Script>
       <Component {...pageProps} />
       
       </>)

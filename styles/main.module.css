@@ -341,7 +341,7 @@
     /*transform: rotate(-90deg) translateX(-9px) translateY(212px);*/
     bottom: 0;
     left: 0;
-    z-index: 10;
+    z-index: 9998;
     user-select: none;
 }
 .bufferedAreaAgency {
